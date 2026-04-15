@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>The Coach — Jeet Joshi</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--p:#F8F5F0;--p2:#F1EDE6;--ink:#2C2925;--m:#6B635B;--f:#A89F95;--r:#DDD7CF;--a:#8B4F2E;--ab:#F5EDE7;--sf:"DM Serif Display",Georgia,serif;--ss:"Inter",-apple-system,sans-serif;--mw:720px;--g:clamp(20px,5vw,48px)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}
+    body{background:var(--p);color:var(--ink);font-family:var(--ss);font-size:1.0625rem;line-height:1.72;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--p);border-bottom:1px solid var(--r)}
+    .nav__i{max-width:calc(var(--mw) + var(--g)*2);margin:0 auto;padding:16px var(--g);display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:var(--sf);font-size:.95rem}.back{font-size:.85rem;color:var(--f);transition:color .2s}.back:hover{color:var(--m)}
+    .pg{max-width:calc(var(--mw) + var(--g)*2);margin:0 auto;padding:0 var(--g)}
+    .hero{padding-top:104px;padding-bottom:48px;border-bottom:1px solid var(--r)}
+    .kick{font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:16px}
+    .ht{font-family:var(--sf);font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
+    .sub{font-size:1.1rem;color:var(--m);font-style:italic;margin-bottom:24px;max-width:52ch;line-height:1.65}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}.t{font-size:.6875rem;letter-spacing:.05em;color:var(--f);background:var(--p2);border:1px solid var(--r);padding:2px 9px;border-radius:2px}
+    .ta{background:var(--ab);color:var(--a);border-color:rgba(139,79,46,.2)}
+    .body{padding-top:56px;padding-bottom:80px}.sec{margin-bottom:52px}
+    .lbl{font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--f);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--r)}
+    .sec p{font-size:1rem;color:var(--m);line-height:1.78;max-width:66ch}.sec p+p{margin-top:1.1em}.sec strong{color:var(--ink);font-weight:500}
+    .bl{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:8px}.bl li{padding-left:20px;position:relative;font-size:1rem;color:var(--m);line-height:1.7}.bl li::before{content:"→";position:absolute;left:0;color:var(--a);font-size:.875rem}
+    .nr{border-top:1px solid var(--r);padding-top:32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .nl{font-size:.9rem;color:var(--f);transition:color .2s}.nl:hover{color:var(--m)}.nlp{color:var(--a);border-bottom:1px solid currentColor;padding-bottom:1px}
+    footer{border-top:1px solid var(--r);padding:20px var(--g);max-width:calc(var(--mw) + var(--g)*2);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .fn{font-family:var(--sf);font-size:.875rem;color:var(--f)}.fl{display:flex;gap:20px}.flink{font-size:.8125rem;color:var(--f);transition:color .2s}.flink:hover{color:var(--m)}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav__i">
+    <a href="../index.html" class="logo">Jeet Joshi</a>
+    <a href="../work.html" class="back">← All work</a>
+  </div></nav>
+
+  <div class="pg">
+    <header class="hero">
+      <p class="kick">Case Study · Product Development · AI Application</p>
+      <h1 class="ht">The Coach — AI Executive Coaching App</h1>
+      <p class="sub">A coaching application that learns who you are through an 8-question onboarding interview, then builds every session around your actual situation</p>
+      <div class="tags">
+        <span class="t ta">In Development</span>
+        <span class="t">FastAPI</span><span class="t">iOS</span><span class="t">SQLAlchemy</span>
+        <span class="t">Subscription Product</span><span class="t">Coaching Intelligence</span>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="sec">
+        <p class="lbl">The Problem</p>
+        <p>Executive coaching is expensive. A good coach charges $200–400 per hour globally. Most people who could benefit from it — founders, mid-career professionals, people navigating difficult transitions — cannot access it at that price. Even those who can afford it get 60-minute sessions every two weeks, with no continuity or memory between conversations.</p>
+        <p>The question was whether AI could provide something meaningfully better than a generic chatbot, and meaningfully more accessible than a human coach. The answer depended entirely on whether the system could actually know the person it was working with — not in a data collection sense, but in the way a good coach knows a client after several months of work.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">What I Built</p>
+        <p>The Coach is a FastAPI backend with a structured onboarding system, persistent memory, and coaching intelligence grounded in published research.</p>
+        <ul class="bl">
+          <li><strong>8-question onboarding interview</strong> — each question is designed to build a layered profile: current goals, key relationships (professional and personal), main stressors, what success looks like, past patterns, values. The profile is built conversationally, not through a form. At completion, a personalized welcome summary is generated from the answers.</li>
+          <li><strong>Fully personalized coaching sessions</strong> — every subsequent conversation references the user's actual profile. The coach knows their name, their specific goals, their key relationships. Responses are not generic motivational content — they are contextual to this person's situation.</li>
+          <li><strong>Multi-turn conversation memory</strong> — encrypted at rest using Fernet encryption. Retention-controlled (configurable, default 90 days). The system distinguishes between session memory (within a conversation) and longitudinal memory (across all conversations).</li>
+          <li><strong>Research-grounded intelligence</strong> — coaching responses are informed by published science: Gottman relationship research, PubMed psychology literature, WHO mental health guidelines, organizational behavior research. Not referenced explicitly in conversations — internalized as a coaching philosophy.</li>
+          <li><strong>Subscription tier model</strong> — three tiers designed for iOS monetization: free (limited sessions/month), standard (unlimited, basic), premium (relationship coaching module, spiritual layer, executive track). The iOS SwiftUI frontend is in development.</li>
+          <li><strong>Deployed on Render</strong> — production API with health checks, Postgres in production, SQLite for local development. Full API documentation at /docs.</li>
+        </ul>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">What makes it different from a chatbot</p>
+        <p>Most AI "coaching" tools are rebranded chatbots with a coaching persona. The difference in The Coach is the onboarding architecture. By the time a user has their first coaching session, the system already knows what matters to them and what they are working toward. That context shapes every response at a structural level, not just a prompt level.</p>
+        <p>The distinction matters for the kind of coaching that is actually useful. Generic AI can say "that sounds hard, here are some strategies." The Coach can say something more specific to who this person actually is. The gap between those two is the entire value proposition.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Current Status</p>
+        <p>The backend is complete and deployed. The onboarding interview, personalized coaching, memory system, and subscription tier model are all functional. The iOS SwiftUI frontend is in development. TestFlight pipeline is planned for the next phase.</p>
+        <p>This is the one project in the portfolio that is a product rather than a client system — built for a market, not for a specific organization. It is where the services work leads eventually.</p>
+      </div>
+
+      <div class="nr">
+        <a href="../work.html" class="nl">← All work</a>
+        <a href="../index.html#contact" class="nl nlp">Discuss a similar project →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="fn">Jeet Joshi</span>
+    <div class="fl">
+      <a href="../work.html" class="flink">Work</a>
+      <a href="../writing.html" class="flink">Writing</a>
+      <a href="../about.html" class="flink">About</a>
+      <a href="https://linkedin.com/in/joshijeet02" class="flink">LinkedIn</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeet Joshi — Economist &amp; Builder</title>
+  <meta name="description" content="Jeet Joshi builds AI systems grounded in economic thinking. Economist and builder based in Ahmedabad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — warm paper palette
+    ============================================================ */
+    :root {
+      --paper:     #F8F5F0;
+      --paper-2:   #F1EDE6;
+      --ink:       #2C2925;
+      --ink-muted: #6B635B;
+      --ink-faint: #A89F95;
+      --rule:      #DDD7CF;
+      --accent:    #8B4F2E;
+      --accent-bg: #F5EDE7;
+
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'Inter', -apple-system, sans-serif;
+
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --max-w: 780px;
+      --gutter: clamp(20px, 5vw, 48px);
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       SCROLL FADE-IN (minimal — just opacity + small translateY)
+    ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in.d1 { transition-delay: 80ms; }
+    .fade-in.d2 { transition-delay: 160ms; }
+    .fade-in.d3 { transition-delay: 240ms; }
+    .fade-in.d4 { transition-delay: 320ms; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .nav.scrolled { border-bottom-color: var(--rule); }
+
+    .nav__inner {
+      max-width: calc(var(--max-w) + var(--gutter) * 2);
+      margin: 0 auto;
+      padding: 18px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+      transition: opacity 0.2s;
+    }
+    .nav__logo:hover { opacity: 0.6; }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav__link {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      transition: color 0.2s;
+    }
+    .nav__link:hover { color: var(--ink); }
+
+    .nav__link--cta {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .nav__link--cta:hover { opacity: 0.8; }
+
+    /* Mobile nav */
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--paper);
+      z-index: 99;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 var(--gutter);
+      gap: 28px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .nav__drawer.open { opacity: 1; pointer-events: auto; }
+
+    .nav__drawer-link {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      color: var(--ink);
+      transition: opacity 0.2s;
+    }
+    .nav__drawer-link:hover { opacity: 0.5; }
+
+    /* ============================================================
+       PAGE WRAPPER
+    ============================================================ */
+    .page {
+      max-width: calc(var(--max-w) + var(--gutter) * 2);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero__kicker {
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+
+    .hero__name {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .hero__name em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .hero__desc {
+      font-size: 1.125rem;
+      color: var(--ink-muted);
+      max-width: 54ch;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .hero__meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero__action {
+      font-size: 0.9375rem;
+      color: var(--accent);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .hero__action:hover { opacity: 0.7; }
+
+    .hero__secondary {
+      font-size: 0.9rem;
+      color: var(--ink-faint);
+      transition: color 0.2s;
+    }
+    .hero__secondary:hover { color: var(--ink-muted); }
+
+    /* Hero Grid Layout */
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero__grid {
+        grid-template-columns: 55% 45%;
+        gap: 60px;
+      }
+    }
+
+    .hero__image-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .hero__image {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+      box-shadow: 0 12px 32px rgba(44, 41, 37, 0.08); /* slight soft shadow */
+      background-color: var(--paper-2);
+    }
+
+    /* ============================================================
+       SECTION SHARED
+    ============================================================ */
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .sec-label {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 28px;
+    }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .sec-intro {
+      font-size: 0.9375rem;
+      color: var(--ink-muted);
+      max-width: 56ch;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* ============================================================
+       IDENTITY / ABOUT INTRO
+    ============================================================ */
+    .identity {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .identity__text {
+      font-size: 1.0625rem;
+      color: var(--ink-muted);
+      line-height: 1.78;
+      max-width: 62ch;
+    }
+
+    .identity__text p + p { margin-top: 1.2em; }
+
+    .identity__text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       WORK — project list
+    ============================================================ */
+    .project-list { display: flex; flex-direction: column; }
+
+    .project-item {
+      display: block;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+    .project-item:first-child { border-top: 1px solid var(--rule); }
+    .project-item:last-child { border-bottom: none; }
+
+    .project-item__header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .project-item__title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--ink);
+      line-height: 1.25;
+      transition: color 0.2s;
+    }
+    .project-item:hover .project-item__title { color: var(--accent); }
+
+    .project-item__status {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .status-deployed  { background: #EAF4EE; color: #2D6A4F; }
+    .status-progress  { background: #FEF5E8; color: #92400E; }
+    .status-delivered { background: var(--paper-2); color: var(--ink-faint); }
+
+    .project-item__stake {
+      font-size: 0.875rem;
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .project-item__desc {
+      font-size: 0.9375rem;
+      color: var(--ink-muted);
+      line-height: 1.68;
+      max-width: 62ch;
+    }
+
+    .project-item__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-faint);
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      padding: 2px 9px;
+      border-radius: 2px;
+    }
+
+    .work__all {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-top: 28px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+    .work__all:hover { border-color: var(--accent); }
+
+    /* ============================================================
+       APPROACH — 3 plain statements
+    ============================================================ */
+    .approach-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .approach-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .approach-item:first-child { border-top: 1px solid var(--rule); }
+    .approach-item:last-child { border-bottom: none; }
+
+    .approach-item__num {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      padding-top: 4px;
+    }
+
+    .approach-item__text {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    .approach-item__text strong {
+      color: var(--ink);
+      font-weight: 500;
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    /* ============================================================
+       WRITING SECTION
+    ============================================================ */
+    .writing-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .writing-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+    .writing-item:first-child { border-top: 1px solid var(--rule); }
+    .writing-item:last-child { border-bottom: none; }
+
+    .writing-item__title {
+      font-size: 1rem;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+    .writing-item:hover .writing-item__title { color: var(--accent); }
+
+    .writing-item__date {
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact__body {
+      font-size: 1.0625rem;
+      color: var(--ink-muted);
+      line-height: 1.72;
+      max-width: 52ch;
+      margin-bottom: 28px;
+    }
+    .contact__body p + p { margin-top: 1em; }
+
+    .contact__email {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--ink);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 4px;
+      display: inline-block;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact__email:hover { color: var(--accent); border-color: var(--accent); }
+
+    .contact__micro {
+      font-size: 0.875rem;
+      color: var(--ink-faint);
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding: 24px var(--gutter);
+      max-width: calc(var(--max-w) + var(--gutter) * 2);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer__name {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      color: var(--ink-faint);
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer__link {
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+      transition: color 0.2s;
+    }
+    .footer__link:hover { color: var(--ink-muted); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 600px) {
+      .nav__links { display: none; }
+      .nav__toggle { display: block; }
+      .nav__drawer { display: flex; }
+
+      .hero { padding-top: 90px; }
+      section { padding: 40px 0; }
+
+      .project-item__header { flex-direction: column; gap: 6px; }
+      .approach-item { grid-template-columns: 32px 1fr; gap: 12px; }
+      .writing-item { flex-direction: column; gap: 4px; }
+      .writing-item__date { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav" id="js-nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">Jeet Joshi</a>
+      <div class="nav__links">
+        <a href="#work"    class="nav__link">Work</a>
+        <a href="writing.html" class="nav__link">Writing</a>
+        <a href="about.html"   class="nav__link">About</a>
+        <a href="#contact" class="nav__link nav__link--cta">Talk to me</a>
+      </div>
+      <button class="nav__toggle" id="js-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
+    </div>
+  </nav>
+
+  <div class="nav__drawer" id="js-drawer" role="dialog" aria-modal="true">
+    <a href="#work"    class="nav__drawer-link">Work</a>
+    <a href="writing.html" class="nav__drawer-link">Writing</a>
+    <a href="about.html"   class="nav__drawer-link">About</a>
+    <a href="#contact" class="nav__drawer-link">Talk to me</a>
+  </div>
+
+  <div class="page">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <header class="hero">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <p class="hero__kicker fade-in">Economist · Builder · Ahmedabad</p>
+          <h1 class="hero__name fade-in d1">
+            Jeet Joshi
+          </h1>
+          <p class="hero__desc fade-in d2">
+            I build AI systems that think like an economist.
+            Most tools start with the technology.
+            I start with the economics — what the problem actually costs,
+            why it keeps happening, and what solving it is worth.
+          </p>
+          <div class="hero__meta fade-in d3">
+            <a href="#work" class="hero__action">See what I've built →</a>
+            <a href="#contact" class="hero__secondary">or start a conversation</a>
+          </div>
+        </div>
+        <div class="hero__image-wrapper fade-in d2">
+          <!-- Placeholder for Photo 3 (Red sweater, hand on chin) -->
+          <img src="img/hero-portrait.jpeg" alt="Jeet Joshi" class="hero__image" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzODAiIGhlaWdodD0iNDUwIiB2aWV3Qm94PSIwIDAgMzgwIDQ1MCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI0YxRURFNyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTZweCIgZmlsbD0iI0E4OUY5NSIgZGVtaW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UGxhY2UgaGVyby1wb3J0cmFpdC5qcGcgaGVyZTwvdGV4dD48L3N2Zz4=';" />
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================
+         IDENTITY
+    ============================================================ -->
+    <section class="identity fade-in">
+      <div class="identity__text">
+        <p>
+          I am an economist from Banswara, Rajasthan. I trained at the
+          <strong>Gokhale Institute of Politics and Economics, Pune</strong>
+          and the <strong>University of Sydney</strong> (MSc Financial Economics).
+          I have done policy research with organizations working on government budgets,
+          public employment, and economic rights.
+        </p>
+        <p>
+          Somewhere in that work, I kept noticing the same thing: the economic
+          analysis existed, but no system carried it forward. The insight would arrive
+          in a report, and then the report would sit.
+          So I started building the systems myself.
+        </p>
+        <p>
+          I am based in Ahmedabad. I write at
+          <a href="writing.html" style="color:var(--accent); border-bottom: 1px solid currentColor;">Chai with an Economist</a>
+          — about 3,000 people read it every month.
+          I answer my own email.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WORK
+    ============================================================ -->
+    <section id="work">
+      <p class="sec-label">Work</p>
+      <h2 class="sec-title fade-in">What I have built</h2>
+      <p class="sec-intro fade-in d1">
+        Each project started with a real economic problem in a real organization.
+        None of them are demos.
+      </p>
+
+      <div class="project-list">
+
+        <!-- 01 -->
+        <a href="case-studies/grant-intelligence.html" class="project-item fade-in">
+          <div class="project-item__header">
+            <h3 class="project-item__title">Grant Intelligence System</h3>
+            <span class="project-item__status status-deployed">Deployed</span>
+          </div>
+          <p class="project-item__stake">
+            For a tribal rights CSO managing multi-crore grants from international foundations
+          </p>
+          <p class="project-item__desc">
+            Grant writing was entirely manual — funders identified one by one, proposals rebuilt
+            from scratch every cycle. The system scouts live funding opportunities, profiles each
+            funder in depth, evaluates organizational fit with a GO/NO-GO score, generates
+            proposal concepts, and exports formatted Word documents.
+            Built with a RAG pipeline indexed against the organization's real grant history.
+            Running in production.
+          </p>
+          <div class="project-item__tags">
+            <span class="tag">NGO Finance</span>
+            <span class="tag">RAG Pipeline</span>
+            <span class="tag">Grant Compliance</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Organizational Readiness</span>
+          </div>
+        </a>
+
+        <!-- 02 -->
+        <a href="case-studies/vaagdhara-kb.html" class="project-item fade-in d1">
+          <div class="project-item__header">
+            <h3 class="project-item__title">VAAGDHARA — Voice Agent &amp; Knowledge Base</h3>
+            <span class="project-item__status status-deployed">Pilot-Ready</span>
+          </div>
+          <p class="project-item__stake">
+            Hindi-first voice AI for tribal women (Bhil community) in Rajasthan, MP &amp; Gujarat
+          </p>
+          <p class="project-item__desc">
+            Frontline workers needed to have empathetic, culturally grounded conversations
+            with tribal women about their rights, livelihoods, and government schemes.
+            The knowledge lived in PDFs and newsletters nobody could use in the field.
+            Built a structured Hindi knowledge base from primary sources, a 200-question
+            scored dialogue bank, and a pilot-ready voice agent system prompt.
+            Designed for voice platforms; includes an OCR pipeline for Hindi newsletters.
+          </p>
+          <div class="project-item__tags">
+            <span class="tag">Voice AI</span>
+            <span class="tag">Hindi NLP</span>
+            <span class="tag">Community Development</span>
+            <span class="tag">Human-Centered AI</span>
+          </div>
+        </a>
+
+        <!-- 03 -->
+        <a href="case-studies/mnrega-dashboard.html" class="project-item fade-in d2">
+          <div class="project-item__header">
+            <h3 class="project-item__title">Rajasthan Employment Dashboard</h3>
+            <span class="project-item__status status-deployed">Deployed</span>
+          </div>
+          <p class="project-item__stake">
+            Built for a government policy briefing — 15 years of MNREGA data across 33 districts
+          </p>
+          <p class="project-item__desc">
+            MNREGA generates massive data. Most of it sits on government MIS servers,
+            inconsistently formatted, impossible to compare across years or political tenures.
+            Built a full scraping and normalization pipeline, then a React + TypeScript
+            dashboard designed for one question: did employment actually improve, or just increase?
+            The distinction matters — high persondays can mean strong implementation or severe drought.
+            Includes tenure comparison, district drill-down, finance layers, and a methodology section.
+          </p>
+          <div class="project-item__tags">
+            <span class="tag">Public Policy</span>
+            <span class="tag">Government Data</span>
+            <span class="tag">Data Engineering</span>
+            <span class="tag">Economic Analysis</span>
+            <span class="tag">React</span>
+          </div>
+        </a>
+
+        <!-- 04 -->
+        <a href="case-studies/swaraj-loom.html" class="project-item fade-in d3">
+          <div class="project-item__header">
+            <h3 class="project-item__title">Swaraj Loom — Knowledge Platform</h3>
+            <span class="project-item__status status-deployed">Deployed</span>
+          </div>
+          <p class="project-item__stake">
+            Learning management system for indigenous ecological knowledge — 11 partner organizations
+          </p>
+          <p class="project-item__desc">
+            Eleven partner organizations had spent decades documenting indigenous ecological knowledge.
+            It lived in reports and conversations — no one could navigate it.
+            Built a full-stack LMS with a 3D content matrix (5 natural elements × 3 time dimensions
+            × 6 lenses), a 4-level learning progression, community contribution with moderation,
+            full-text search, and a partner ecosystem portal.
+            Firebase backend, Netlify deployed, editorial-quality content.
+          </p>
+          <div class="project-item__tags">
+            <span class="tag">LMS</span>
+            <span class="tag">Knowledge Systems</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">NGO</span>
+            <span class="tag">Indigenous Knowledge</span>
+          </div>
+        </a>
+
+        <!-- 05 -->
+        <a href="case-studies/norex-sustainability.html" class="project-item fade-in">
+          <div class="project-item__header">
+            <h3 class="project-item__title">Sustainability Intelligence — Norex Flavours</h3>
+            <span class="project-item__status status-progress">In Discussion</span>
+          </div>
+          <p class="project-item__stake">
+            The only Indian MSME in the fragrance sector with EcoVadis Gold —
+            5,000 mint farmers in Western UP
+          </p>
+          <p class="project-item__desc">
+            Norex is moving to the EcoVadis large company category next year, which requires
+            living income disclosure for all farmers they work with. UP state government has not
+            even calculated a living income benchmark. Designed three systems: a carbon Scope 1/2/3
+            calculator with auto-updating emission factors, a living income methodology built from
+            household expenditure data for UP farmers, and a digitized farm dashboard to replace
+            paper diaries used in a Swiss regenerative pilot.
+          </p>
+          <div class="project-item__tags">
+            <span class="tag">Agricultural Economics</span>
+            <span class="tag">EcoVadis</span>
+            <span class="tag">Living Income</span>
+            <span class="tag">Sustainability</span>
+          </div>
+        </a>
+
+        <!-- 06 -->
+        <a href="case-studies/the-coach.html" class="project-item fade-in d1">
+          <div class="project-item__header">
+            <h3 class="project-item__title">The Coach — AI Executive Coaching App</h3>
+            <span class="project-item__status status-progress">In Development</span>
+          </div>
+          <p class="project-item__stake">
+            Subscription product with iOS architecture and research-backed intelligence
+          </p>
+          <p class="project-item__desc">
+            Executive coaching is expensive and disconnected. Built a FastAPI backend for a
+            coaching application that learns who you are through an 8-question onboarding interview
+            and builds every subsequent session around your actual goals, relationships, and stressors.
+            Multi-turn memory encrypted at rest. Research grounded in PubMed, Gottman, and WHO.
+            iOS SwiftUI frontend in development. Subscription model designed for monetization.
+          </p>
+          <div class="project-item__tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">iOS</span>
+            <span class="tag">Subscription Product</span>
+            <span class="tag">Coaching Intelligence</span>
+          </div>
+        </a>
+
+      </div>
+
+      <a href="work.html" class="work__all fade-in">
+        See all 11 projects →
+      </a>
+    </section>
+
+    <!-- ============================================================
+         APPROACH
+    ============================================================ -->
+    <section id="approach">
+      <p class="sec-label">How I work</p>
+
+      <div class="approach-list">
+        <div class="approach-item fade-in">
+          <span class="approach-item__num">01</span>
+          <div class="approach-item__text">
+            <strong>Economics first.</strong>
+            Every problem has a structure — who bears the cost, what information
+            is missing, what incentive is pulling the wrong way. I find that
+            structure before building anything.
+          </div>
+        </div>
+
+        <div class="approach-item fade-in d1">
+          <span class="approach-item__num">02</span>
+          <div class="approach-item__text">
+            <strong>Build for the specific situation.</strong>
+            Not a general version of the problem — this organization, this data,
+            this team, these constraints. Generic tools solve generic problems.
+          </div>
+        </div>
+
+        <div class="approach-item fade-in d2">
+          <span class="approach-item__num">03</span>
+          <div class="approach-item__text">
+            <strong>Deploy. Leave it running.</strong>
+            No reports that sit. No demos that get pitched and shelved.
+            Systems that actually work, in production, for real people.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WRITING
+    ============================================================ -->
+    <section id="writing">
+      <p class="sec-label">Writing</p>
+      <h2 class="sec-title fade-in">Chai with an Economist</h2>
+      <p class="sec-intro fade-in d1">
+        A newsletter about economics, AI, and the systems that shape our lives.
+        About 3,000 people read it. I write when something has been sitting with me
+        long enough that not writing it starts to feel wrong.
+      </p>
+
+      <div class="writing-items">
+        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in">
+          <span class="writing-item__title">The economics of being born where you were born</span>
+          <span class="writing-item__date">March 2026</span>
+        </a>
+        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in d1">
+          <span class="writing-item__title">When the analysis is right but nothing changes</span>
+          <span class="writing-item__date">February 2026</span>
+        </a>
+        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in d2">
+          <span class="writing-item__title">What MNREGA numbers do not tell you</span>
+          <span class="writing-item__date">January 2026</span>
+        </a>
+        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in d3">
+          <span class="writing-item__title">Living income, and why the benchmark does not exist yet</span>
+          <span class="writing-item__date">November 2025</span>
+        </a>
+      </div>
+
+      <a href="https://substack.com/@jeetjoshi" class="work__all fade-in" style="margin-top: 20px;">
+        Read all essays on Substack →
+      </a>
+    </section>
+
+    <!-- ============================================================
+         CONTACT
+    ============================================================ -->
+    <section id="contact">
+      <p class="sec-label">Get in touch</p>
+      <h2 class="sec-title fade-in">Tell me what you are working on.</h2>
+      <div class="contact__body fade-in d1">
+        <p>
+          I will tell you honestly whether I can help. If I can, I will explain
+          how I would approach it and what it would take to build. If I cannot,
+          I will say so and probably suggest someone who can.
+        </p>
+        <p>I respond personally. Usually within a day.</p>
+      </div>
+      <a href="mailto:jeetjoshieconomics@gmail.com" class="contact__email fade-in d2">
+        jeetjoshieconomics@gmail.com
+      </a>
+      <p class="contact__micro fade-in d3">
+        No form. No calendar link. Just email.<br>
+        If you prefer WhatsApp, mention it and I will send you my number.
+      </p>
+    </section>
+
+  </div><!-- .page -->
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <span class="footer__name">Jeet Joshi</span>
+    <nav class="footer__links">
+      <a href="work.html"    class="footer__link">All work</a>
+      <a href="writing.html" class="footer__link">Writing</a>
+      <a href="about.html"   class="footer__link">About</a>
+      <a href="https://linkedin.com/in/joshijeet02"  class="footer__link">LinkedIn</a>
+      <a href="https://substack.com/@jeetjoshi"      class="footer__link">Substack</a>
+    </nav>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT — minimal
+  ============================================================ -->
+  <script>
+    'use strict';
+
+    /* Nav scroll border */
+    (function () {
+      const nav = document.getElementById('js-nav');
+      if (!nav) return;
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+      }, { passive: true });
+    })();
+
+    /* Mobile menu */
+    (function () {
+      const toggle = document.getElementById('js-toggle');
+      const drawer = document.getElementById('js-drawer');
+      if (!toggle || !drawer) return;
+      let open = false;
+
+      function setOpen(val) {
+        open = val;
+        drawer.classList.toggle('open', val);
+        toggle.textContent = val ? 'Close' : 'Menu';
+        toggle.setAttribute('aria-expanded', String(val));
+        document.body.style.overflow = val ? 'hidden' : '';
+      }
+
+      toggle.addEventListener('click', () => setOpen(!open));
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    })();
+
+    /* Scroll fade-in */
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.fade-in').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        return;
+      }
+
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    })();
+  </script>
+
+</body>
+</html>

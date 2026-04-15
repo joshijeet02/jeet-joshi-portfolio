@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Jeet Joshi</title>
+  <meta name="description" content="Projects built by Jeet Joshi — systems for real organizations, starting from economic diagnosis. No demos. Deployed, used, consequential." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Jeet Joshi</a>
+      <ul class="nav__links" role="list">
+        <li><a href="work.html"    class="nav__link" aria-current="page">Work</a></li>
+        <li><a href="writing.html" class="nav__link">Writing</a></li>
+        <li><a href="about.html"   class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link nav__link--cta">Talk to me</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" role="dialog" aria-modal="true">
+    <a href="work.html"    class="nav__mobile-link">Work</a>
+    <a href="writing.html" class="nav__mobile-link">Writing</a>
+    <a href="about.html"   class="nav__mobile-link">About</a>
+    <a href="contact.html" class="nav__mobile-link">Talk to me</a>
+  </div>
+
+  <main>
+
+    <header class="page-header">
+      <div class="container">
+        <p class="page-header__kicker">Work</p>
+        <h1 class="page-header__title">What I have built</h1>
+        <p class="page-header__sub">
+          These are the systems I have built since early 2025.
+          Some are deployed. Some are in discussion.
+          All started from a real problem.
+        </p>
+      </div>
+    </header>
+
+    <section aria-label="Project list">
+      <div class="container">
+
+        <!-- Featured projects — full cards -->
+        <h2 style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: var(--space-6); margin-top: var(--space-12);">
+          Featured
+        </h2>
+
+        <div class="projects">
+
+          <a href="case-studies/grant-intelligence.html" class="project-card">
+            <div class="project-card__body">
+              <h3 class="project-card__title">Grant Intelligence System</h3>
+              <p class="project-card__stake">
+                For a tribal rights CSO managing multi-crore grants from major international foundations
+              </p>
+              <p class="project-card__desc">
+                Grant writing was entirely manual. Identifying funders, building proposals,
+                staying aligned with each funder's language and priorities — all of it done person by person.
+                I built a system that scouts opportunities, profiles funders, evaluates fit,
+                generates proposal concepts, and exports formatted drafts. Runs in production.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">NGO Finance</span>
+                <span class="tag">Social Impact AI</span>
+                <span class="tag">Data Readiness</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">RAG Pipeline</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="case-studies/mnrega-dashboard.html" class="project-card">
+            <div class="project-card__body">
+              <h3 class="project-card__title">Rajasthan Employment Dashboard</h3>
+              <p class="project-card__stake">
+                Built for a government policy briefing — 15 years of employment data across 33 districts
+              </p>
+              <p class="project-card__desc">
+                MNREGA data sits on government servers, inconsistently formatted, impossible to compare across years.
+                I built a data pipeline and React TypeScript dashboard that pulls, normalizes, and visualizes the
+                full employment history of Rajasthan. The dashboard is designed for one question: did employment improve,
+                or just increase?
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Public Policy</span>
+                <span class="tag">Data Engineering</span>
+                <span class="tag">Economic Analysis</span>
+                <span class="tag">React</span>
+                <span class="tag">TypeScript</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="case-studies/swaraj-loom.html" class="project-card">
+            <div class="project-card__body">
+              <h3 class="project-card__title">Swaraj Loom — Knowledge Platform</h3>
+              <p class="project-card__stake">
+                A learning platform for indigenous ecological knowledge, built for and with a tribal rights NGO
+              </p>
+              <p class="project-card__desc">
+                Eleven partner organizations had spent decades documenting indigenous ecological knowledge across India.
+                It lived in reports, newsletters, and conversations. Swaraj Loom organizes it across five natural elements,
+                three time dimensions, and six ways of seeing — with a four-level learning path, community contribution,
+                and a moderation system.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Product Architecture</span>
+                <span class="tag">Knowledge Systems</span>
+                <span class="tag">Indigenous Ecology</span>
+                <span class="tag">Firebase</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="case-studies/the-coach.html" class="project-card">
+            <div class="project-card__body">
+              <h3 class="project-card__title">The Coach — AI Executive Coaching App</h3>
+              <p class="project-card__stake">
+                A coaching product with a subscription model, iOS architecture, and research-backed intelligence
+              </p>
+              <p class="project-card__desc">
+                I built the backend for a coaching application that learns who you are in the first eight questions
+                and builds every subsequent session around your actual goals, relationships, and stressors.
+                Conversations are encrypted. Retention-controlled. The premium tier model is designed for iOS monetization.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Product Development</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">iOS</span>
+                <span class="tag">Coaching Intelligence</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+        <!-- All work table -->
+        <h2 style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: var(--space-2); margin-top: var(--space-20);">
+          All Work
+        </h2>
+
+        <div class="work-grid" role="table" aria-label="All projects">
+
+          <a href="case-studies/grant-intelligence.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">Grant Intelligence System</span>
+            <span class="work-row__category" role="cell">NGO Finance · AI Systems</span>
+            <span class="work-row__status status--deployed" role="cell">Deployed</span>
+          </a>
+
+          <a href="case-studies/mnrega-dashboard.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">Rajasthan Employment Dashboard</span>
+            <span class="work-row__category" role="cell">Public Policy · Data Engineering</span>
+            <span class="work-row__status status--deployed" role="cell">Deployed</span>
+          </a>
+
+          <a href="case-studies/swaraj-loom.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">Swaraj Loom — Knowledge Platform</span>
+            <span class="work-row__category" role="cell">Knowledge Systems · Product Architecture</span>
+            <span class="work-row__status status--deployed" role="cell">Deployed</span>
+          </a>
+
+          <a href="case-studies/vaagdhara-kb.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">VAAGDHARA Voice Agent &amp; Knowledge Base</span>
+            <span class="work-row__category" role="cell">Human-Centered AI · Hindi NLP</span>
+            <span class="work-row__status status--deployed" role="cell">Pilot-ready</span>
+          </a>
+
+          <a href="case-studies/vaatein.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">Vaatein Newsletter System</span>
+            <span class="work-row__category" role="cell">Workflow Automation</span>
+            <span class="work-row__status status--deployed" role="cell">Deployed</span>
+          </a>
+
+          <a href="case-studies/norex-sustainability.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">Norex — Sustainability Intelligence</span>
+            <span class="work-row__category" role="cell">Agricultural Economics · EcoVadis</span>
+            <span class="work-row__status status--progress" role="cell">In discussion</span>
+          </a>
+
+          <a href="case-studies/the-coach.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">The Coach — Executive Coaching App</span>
+            <span class="work-row__category" role="cell">Product Development · iOS</span>
+            <span class="work-row__status status--progress" role="cell">In development</span>
+          </a>
+
+          <a href="case-studies/aarav-intelligence.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">AARAV Fragrances — Economic Intelligence</span>
+            <span class="work-row__category" role="cell">Industry Research · Regulatory Economics</span>
+            <span class="work-row__status status--delivered" role="cell">Delivered</span>
+          </a>
+
+          <a href="case-studies/fgi-dashboard.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">FGI Industry Intelligence Dashboard</span>
+            <span class="work-row__category" role="cell">Business Intelligence · Python</span>
+            <span class="work-row__status status--delivered" role="cell">Delivered</span>
+          </a>
+
+          <a href="case-studies/via-audit.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">VIA Compliance Audit Tool</span>
+            <span class="work-row__category" role="cell">Regulatory Data · Environmental Economics</span>
+            <span class="work-row__status status--delivered" role="cell">Delivered</span>
+          </a>
+
+          <a href="case-studies/d2c-pipeline.html" class="work-row" role="row">
+            <span class="work-row__title" role="cell">D2C Outreach Pipeline</span>
+            <span class="work-row__category" role="cell">Sales Automation · Signal Scoring</span>
+            <span class="work-row__status status--deployed" role="cell">Deployed</span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta" aria-label="Get in touch">
+      <div class="container">
+        <h2>Tell me what you are working on.</h2>
+        <div class="contact-cta__body">
+          <p>I will tell you honestly whether I can help.</p>
+          <p>I respond personally. Usually within a day.</p>
+        </div>
+        <a href="mailto:jeetjoshieconomics@gmail.com" class="contact-cta__email">
+          jeetjoshieconomics@gmail.com
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container container--wide">
+      <div class="footer__inner">
+        <span class="footer__name">Jeet Joshi</span>
+        <nav class="footer__links">
+          <a href="work.html"    class="footer__link">Work</a>
+          <a href="writing.html" class="footer__link">Writing</a>
+          <a href="about.html"   class="footer__link">About</a>
+          <a href="https://linkedin.com/in/joshijeet02" class="footer__link">LinkedIn</a>
+          <a href="https://substack.com/@jeetjoshi"     class="footer__link">Substack</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

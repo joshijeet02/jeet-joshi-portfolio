@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeet Joshi — Economist &amp; Builder</title>
+  <meta name="description" content="Jeet Joshi builds AI systems grounded in economic thinking. Economist and builder. Based in Ahmedabad. Work spans public policy, NGO finance, sustainability intelligence, and product development." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- ======================================================
+       Navigation
+  ====================================================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Jeet Joshi</a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="work.html" class="nav__link">Work</a></li>
+        <li><a href="writing.html" class="nav__link">Writing</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link nav__link--cta">Talk to me</a></li>
+      </ul>
+
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <a href="work.html"    class="nav__mobile-link">Work</a>
+    <a href="writing.html" class="nav__mobile-link">Writing</a>
+    <a href="about.html"   class="nav__mobile-link">About</a>
+    <a href="contact.html" class="nav__mobile-link">Talk to me</a>
+  </div>
+
+  <main>
+
+    <!-- ======================================================
+         Hero
+    ====================================================== -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero__inner">
+        <h1 class="hero__headline">
+          I build systems that<br>think like an economist.
+        </h1>
+        <p class="hero__sub">
+          Most people who build AI tools start with the technology.
+          I start with the economics — what the problem actually costs,
+          why it keeps happening, and whether solving it is even worth it.
+          Then I build the system that makes it go away.
+        </p>
+        <div class="hero__actions">
+          <a href="work.html" class="btn-primary">
+            See what I've built <span class="arrow">→</span>
+          </a>
+          <a href="contact.html" class="btn-secondary">or start a conversation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         Identity
+    ====================================================== -->
+    <section class="identity" aria-label="About Jeet">
+      <div class="container">
+        <div class="identity__text reveal">
+          <p>
+            I am an economist from Banswara, Rajasthan.
+          </p>
+          <p>
+            I was trained at the Gokhale Institute of Politics and Economics, Pune
+            and the University of Sydney. I have done policy research with organizations
+            that work on government budgets, public employment, and economic rights.
+          </p>
+          <p>
+            Somewhere in that work, I kept noticing the same thing:
+            the economic analysis existed, but no system carried it forward.
+            The insight would arrive in a report, and then the report would sit.
+          </p>
+          <p>
+            So I started building the systems myself.
+          </p>
+          <p>
+            I am based in Ahmedabad.
+            I write at <a href="writing.html" style="color: var(--accent);">Chai with an Economist</a> —
+            about 3,000 people read it every month.
+            I answer my own email.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         Work Preview
+    ====================================================== -->
+    <section class="section--muted" aria-label="Selected work">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Work</p>
+          <h2>What I have built</h2>
+          <p class="section-intro">
+            Each of these started with a real problem in a real organization.
+            None of them are demos.
+          </p>
+        </div>
+
+        <div class="projects" role="list">
+
+          <!-- Card 1 -->
+          <a href="case-studies/grant-intelligence.html" class="project-card" role="listitem">
+            <div class="project-card__body">
+              <h3 class="project-card__title">Grant Intelligence System</h3>
+              <p class="project-card__stake">
+                For a tribal rights CSO managing multi-crore grants from major international foundations
+              </p>
+              <p class="project-card__desc">
+                Grant writing was entirely manual — funders identified one by one, proposals rebuilt from scratch each time.
+                I built a system that scouts opportunities, profiles funders, evaluates fit, and generates formatted drafts.
+                It runs in production. Real grants. Real stakes.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">NGO Finance</span>
+                <span class="tag">AI Systems</span>
+                <span class="tag">Grant Compliance</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="case-studies/mnrega-dashboard.html" class="project-card" role="listitem">
+            <div class="project-card__body">
+              <h3 class="project-card__title">Rajasthan Employment Dashboard</h3>
+              <p class="project-card__stake">
+                Built for a government policy briefing — 15 years of employment data across 33 districts
+              </p>
+              <p class="project-card__desc">
+                MNREGA data sits on government servers, inconsistently formatted and impossible to compare across years.
+                I built a pipeline that pulls, normalizes, and visualizes the full employment history of Rajasthan.
+                The dashboard answers the question a policymaker actually asks: did employment improve, or just increase?
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Public Policy</span>
+                <span class="tag">Data Engineering</span>
+                <span class="tag">Economic Analysis</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="case-studies/norex-sustainability.html" class="project-card" role="listitem">
+            <div class="project-card__body">
+              <h3 class="project-card__title">Sustainability Intelligence — Norex Flavours</h3>
+              <p class="project-card__stake">
+                For the only Indian MSME in the fragrance and flavor sector with EcoVadis Gold
+              </p>
+              <p class="project-card__desc">
+                Norex works with thousands of mint farmers across Western UP, runs a Swiss regenerative pilot,
+                and is expanding their EcoVadis reporting scope. None of the three tools they needed existed.
+                I designed a carbon scope calculator, a living income methodology, and a digitized farm dashboard.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Agricultural Economics</span>
+                <span class="tag">Sustainability</span>
+                <span class="tag">EcoVadis</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="case-studies/swaraj-loom.html" class="project-card" role="listitem">
+            <div class="project-card__body">
+              <h3 class="project-card__title">Swaraj Loom — Knowledge Platform</h3>
+              <p class="project-card__stake">
+                A learning platform for indigenous ecological knowledge, built for and with a tribal rights NGO
+              </p>
+              <p class="project-card__desc">
+                Eleven partner organizations had spent decades documenting ecological knowledge across India.
+                It lived in reports and conversations — no one could navigate it.
+                Swaraj Loom organizes that knowledge across five natural elements, three time dimensions,
+                and six ways of seeing, with a four-level learning path and community governance.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Product Architecture</span>
+                <span class="tag">Knowledge Systems</span>
+                <span class="tag">Indigenous Ecology</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <!-- Card 5 -->
+          <a href="case-studies/the-coach.html" class="project-card" role="listitem">
+            <div class="project-card__body">
+              <h3 class="project-card__title">The Coach — AI Executive Coaching App</h3>
+              <p class="project-card__stake">
+                A coaching product with a subscription model, iOS architecture, and research-backed intelligence
+              </p>
+              <p class="project-card__desc">
+                Executive coaching is expensive and disconnected. I built the backend for an application
+                that learns who you are in the first eight questions and builds every subsequent conversation
+                around your actual goals, relationships, and stressors. This is where I am going
+                beyond services — into a product.
+              </p>
+              <div class="project-card__tags">
+                <span class="tag">Product Development</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Coaching Intelligence</span>
+              </div>
+            </div>
+            <span class="project-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+        <a href="work.html" class="see-all reveal">
+          See all work <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         Philosophy
+    ====================================================== -->
+    <section aria-label="How I think">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Approach</p>
+          <h2>How I think about problems</h2>
+        </div>
+        <div class="philosophy__text reveal">
+          <p>
+            Economics taught me that every problem has a structure.
+            Someone is bearing a cost. Some information is missing.
+            Some incentive is pulling the wrong way.
+            Once you find the structure, you can see what would actually change things.
+          </p>
+          <p>
+            Most AI tools are built without that kind of diagnosis.
+            They are built for a general version of a problem —
+            not for the specific situation this particular organization is in,
+            with this particular data, this particular team, and these particular constraints.
+          </p>
+          <p>
+            The systems I build start with a diagnosis, not a demo.
+            I spend time understanding the economics of the situation first.
+            Only then do I build.
+          </p>
+          <p>
+            That process is slower.
+            But the systems that come out of it tend to work.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         Writing
+    ====================================================== -->
+    <section class="section--muted" aria-label="Writing">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Writing</p>
+          <h2>What I write about</h2>
+          <p class="section-intro">
+            I write a newsletter called Chai with an Economist.
+            About 3,000 people read it. I do not write consistently —
+            only when something has been sitting with me long enough that it has to come out.
+          </p>
+        </div>
+
+        <div class="writing-cards">
+          <a href="https://substack.com/@jeetjoshi" class="writing-card reveal reveal--delay-1">
+            <span class="writing-card__label">Economics · Society</span>
+            <h3 class="writing-card__title">The economics of being born where you were born</h3>
+            <p class="writing-card__excerpt">
+              There is a probability formula buried inside the idea of privilege.
+              Most people feel it. Few have named it precisely.
+            </p>
+            <span class="writing-card__link">Read on Substack <span class="arrow">→</span></span>
+          </a>
+
+          <a href="https://substack.com/@jeetjoshi" class="writing-card reveal reveal--delay-2">
+            <span class="writing-card__label">AI · Economics</span>
+            <h3 class="writing-card__title">When the analysis is right but nothing changes</h3>
+            <p class="writing-card__excerpt">
+              The gap is not in the thinking. It is in what happens after the thinking is done.
+              That is where systems come in.
+            </p>
+            <span class="writing-card__link">Read on Substack <span class="arrow">→</span></span>
+          </a>
+
+          <a href="https://substack.com/@jeetjoshi" class="writing-card reveal reveal--delay-3">
+            <span class="writing-card__label">India · Policy</span>
+            <h3 class="writing-card__title">What MNREGA numbers do not tell you</h3>
+            <p class="writing-card__excerpt">
+              High persondays can mean strong implementation.
+              They can also mean drought, distress, or a pandemic.
+              The number is not the story.
+            </p>
+            <span class="writing-card__link">Read on Substack <span class="arrow">→</span></span>
+          </a>
+        </div>
+
+        <a href="writing.html" class="see-all reveal">
+          Read all essays <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         Contact CTA
+    ====================================================== -->
+    <section class="contact-cta" aria-label="Get in touch">
+      <div class="container">
+        <h2 class="reveal">Tell me what you are working on.</h2>
+        <div class="contact-cta__body reveal">
+          <p>I will tell you honestly whether I can help.</p>
+          <p>
+            If I can, I will explain how I would approach it and what it would take to build.
+            If I cannot, I will tell you that too — and probably point you toward someone who can.
+          </p>
+          <p>I respond personally. Usually within a day.</p>
+        </div>
+        <a href="mailto:jeetjoshieconomics@gmail.com" class="contact-cta__email reveal">
+          jeetjoshieconomics@gmail.com
+        </a>
+        <p class="contact-cta__micro reveal">
+          No form. No calendar link. Just email.<br>
+          If you prefer WhatsApp, mention it and I will send you my number.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       Footer
+  ====================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container container--wide">
+      <div class="footer__inner">
+        <span class="footer__name">Jeet Joshi</span>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="work.html"    class="footer__link">Work</a>
+          <a href="writing.html" class="footer__link">Writing</a>
+          <a href="about.html"   class="footer__link">About</a>
+          <a href="https://linkedin.com/in/joshijeet02" class="footer__link">LinkedIn</a>
+          <a href="https://substack.com/@jeetjoshi"     class="footer__link">Substack</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

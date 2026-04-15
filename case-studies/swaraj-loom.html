@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Swaraj Loom — Jeet Joshi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--p:#F8F5F0;--p2:#F1EDE6;--ink:#2C2925;--m:#6B635B;--f:#A89F95;--r:#DDD7CF;--a:#8B4F2E;--ab:#F5EDE7;--sf:"DM Serif Display",Georgia,serif;--ss:"Inter",-apple-system,sans-serif;--mw:720px;--g:clamp(20px,5vw,48px)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}
+    body{background:var(--p);color:var(--ink);font-family:var(--ss);font-size:1.0625rem;line-height:1.72;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--p);border-bottom:1px solid var(--r)}
+    .nav__i{max-width:calc(var(--mw) + var(--g)*2);margin:0 auto;padding:16px var(--g);display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:var(--sf);font-size:.95rem}.back{font-size:.85rem;color:var(--f);transition:color .2s}.back:hover{color:var(--m)}
+    .pg{max-width:calc(var(--mw) + var(--g)*2);margin:0 auto;padding:0 var(--g)}
+    .hero{padding-top:104px;padding-bottom:48px;border-bottom:1px solid var(--r)}
+    .kick{font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:16px}
+    .ht{font-family:var(--sf);font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
+    .sub{font-size:1.1rem;color:var(--m);font-style:italic;margin-bottom:24px;max-width:52ch;line-height:1.65}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .t{font-size:.6875rem;letter-spacing:.05em;color:var(--f);background:var(--p2);border:1px solid var(--r);padding:2px 9px;border-radius:2px}
+    .ta{background:var(--ab);color:var(--a);border-color:rgba(139,79,46,.2)}
+    .body{padding-top:56px;padding-bottom:80px}.sec{margin-bottom:52px}
+    .lbl{font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--f);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--r)}
+    .sec p{font-size:1rem;color:var(--m);line-height:1.78;max-width:66ch}.sec p+p{margin-top:1.1em}.sec strong{color:var(--ink);font-weight:500}
+    .bl{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:8px}
+    .bl li{padding-left:20px;position:relative;font-size:1rem;color:var(--m);line-height:1.7}
+    .bl li::before{content:"→";position:absolute;left:0;color:var(--a);font-size:.875rem}
+    .ref{background:var(--p2);border-left:3px solid var(--a);padding:24px 28px;border-radius:0 4px 4px 0;margin-top:8px}
+    .ref p{font-size:.9375rem;color:var(--m);font-style:italic;line-height:1.72}
+    .nr{border-top:1px solid var(--r);padding-top:32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .nl{font-size:.9rem;color:var(--f);transition:color .2s}.nl:hover{color:var(--m)}
+    .nlp{color:var(--a);border-bottom:1px solid currentColor;padding-bottom:1px}
+    footer{border-top:1px solid var(--r);padding:20px var(--g);max-width:calc(var(--mw) + var(--g)*2);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .fn{font-family:var(--sf);font-size:.875rem;color:var(--f)}
+    .fl{display:flex;gap:20px}.flink{font-size:.8125rem;color:var(--f);transition:color .2s}.flink:hover{color:var(--m)}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav__i">
+    <a href="../index.html" class="logo">Jeet Joshi</a>
+    <a href="../work.html" class="back">← All work</a>
+  </div></nav>
+
+  <div class="pg">
+    <header class="hero">
+      <p class="kick">Case Study · Knowledge Systems · NGO</p>
+      <h1 class="ht">Swaraj Loom — Knowledge Platform</h1>
+      <p class="sub">A learning management system for indigenous ecological knowledge, built with 11 partner organizations</p>
+      <div class="tags">
+        <span class="t ta">Deployed</span>
+        <span class="t">LMS</span><span class="t">Firebase</span><span class="t">Knowledge Systems</span>
+        <span class="t">NGO</span><span class="t">Indigenous Knowledge</span>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="sec">
+        <p class="lbl">Context</p>
+        <p>VAAGDHARA and eleven partner organizations had spent decades documenting indigenous ecological knowledge — how tribal communities in India understand water, soil, seeds, forests, and land. The knowledge lived in field reports, newsletters, conference proceedings, and in the memories of practitioners who had been doing this work for 30 years.</p>
+        <p>None of it was navigable. A new field worker joining the organization had no way to learn from what had come before. A researcher trying to understand VAAGDHARA's ecological philosophy had no entry point. The knowledge was real and valuable and practically invisible.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">What I Built</p>
+        <p>Swaraj Loom is a full-stack web platform organized around a three-dimensional content model. The organizing structure required months of thinking before a line of code was written — the framework had to reflect how this knowledge actually works, not how a standard content management system thinks about content.</p>
+        <ul class="bl">
+          <li><strong>3D content model</strong> — five natural elements (Water, Soil, Seed, Forest, Land) × three time dimensions (Past, Present, Future) × six lenses (Cultural, Aspirational, Innovation, Stories, Economics, Engagement). Every piece of content lives at a specific intersection and can be found multiple ways.</li>
+          <li><strong>Four-level learning progression</strong> — from Roots (unlearning and ancestral wisdom) through The Rupture (understanding ecological crisis) and Swaraj (grassroots solutions) to Planetary Sutradhar (systems-level expertise). Each level gates progression through written reflections, like Duolingo but for ecological knowledge.</li>
+          <li><strong>Community contribution system</strong> — partner organizations can submit content for review. Google OAuth login, Firestore submissions, image uploads to Firebase Storage, and a full moderator dashboard for approval and publication.</li>
+          <li><strong>Full-text relevance search</strong> — scored across title, element, dimension, and body text. With a "not finding this?" flow that routes missing content requests to Firestore for editorial review.</li>
+          <li><strong>Partner ecosystem portal</strong> — all 11 partner organizations displayed with their contributed knowledge, filterable by organization. Built to show the distributed nature of this knowledge.</li>
+          <li><strong>Curated media wall</strong> — folk songs (Narmada protest anthems, Rajasthani monsoon songs), films (Kantara, Elephant Whisperers), digital archives. The platform treats cultural memory as data alongside analytical documents.</li>
+        </ul>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">The Detail Worth Knowing</p>
+        <p>The hardest part of this project was not technical. It was figuring out the content structure. The standard way to organize content — by category, by date, by author — would have destroyed what made this knowledge valuable. Bhil ecological knowledge does not organize itself the way a filing system does.</p>
+        <p>The Water × Past × Cultural intersection holds something different from Water × Present × Economics. The structure had to reflect the actual epistemology of indigenous ecological knowledge — how it moves between time, between element, between way of knowing. Getting that wrong would have produced a database that felt like a colonization of the knowledge rather than a navigation of it.</p>
+        <p>Understanding that required reading everything VAAGDHARA had published, several hours of conversation with their program team, and a genuine effort to understand what they were trying to say about how humans relate to land.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Outcome</p>
+        <p>The platform is deployed on Netlify with a Firebase backend. Content from all 11 partner organizations is ingested. The four-level learning progression is functional and tested. The moderation and contribution system is live.</p>
+        <p>For the organizations involved, it transformed scattered documentation into something navigable. For new field workers, it is an entry point to two decades of institutional knowledge. For external researchers, it is the first structured representation of this knowledge tradition that exists.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">What I would do differently</p>
+        <div class="ref"><p>The content ingestion pipeline was more fragile than it needed to be. Each batch of content required manual curation — checking quality, resolving categorization decisions, filling in gaps. I should have built a more robust editorial tooling system at the start rather than treating ingestion as a one-time task. The knowledge will keep growing. The pipeline needs to handle that gracefully without requiring me to be in the loop each time.</p></div>
+      </div>
+
+      <div class="nr">
+        <a href="../work.html" class="nl">← All work</a>
+        <a href="../index.html#contact" class="nl nlp">Discuss a similar project →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="fn">Jeet Joshi</span>
+    <div class="fl">
+      <a href="../work.html" class="flink">Work</a>
+      <a href="../writing.html" class="flink">Writing</a>
+      <a href="../about.html" class="flink">About</a>
+      <a href="https://linkedin.com/in/joshijeet02" class="flink">LinkedIn</a>
+    </div>
+  </footer>
+</body>
+</html>

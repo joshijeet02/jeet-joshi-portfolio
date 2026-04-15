@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Jeet Joshi</title>
+  <meta name="description" content="Chai with an Economist — a newsletter about economics, AI, and the structures that shape our lives. Written by Jeet Joshi. Read by about 3,000 people." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Jeet Joshi</a>
+      <ul class="nav__links" role="list">
+        <li><a href="work.html"    class="nav__link">Work</a></li>
+        <li><a href="writing.html" class="nav__link" aria-current="page">Writing</a></li>
+        <li><a href="about.html"   class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link nav__link--cta">Talk to me</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" role="dialog" aria-modal="true">
+    <a href="work.html"    class="nav__mobile-link">Work</a>
+    <a href="writing.html" class="nav__mobile-link">Writing</a>
+    <a href="about.html"   class="nav__mobile-link">About</a>
+    <a href="contact.html" class="nav__mobile-link">Talk to me</a>
+  </div>
+
+  <main>
+
+    <header class="page-header">
+      <div class="container">
+        <p class="page-header__kicker">Writing</p>
+        <h1 class="page-header__title">Chai with an Economist</h1>
+        <p class="page-header__sub">
+          I write a newsletter about economics, AI, and the structures that shape our lives.
+          About 3,000 people read it. I do not write consistently —
+          only when something has been sitting with me long enough that it has to come out.
+        </p>
+      </div>
+    </header>
+
+    <section aria-label="Essays">
+      <div class="container">
+
+        <div id="writing-container" class="writing-list">
+          <!-- Latest posts will be loaded here dynamically -->
+          <div class="writing-loading">
+            <p style="color: var(--text-muted); padding: var(--space-8); text-align: center;">Fetching latest thoughts...</p>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-10); text-align: center; padding-block: var(--space-12); border-top: 1px solid var(--border);">
+          <p style="color: var(--text-muted); font-size: var(--text-base); margin-bottom: var(--space-6); max-width: 40ch; margin-inline: auto;">
+            The full archive lives on Substack. New essays arrive when they are ready.
+          </p>
+          <a href="https://substack.com/@jeetjoshi" class="btn-primary" style="font-size: var(--text-base);">
+            Read the full archive <span class="arrow">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="section--muted" aria-label="Subscribe">
+      <div class="container">
+        <div style="max-width: 52ch;">
+          <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-5);">Subscribe to the newsletter</h2>
+          <p style="color: var(--text-muted); font-size: var(--text-base); line-height: 1.7; margin-bottom: var(--space-8);">
+            If something in this list made you pause, the newsletter probably will too.
+            It arrives infrequently. Unsubscribe any time — there is no pressure
+            and no guilt attached to leaving.
+          </p>
+          <a href="https://substack.com/@jeetjoshi" class="btn-primary">
+            Subscribe on Substack <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container container--wide">
+      <div class="footer__inner">
+        <span class="footer__name">Jeet Joshi</span>
+        <nav class="footer__links">
+          <a href="work.html"    class="footer__link">Work</a>
+          <a href="writing.html" class="footer__link">Writing</a>
+          <a href="about.html"   class="footer__link">About</a>
+          <a href="https://linkedin.com/in/joshijeet02" class="footer__link">LinkedIn</a>
+          <a href="https://substack.com/@jeetjoshi"     class="footer__link">Substack</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/writing.js" defer></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

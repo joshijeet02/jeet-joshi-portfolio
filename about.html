@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Jeet Joshi</title>
+  <meta name="description" content="Jeet Joshi is an economist from Banswara, Rajasthan. MSc Financial Economics (Sydney), BSc Economics (GIPE Pune). He writes Chai with an Economist. He builds AI systems." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Jeet Joshi</a>
+      <ul class="nav__links" role="list">
+        <li><a href="work.html"    class="nav__link">Work</a></li>
+        <li><a href="writing.html" class="nav__link">Writing</a></li>
+        <li><a href="about.html"   class="nav__link" aria-current="page">About</a></li>
+        <li><a href="contact.html" class="nav__link nav__link--cta">Talk to me</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" role="dialog" aria-modal="true">
+    <a href="work.html"    class="nav__mobile-link">Work</a>
+    <a href="writing.html" class="nav__mobile-link">Writing</a>
+    <a href="about.html"   class="nav__mobile-link">About</a>
+    <a href="contact.html" class="nav__mobile-link">Talk to me</a>
+  </div>
+
+  <main>
+
+    <header class="page-header">
+      <div class="container">
+        <p class="page-header__kicker">About</p>
+        <h1 class="page-header__title">Jeet Joshi</h1>
+        <p class="page-header__sub">
+          Economist. Builder. Based in Ahmedabad.
+        </p>
+      </div>
+    </header>
+
+    <div class="about__content">
+
+      <div class="about__intro-grid reveal" style="display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; align-items: start;">
+        <div>
+          <!-- Lead paragraph -->
+          <p class="about__lead" style="font-size: 1.25rem; line-height: 1.6; color: var(--ink); margin-bottom: 24px;">
+            I grew up in Banswara. It is a small city in southern Rajasthan, in the Wagad belt — a region that is mostly tribal, mostly agricultural, mostly quiet. I am not from a farming family, but I spent enough time around farming and around poverty to understand that economic problems are not abstract. They are concrete. Someone specific is paying the cost.
+          </p>
+
+          <p style="font-size: 1.0625rem; color: var(--ink-muted); line-height: 1.78; margin-bottom: 16px;">
+            I studied at the Gokhale Institute of Politics and Economics in Pune — one of the better economics programs in India — and then did a master's in Financial Economics at the University of Sydney. I liked the rigor. I liked that economics gave me a language for asking why things work the way they do.
+          </p>
+          <p style="font-size: 1.0625rem; color: var(--ink-muted); line-height: 1.78; margin-bottom: 16px;">
+            Before building anything, I did policy research. I worked with organizations that study government budgets, track rural employment, and advise on economic rights. That work took me to Ladakh, to tribal communities, to state government offices, and eventually to the United Nations ECOSOC program.
+          </p>
+          <p style="font-size: 1.0625rem; color: var(--ink-muted); line-height: 1.78;">
+            What I kept noticing: the analysis would be done, the problem would be understood, and then it would sit in a document. Nothing would carry it forward. No one had built the system that would make the insight useful for the person who needed it.
+          </p>
+        </div>
+        
+        <div class="about__image-wrapper" style="position: relative; width: 100%; border-radius: 4px; overflow: hidden; background: var(--paper-2); box-shadow: 0 12px 32px rgba(44,41,37,0.08);">
+          <!-- Placeholder for Photo 1 (White t-shirt, hand on neck, sunny) -->
+          <img src="img/about-portrait.jpeg" alt="Jeet Joshi" style="width: 100%; height: auto; display: block;" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgNDAwIDUwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI0YxRURFNyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTZweCIgZmlsbD0iI0E4OUY5NSIgZGVtaW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UGxhY2UgYWJvdXQtcG9ydHJhaXQuanBnIGhlcmU8L3RleHQ+PC9zdmc+';" />
+        </div>
+      </div>
+      <style>
+        @media (min-width: 768px) {
+          .about__intro-grid { grid-template-columns: 1fr 380px; gap: 60px; }
+        }
+      </style>
+
+      <!-- Section: Building -->
+      <div class="about__section reveal">
+        <p class="about__section-title">How I started building things</p>
+        <p>
+          I started because I ran out of alternatives.
+        </p>
+        <p>
+          I was working with organizations trying to solve real problems. In each case, the information existed, but no one could access it in a form that helped them act. So I started building the tools. Not because I was a developer — I was not — but because the problems were clear enough that I could describe exactly what the tool needed to do. And once I could describe it precisely, learning to build it became possible.
+        </p>
+        <p>
+          I have been doing this for a little over a year now. In that time, I have built a grant management system for a tribal rights NGO, a policy dashboard for government employment data, a voice agent knowledge base for conversations with tribal women in Hindi, a sustainability intelligence proposal for a spice exporter, a compliance audit tool for an industrial association, and a coaching application backend.
+        </p>
+        <p>
+          None of these are demos. They all run on real data, for real people, in situations with real consequences.
+        </p>
+      </div>
+
+      <!-- Section: Economics thinking -->
+      <div class="about__section reveal">
+        <p class="about__section-title">What economics gives me that engineering alone does not</p>
+        <p>
+          When I build a system, the first question I ask is not "what should this do?" It is "what is the actual structure of this problem?"
+        </p>
+        <p>
+          Who bears the cost when it remains unsolved? What information is missing? What does a person in this situation need to know before they can act?
+        </p>
+        <p>
+          Those questions come from economics training. They change what gets built. A developer who does not ask them will often build the right tool for the wrong problem. I have done that too. But I do it less now.
+        </p>
+        <p>
+          The systems I build are not better because they use newer technology. They are better — when they are better — because the diagnosis was done before the code was written.
+        </p>
+      </div>
+
+      <!-- Section: Writing -->
+      <div class="about__section reveal">
+        <p class="about__section-title">On the writing</p>
+        <p>
+          I write a newsletter called Chai with an Economist.
+        </p>
+        <p>
+          About 3,000 people read it. I do not know most of them. But I know the feeling I write toward: the feeling of sitting with an idea long enough that it surprises you. The feeling when an economics concept connects to something you have lived.
+        </p>
+        <p>
+          I write in my diary first, with a pen. Then I type it out a day or two later. About 85–90% of what goes in the diary comes out in the newsletter. The rest was too raw or too specific to share.
+        </p>
+        <p>
+          I do not write to grow an audience. I write because some things are asking to be written. The people who find it, find it.
+        </p>
+      </div>
+
+      <!-- Section: How I work -->
+      <div class="about__section reveal">
+        <p class="about__section-title">How I work</p>
+        <p>
+          I give people the exit door explicitly.
+        </p>
+        <p>
+          If you reach out to me about a project, I will tell you honestly whether I think I can help. If I cannot, I will say so and probably suggest someone who can. I do not have a sales process that is designed to move you toward yes regardless of fit.
+        </p>
+        <p>
+          This is not a strategy. It is how I prefer to work. I would rather have the kind of relationship where we are both honest about what makes sense — and then, if it makes sense, do good work together.
+        </p>
+        <p>
+          If it does not make sense right now, that is fine too. People remember how you treated them when you could have just pushed for the sale.
+        </p>
+      </div>
+
+      <!-- Section: Currently -->
+      <div class="about__section reveal">
+        <p class="about__section-title">What I am building now</p>
+        <p>
+          I am building Vasuman Associates — an AI systems practice that works with companies facing complex, economically structured problems. The work is not AI for its own sake. It is systems that solve problems where the cost of not solving them is real.
+        </p>
+        <p>
+          I am also building The Coach — an executive coaching application that I hope will eventually reach people who cannot afford what good coaching costs right now.
+        </p>
+        <p>
+          Both of these are early. I am honest about that.
+        </p>
+      </div>
+
+      <!-- Section: Find me -->
+      <div class="about__section reveal">
+        <p class="about__section-title">Where to find me</p>
+        <p>
+          I write at <a href="https://substack.com/@jeetjoshi" style="color: var(--accent);">Chai with an Economist</a> on Substack.
+        </p>
+        <p>
+          I am on <a href="https://linkedin.com/in/joshijeet02" style="color: var(--accent);">LinkedIn</a>.
+        </p>
+        <p>
+          The best way to reach me is email. I answer personally, usually within a day.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta" aria-label="Get in touch">
+      <div class="container">
+        <h2>Tell me what you are working on.</h2>
+        <div class="contact-cta__body">
+          <p>I will tell you honestly whether I can help.</p>
+          <p>I respond personally. Usually within a day.</p>
+        </div>
+        <a href="mailto:jeetjoshieconomics@gmail.com" class="contact-cta__email">
+          jeetjoshieconomics@gmail.com
+        </a>
+        <p class="contact-cta__micro">
+          No form. No calendar link. Just email.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container container--wide">
+      <div class="footer__inner">
+        <span class="footer__name">Jeet Joshi</span>
+        <nav class="footer__links">
+          <a href="work.html"    class="footer__link">Work</a>
+          <a href="writing.html" class="footer__link">Writing</a>
+          <a href="about.html"   class="footer__link">About</a>
+          <a href="https://linkedin.com/in/joshijeet02" class="footer__link">LinkedIn</a>
+          <a href="https://substack.com/@jeetjoshi"     class="footer__link">Substack</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

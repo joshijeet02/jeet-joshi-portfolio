@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeet Joshi — Economist &amp; Builder</title>
+  <meta name="description" content="Jeet Joshi builds AI systems grounded in economic thinking. Based in Ahmedabad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --black:   #07070A;
+      --black-2: #0F0F12;
+      --white:   #ECEAE4;
+      --muted:   rgba(236, 234, 228, 0.45);
+      --faint:   rgba(236, 234, 228, 0.18);
+      --accent:  #C4532A;
+      --border:  rgba(236, 234, 228, 0.08);
+      --serif:   'DM Serif Display', Georgia, serif;
+      --sans:    'Inter', -apple-system, sans-serif;
+      --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in: cubic-bezier(0.7, 0, 1, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none; /* hide default cursor */
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      background: var(--white);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.06s linear,
+                  width 0.3s var(--ease),
+                  height 0.3s var(--ease),
+                  opacity 0.3s var(--ease);
+      will-change: transform;
+    }
+
+    .cursor.hovering {
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: 1px solid rgba(236, 234, 228, 0.5);
+    }
+
+    .cursor.clicking {
+      width: 4px;
+      height: 4px;
+    }
+
+    /* Show default cursor on mobile */
+    @media (hover: none) {
+      .cursor { display: none; }
+      body { cursor: auto; }
+      a, button { cursor: pointer; }
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: padding 0.4s var(--ease),
+                  background 0.4s var(--ease);
+    }
+
+    .nav.scrolled {
+      padding: 18px 48px;
+      background: rgba(7, 7, 10, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      transition: opacity 0.2s;
+    }
+    .nav__logo:hover { opacity: 0.6; }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav__link {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav__link:hover { color: var(--white); }
+
+    .nav__cta {
+      font-size: 0.8125rem;
+      color: var(--accent);
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .nav__cta:hover { opacity: 0.75; }
+
+    /* Mobile nav */
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      font-family: var(--sans);
+    }
+
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease);
+    }
+    .nav__drawer.open { opacity: 1; pointer-events: auto; }
+
+    .nav__drawer-link {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      color: var(--white);
+      transition: color 0.2s;
+    }
+    .nav__drawer-link:hover { color: var(--accent); }
+
+    /* ============================================================
+       SCROLL REVEAL SYSTEM
+    ============================================================ */
+
+    /* Word-reveal: wraps each word in overflow:hidden container */
+    .reveal-line {
+      display: block;
+      overflow: hidden;
+      line-height: 1.15;
+    }
+
+    .reveal-line .inner {
+      display: block;
+      transform: translateY(110%);
+      transition: transform 1s var(--ease);
+    }
+
+    /* Trigger state */
+    .inview .reveal-line .inner { transform: translateY(0); }
+
+    /* Stagger delays for multi-line reveals */
+    .inview .reveal-line:nth-child(2) .inner { transition-delay: 80ms; }
+    .inview .reveal-line:nth-child(3) .inner { transition-delay: 160ms; }
+    .inview .reveal-line:nth-child(4) .inner { transition-delay: 240ms; }
+
+    /* Fade-up for smaller elements */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .inview .fade-up      { opacity: 1; transform: translateY(0); }
+    .inview .fade-up.d1   { transition-delay: 200ms; }
+    .inview .fade-up.d2   { transition-delay: 360ms; }
+    .inview .fade-up.d3   { transition-delay: 520ms; }
+    .inview .fade-up.d4   { transition-delay: 680ms; }
+    .inview .fade-up.d5   { transition-delay: 840ms; }
+
+    /* Self-reveal (element is the trigger) */
+    .self-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .self-reveal.inview { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+      overflow: hidden;
+    }
+
+    /* Noise grain overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    /* Ambient gradient */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 20% 100%,
+        rgba(196, 83, 42, 0.07) 0%,
+        transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+    }
+
+    .hero__headline {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8.5vw, 8rem);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 52px;
+    }
+
+    .hero__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .hero__byline {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .hero__cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9375rem;
+      color: var(--white);
+      border-bottom: 1px solid rgba(236, 234, 228, 0.35);
+      padding-bottom: 3px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .hero__cta-primary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero__cta-secondary {
+      font-size: 0.875rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .hero__cta-secondary:hover { color: var(--white); }
+
+    /* Vertical scroll line */
+    .scroll-line {
+      position: absolute;
+      bottom: 80px;
+      right: 48px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scroll-line__label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line__bar {
+      width: 1px;
+      height: 60px;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line__bar::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--muted);
+      animation: scrollbar 1.8s var(--ease) infinite;
+    }
+
+    @keyframes scrollbar {
+      0%   { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    /* ============================================================
+       MARQUEE
+    ============================================================ */
+    .marquee {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 18px 0;
+      background: var(--black-2);
+    }
+
+    .marquee__track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee__track:hover { animation-play-state: paused; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee__text {
+      white-space: nowrap;
+      font-size: 0.8125rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-right: 80px;
+    }
+
+    .marquee__dot {
+      color: var(--accent);
+      margin: 0 16px;
+    }
+
+    /* ============================================================
+       WORK SECTION
+    ============================================================ */
+    .work {
+      padding: 120px 48px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 64px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 48px;
+    }
+
+    /* Project list */
+    .projects-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 32px;
+      align-items: center;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: background 0.3s, padding-left 0.3s var(--ease);
+    }
+
+    .project-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(196, 83, 42, 0.03);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-item:hover::before { opacity: 1; }
+
+    .project-item__num {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--faint);
+      transition: color 0.3s;
+      font-style: italic;
+    }
+
+    .project-item:hover .project-item__num { color: var(--accent); }
+
+    .project-item__body { min-width: 0; }
+
+    .project-item__title {
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2.8vw, 2.2rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+
+    .project-item:hover .project-item__title { color: var(--white); }
+
+    .project-item__stake {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 56ch;
+    }
+
+    .project-item__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .project-item__arrow {
+      font-size: 1.25rem;
+      color: var(--faint);
+      transform: translateX(0) rotate(-45deg);
+      transition: transform 0.3s var(--ease), color 0.3s;
+      flex-shrink: 0;
+    }
+
+    .project-item:hover .project-item__arrow {
+      transform: translateX(6px) rotate(-45deg);
+      color: var(--accent);
+    }
+
+    .work__footer {
+      margin-top: 64px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .all-work-link {
+      font-size: 0.875rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .all-work-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* ============================================================
+       APPROACH / PHILOSOPHY
+    ============================================================ */
+    .approach {
+      padding: 140px 48px;
+      border-top: 1px solid var(--border);
+      background: var(--black-2);
+    }
+
+    .approach__statements {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      margin-top: 80px;
+    }
+
+    .statement {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .statement__index {
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.1em;
+      padding-top: 10px;
+    }
+
+    .statement__text {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .statement__text em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       ABOUT STRIP
+    ============================================================ */
+    .about-strip {
+      padding: 120px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-strip__inner {
+      max-width: 700px;
+    }
+
+    .about-strip__body {
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .about-strip__body p + p { margin-top: 1.4em; }
+
+    .about-strip__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--white);
+      border-bottom: 1px solid rgba(236,234,228,0.3);
+      padding-bottom: 2px;
+      margin-top: 40px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .about-strip__link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ============================================================
+       CONTACT CLOSE
+    ============================================================ */
+    .contact-close {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-close::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 80% 50%,
+        rgba(196, 83, 42, 0.06) 0%,
+        transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-close__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-close__headline {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-close__email {
+      display: inline-block;
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3.5vw, 3.2rem);
+      color: var(--white);
+      border-bottom: 1px solid rgba(236,234,228,0.2);
+      padding-bottom: 8px;
+      transition: color 0.25s, border-color 0.25s;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-close__email:hover { color: var(--accent); border-color: var(--accent); }
+
+    .contact-close__note {
+      font-size: 0.875rem;
+      color: var(--faint);
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer__name {
+      font-family: var(--serif);
+      font-size: 0.875rem;
+      color: var(--faint);
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer__link {
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .footer__link:hover { color: var(--white); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 768px) {
+      .nav { padding: 20px 24px; }
+      .nav.scrolled { padding: 14px 24px; }
+      .nav__links { display: none; }
+      .nav__toggle { display: block; }
+      .nav__drawer { display: flex; }
+
+      .hero { padding: 0 24px 60px; }
+      .scroll-line { display: none; }
+
+      .work { padding: 80px 24px; }
+
+      .project-item {
+        grid-template-columns: 44px 1fr;
+        gap: 16px;
+      }
+      .project-item__arrow { display: none; }
+
+      .approach { padding: 80px 24px; }
+
+      .statement {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .statement__index { display: none; }
+
+      .about-strip { padding: 80px 24px; }
+
+      .contact-close { padding: 80px 24px; }
+
+      .footer { padding: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__headline { font-size: clamp(2.8rem, 11vw, 4rem); }
+      .hero__meta { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       CURSOR
+  ============================================================ -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo">Jeet Joshi</a>
+
+    <div class="nav__links">
+      <a href="work.html"    class="nav__link">Work</a>
+      <a href="writing.html" class="nav__link">Writing</a>
+      <a href="about.html"   class="nav__link">About</a>
+      <a href="contact.html" class="nav__cta">Talk to me</a>
+    </div>
+
+    <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">Menu</button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="nav-drawer">
+    <a href="work.html"    class="nav__drawer-link">Work</a>
+    <a href="writing.html" class="nav__drawer-link">Writing</a>
+    <a href="about.html"   class="nav__drawer-link">About</a>
+    <a href="contact.html" class="nav__drawer-link">Talk to me</a>
+  </div>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="hero">
+      <div class="hero__content inview">
+
+        <h1 class="hero__headline">
+          <span class="reveal-line"><span class="inner">I build systems</span></span>
+          <span class="reveal-line"><span class="inner">that think like</span></span>
+          <span class="reveal-line"><span class="inner">an economist.</span></span>
+        </h1>
+
+        <div class="hero__meta">
+          <span class="hero__byline fade-up d1">
+            Jeet Joshi &nbsp;·&nbsp; Ahmedabad, India &nbsp;·&nbsp; Vasuman Associates
+          </span>
+          <div class="hero__actions fade-up d2">
+            <a href="work.html" class="hero__cta-primary">
+              Explore work &nbsp;↓
+            </a>
+            <a href="contact.html" class="hero__cta-secondary">
+              Start a conversation →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="scroll-line" aria-hidden="true">
+        <span class="scroll-line__label">Scroll</span>
+        <div class="scroll-line__bar"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MARQUEE
+    ============================================================ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <!-- First copy -->
+        <span class="marquee__text">
+          Economist <span class="marquee__dot">·</span>
+          Builder <span class="marquee__dot">·</span>
+          Ahmedabad <span class="marquee__dot">·</span>
+          Systems that think <span class="marquee__dot">·</span>
+          Economic diagnosis first <span class="marquee__dot">·</span>
+          Real organizations <span class="marquee__dot">·</span>
+          No demos <span class="marquee__dot">·</span>
+          Chai with an Economist <span class="marquee__dot">·</span>
+        </span>
+        <!-- Duplicate for infinite loop -->
+        <span class="marquee__text" aria-hidden="true">
+          Economist <span class="marquee__dot">·</span>
+          Builder <span class="marquee__dot">·</span>
+          Ahmedabad <span class="marquee__dot">·</span>
+          Systems that think <span class="marquee__dot">·</span>
+          Economic diagnosis first <span class="marquee__dot">·</span>
+          Real organizations <span class="marquee__dot">·</span>
+          No demos <span class="marquee__dot">·</span>
+          Chai with an Economist <span class="marquee__dot">·</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         WORK
+    ============================================================ -->
+    <section class="work">
+      <p class="section-label self-reveal">Selected Work</p>
+
+      <div class="projects-list">
+
+        <a href="case-studies/grant-intelligence.html" class="project-item self-reveal">
+          <span class="project-item__num">01</span>
+          <div class="project-item__body">
+            <h2 class="project-item__title">Grant Intelligence System</h2>
+            <p class="project-item__stake">
+              For a tribal rights CSO managing multi-crore grants from major international foundations.
+              Scouts opportunities, profiles funders, evaluates fit, generates proposals. Runs in production.
+            </p>
+            <div class="project-item__tags">
+              <span class="tag">NGO Finance</span>
+              <span class="tag">AI Systems</span>
+              <span class="tag">Deployed</span>
+            </div>
+          </div>
+          <span class="project-item__arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/mnrega-dashboard.html" class="project-item self-reveal">
+          <span class="project-item__num">02</span>
+          <div class="project-item__body">
+            <h2 class="project-item__title">Rajasthan Employment Dashboard</h2>
+            <p class="project-item__stake">
+              15 years of MNREGA employment data across 33 districts, built for a government policy briefing.
+              Answers the question policymakers actually ask: did employment improve, or just increase?
+            </p>
+            <div class="project-item__tags">
+              <span class="tag">Public Policy</span>
+              <span class="tag">Data Engineering</span>
+              <span class="tag">Deployed</span>
+            </div>
+          </div>
+          <span class="project-item__arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/swaraj-loom.html" class="project-item self-reveal">
+          <span class="project-item__num">03</span>
+          <div class="project-item__body">
+            <h2 class="project-item__title">Swaraj Loom — Knowledge Platform</h2>
+            <p class="project-item__stake">
+              A full-stack learning platform organizing indigenous ecological knowledge from 11 organizations
+              across five elements, three time dimensions, and six lenses — with community governance built in.
+            </p>
+            <div class="project-item__tags">
+              <span class="tag">Product Architecture</span>
+              <span class="tag">Knowledge Systems</span>
+              <span class="tag">Deployed</span>
+            </div>
+          </div>
+          <span class="project-item__arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/norex-sustainability.html" class="project-item self-reveal">
+          <span class="project-item__num">04</span>
+          <div class="project-item__body">
+            <h2 class="project-item__title">Sustainability Intelligence — Norex Flavours</h2>
+            <p class="project-item__stake">
+              For the only Indian MSME in the fragrance sector with EcoVadis Gold.
+              Carbon scope calculator, living income methodology for UP farmers, regenerative farm dashboard.
+            </p>
+            <div class="project-item__tags">
+              <span class="tag">Agricultural Economics</span>
+              <span class="tag">EcoVadis</span>
+              <span class="tag">In Discussion</span>
+            </div>
+          </div>
+          <span class="project-item__arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/the-coach.html" class="project-item self-reveal">
+          <span class="project-item__num">05</span>
+          <div class="project-item__body">
+            <h2 class="project-item__title">The Coach — AI Executive Coaching</h2>
+            <p class="project-item__stake">
+              A coaching application that learns who you are in the first eight questions and builds
+              every subsequent session around your actual goals, relationships, and stressors.
+            </p>
+            <div class="project-item__tags">
+              <span class="tag">Product</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">In Development</span>
+            </div>
+          </div>
+          <span class="project-item__arrow" aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+
+      <div class="work__footer self-reveal">
+        <a href="work.html" class="all-work-link">
+          See all 11 projects &nbsp;→
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         APPROACH
+    ============================================================ -->
+    <section class="approach">
+      <p class="section-label self-reveal">How I Work</p>
+
+      <div class="approach__statements">
+
+        <div class="statement">
+          <span class="statement__index self-reveal">01 /</span>
+          <div>
+            <p class="statement__text">
+              <span class="reveal-line"><span class="inner">Economics first.</span></span>
+              <span class="reveal-line" style="margin-top: 4px;"><span class="inner"><em>Every problem has a structure.</em></span></span>
+              <span class="reveal-line" style="margin-top: 4px;"><span class="inner"><em>Find it before building anything.</em></span></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="statement">
+          <span class="statement__index self-reveal">02 /</span>
+          <div>
+            <p class="statement__text">
+              <span class="reveal-line"><span class="inner">Build for the specific,</span></span>
+              <span class="reveal-line" style="margin-top: 4px;"><span class="inner"><em>not the general.</em></span></span>
+              <span class="reveal-line" style="margin-top: 4px;"><span class="inner">This organization, this data, this team.</span></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="statement">
+          <span class="statement__index self-reveal">03 /</span>
+          <div>
+            <p class="statement__text">
+              <span class="reveal-line"><span class="inner">Deploy. Leave it running.</span></span>
+              <span class="reveal-line" style="margin-top: 4px;"><span class="inner"><em>No demos. No reports that sit.</em></span></span>
+              <span class="reveal-line" style="margin-top: 4px;"><span class="inner">Systems that actually work.</span></span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT STRIP
+    ============================================================ -->
+    <section class="about-strip">
+      <div class="about-strip__inner">
+        <p class="section-label self-reveal">About</p>
+        <div class="about-strip__body self-reveal">
+          <p>
+            I grew up in Banswara, Rajasthan. I trained at the Gokhale Institute of Politics and Economics
+            and the University of Sydney. I spent years in policy research — government budgets, rural employment,
+            economic rights — before I started building the systems I kept wishing existed.
+          </p>
+          <p>
+            I write a newsletter called Chai with an Economist.
+            About 3,000 people read it. I write when something has been sitting with me long enough
+            that not writing it feels wrong.
+          </p>
+        </div>
+        <a href="about.html" class="about-strip__link self-reveal">
+          More about me &nbsp;→
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT CLOSE
+    ============================================================ -->
+    <section class="contact-close">
+      <p class="contact-close__label self-reveal">Get in touch</p>
+
+      <h2 class="contact-close__headline">
+        <span class="reveal-line"><span class="inner">Tell me what you</span></span>
+        <span class="reveal-line"><span class="inner">are working on.</span></span>
+      </h2>
+
+      <a href="mailto:jeetjoshieconomics@gmail.com" class="contact-close__email self-reveal">
+        jeetjoshieconomics@gmail.com
+      </a>
+
+      <p class="contact-close__note self-reveal">
+        No form. No calendar link. A real person reads every email.<br>
+        If you prefer WhatsApp, say so and I will send my number.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <span class="footer__name">Jeet Joshi</span>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="work.html"    class="footer__link">Work</a>
+      <a href="writing.html" class="footer__link">Writing</a>
+      <a href="about.html"   class="footer__link">About</a>
+      <a href="https://linkedin.com/in/joshijeet02"  class="footer__link">LinkedIn</a>
+      <a href="https://substack.com/@jeetjoshi"      class="footer__link">Substack</a>
+    </nav>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    'use strict';
+
+    /* --------------------------------------------------------
+       CUSTOM CURSOR
+    -------------------------------------------------------- */
+    (function initCursor() {
+      const cursor = document.getElementById('cursor');
+      if (!cursor) return;
+
+      // Only on pointer devices
+      if (!window.matchMedia('(hover: hover)').matches) return;
+
+      let cx = -100, cy = -100, tx = -100, ty = -100;
+      let rafId;
+
+      document.addEventListener('mousemove', e => {
+        tx = e.clientX;
+        ty = e.clientY;
+      });
+
+      function lerp(a, b, n) { return a + (b - a) * n; }
+
+      function moveCursor() {
+        cx = lerp(cx, tx, 0.14);
+        cy = lerp(cy, ty, 0.14);
+        cursor.style.left = cx + 'px';
+        cursor.style.top  = cy + 'px';
+        rafId = requestAnimationFrame(moveCursor);
+      }
+      moveCursor();
+
+      // Hover state on interactive elements
+      const interactives = 'a, button, [role="button"]';
+      document.addEventListener('mouseover', e => {
+        if (e.target.closest(interactives)) cursor.classList.add('hovering');
+      });
+      document.addEventListener('mouseout', e => {
+        if (e.target.closest(interactives)) cursor.classList.remove('hovering');
+      });
+      document.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+      document.addEventListener('mouseup',   () => cursor.classList.remove('clicking'));
+    })();
+
+
+    /* --------------------------------------------------------
+       NAV SCROLL STATE
+    -------------------------------------------------------- */
+    (function initNav() {
+      const nav = document.getElementById('nav');
+      if (!nav) return;
+
+      const onScroll = () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+
+    /* --------------------------------------------------------
+       MOBILE MENU
+    -------------------------------------------------------- */
+    (function initMobileMenu() {
+      const toggle = document.getElementById('nav-toggle');
+      const drawer = document.getElementById('nav-drawer');
+      if (!toggle || !drawer) return;
+
+      let open = false;
+
+      const setOpen = (state) => {
+        open = state;
+        drawer.classList.toggle('open', state);
+        toggle.textContent = state ? 'Close' : 'Menu';
+        document.body.style.overflow = state ? 'hidden' : '';
+      };
+
+      toggle.addEventListener('click', () => setOpen(!open));
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    })();
+
+
+    /* --------------------------------------------------------
+       SCROLL REVEAL — IntersectionObserver
+    -------------------------------------------------------- */
+    (function initReveal() {
+      if (!('IntersectionObserver' in window)) {
+        // Fallback: reveal all
+        document.querySelectorAll('.reveal-line .inner, .fade-up, .self-reveal').forEach(
+          el => { el.style.opacity = '1'; el.style.transform = 'none'; }
+        );
+        return;
+      }
+
+      // Reveal staggered text sections
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('inview');
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      // Elements with .reveal-line children (sections that trigger children)
+      document.querySelectorAll('.approach .statement').forEach(el => {
+        sectionObserver.observe(el);
+      });
+
+      // contact-close section
+      const contactClose = document.querySelector('.contact-close');
+      if (contactClose) sectionObserver.observe(contactClose);
+
+      // Self-revealing elements
+      const selfObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            // Small delay based on position in sibling order
+            const siblings = Array.from(entry.target.parentElement.children);
+            const idx = siblings.indexOf(entry.target);
+            const delay = Math.min(idx * 80, 400);
+            setTimeout(() => {
+              entry.target.classList.add('inview');
+            }, delay);
+            selfObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.self-reveal').forEach(el => selfObserver.observe(el));
+    })();
+
+
+    /* --------------------------------------------------------
+       SUBTLE PARALLAX on Hero headline
+    -------------------------------------------------------- */
+    (function initParallax() {
+      const hero = document.getElementById('hero');
+      const headline = hero && hero.querySelector('.hero__headline');
+      if (!headline) return;
+      if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+
+      let ticking = false;
+
+      function update() {
+        const scrollY = window.scrollY;
+        const speed = 0.25;
+        headline.style.transform = `translateY(${scrollY * speed}px)`;
+        headline.style.opacity = Math.max(0, 1 - scrollY / (window.innerHeight * 0.7));
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+
+
+    /* --------------------------------------------------------
+       HOVER: Add cursor class to project items
+    -------------------------------------------------------- */
+    document.querySelectorAll('.project-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        document.getElementById('cursor')?.classList.add('hovering');
+      });
+      item.addEventListener('mouseleave', () => {
+        document.getElementById('cursor')?.classList.remove('hovering');
+      });
+    });
+
+  </script>
+
+</body>
+</html>

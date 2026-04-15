@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeet Joshi — Economist &amp; Builder</title>
+  <meta name="description" content="Jeet Joshi builds AI systems grounded in economic thinking. Based in Ahmedabad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       THE OBSIDIAN ASSEMBLY — DESIGN SYSTEM
+       Palette: #151415 (obsidian) + #F1EADE (cream). Only these.
+    ============================================================ */
+
+    :root {
+      --obsidian:   #151415;
+      --cream:      #F1EADE;
+      --cream-50:   rgba(241, 234, 222, 0.50);
+      --cream-25:   rgba(241, 234, 222, 0.25);
+      --cream-10:   rgba(241, 234, 222, 0.10);
+      --cream-06:   rgba(241, 234, 222, 0.06);
+      --cream-04:   rgba(241, 234, 222, 0.04);
+      --rule:       rgba(241, 234, 222, 0.12);
+
+      --serif:   'DM Serif Display', Georgia, serif;
+      --sans:    'Inter', -apple-system, sans-serif;
+
+      /* Easing */
+      --ease:    cubic-bezier(0.25, 0.1, 0.25, 1);
+      --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+      --spring:  cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Spacing rhythm */
+      --gutter: clamp(24px, 5vw, 72px);
+      --section-py: clamp(80px, 10vw, 140px);
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--obsidian);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    @media (hover: none) { body { cursor: auto; } .cursor { display: none; } }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       CURSOR — Small dot with smooth lerp
+    ============================================================ */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+    }
+
+    .cursor__dot {
+      width: 6px; height: 6px;
+      background: var(--cream);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.28s var(--spring),
+                  height 0.28s var(--spring),
+                  opacity 0.2s;
+    }
+
+    .cursor__ring {
+      position: absolute;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid var(--cream);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.25s, width 0.35s var(--spring), height 0.35s var(--spring);
+    }
+
+    .cursor.is-hovering .cursor__ring {
+      opacity: 0.5;
+      width: 52px; height: 52px;
+    }
+
+    .cursor.is-hovering .cursor__dot {
+      width: 4px; height: 4px;
+      opacity: 0.4;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px var(--gutter);
+      transition: padding 0.4s var(--ease),
+                  border-bottom-color 0.4s var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav.is-scrolled {
+      padding-top: 16px;
+      padding-bottom: 16px;
+      background: rgba(21, 20, 21, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom-color: var(--rule);
+    }
+
+    .nav__logo {
+      font-family: var(--serif);
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      transition: opacity 0.2s;
+    }
+    .nav__logo:hover { opacity: 0.55; }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav__link {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--cream-50);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav__link:hover { color: var(--cream); }
+
+    .nav__link--cta {
+      color: var(--cream);
+      border-bottom: 1px solid var(--cream-25);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .nav__link--cta:hover { border-color: var(--cream); }
+
+    /* Mobile toggle */
+    .nav__toggle {
+      display: none;
+      background: none; border: none;
+      color: var(--cream-50);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .nav__toggle:hover { color: var(--cream); }
+
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--obsidian);
+      z-index: 199;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 0 var(--gutter) clamp(48px, 8vh, 80px);
+      gap: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+    }
+    .nav__drawer.is-open { opacity: 1; pointer-events: auto; }
+
+    .nav__drawer-link {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: var(--cream);
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      line-height: 1.1;
+    }
+    .nav__drawer-link:hover { opacity: 1; }
+
+    /* ============================================================
+       SCROLL REVEAL SYSTEM
+    ============================================================ */
+
+    /* Words split into spans — clip reveal from bottom */
+    .line-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      line-height: 1.1;
+    }
+
+    .line-inner {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform 0.9s var(--spring),
+                  opacity 0.4s var(--ease);
+    }
+
+    /* Fade-translate for smaller elements */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s var(--ease),
+                  transform 0.75s var(--ease);
+    }
+
+    /* Trigger: .is-inview on the element or parent */
+    .is-inview .line-inner,
+    .is-inview.line-inner { transform: translateY(0); opacity: 1; }
+
+    .is-inview .reveal,
+    .is-inview.reveal   { opacity: 1; transform: translateY(0); }
+
+    /* Stagger delays */
+    .d-1 { transition-delay: 60ms !important; }
+    .d-2 { transition-delay: 120ms !important; }
+    .d-3 { transition-delay: 180ms !important; }
+    .d-4 { transition-delay: 250ms !important; }
+    .d-5 { transition-delay: 340ms !important; }
+    .d-6 { transition-delay: 440ms !important; }
+
+    /* ============================================================
+       SHARED SECTION UTILITIES
+    ============================================================ */
+    .section-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-25);
+    }
+
+    .section-label__num {
+      font-family: var(--sans);
+      color: var(--cream-25);
+    }
+
+    /* ============================================================
+       HERO — Section 01
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 0 var(--gutter);
+      overflow: hidden;
+    }
+
+    /* Ambient noise grain */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Giant watermark "01" behind headline */
+    .hero__watermark {
+      position: absolute;
+      bottom: -4vw;
+      right: -2vw;
+      font-family: var(--serif);
+      font-size: clamp(200px, 28vw, 420px);
+      line-height: 1;
+      color: var(--cream-04);
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+
+    .hero__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: clamp(48px, 7vh, 80px);
+      position: relative;
+      z-index: 1;
+      padding-top: 120px;
+    }
+
+    .hero__eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-25);
+      margin-bottom: clamp(32px, 5vh, 60px);
+    }
+
+    .hero__headline {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8vw, 8.5rem);
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: var(--cream);
+      margin-bottom: clamp(40px, 6vh, 72px);
+    }
+
+    .hero__headline .line-wrap { display: block; }
+
+    /* Italic treatment on "economist" */
+    .hero__headline em {
+      font-style: italic;
+      color: var(--cream-50);
+    }
+
+    .hero__footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 36px;
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+
+    .hero__meta {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--cream-25);
+      letter-spacing: 0.05em;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .link-underline {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--cream);
+      border-bottom: 1px solid var(--cream-25);
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .link-underline:hover { border-color: var(--cream); }
+
+    .link-ghost {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      color: var(--cream-50);
+      transition: color 0.2s;
+    }
+    .link-ghost:hover { color: var(--cream); }
+
+    /* Scroll indicator line */
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      right: var(--gutter);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 1;
+    }
+
+    .hero__scroll-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-25);
+      writing-mode: vertical-rl;
+    }
+
+    .hero__scroll-bar {
+      width: 1px;
+      height: 56px;
+      background: var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__scroll-bar::after {
+      content: '';
+      position: absolute;
+      top: -100%; left: 0;
+      width: 100%; height: 100%;
+      background: var(--cream-50);
+      animation: scroll-pulse 2s var(--ease) infinite;
+    }
+
+    @keyframes scroll-pulse {
+      0%   { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    /* ============================================================
+       MARQUEE — Statement band
+    ============================================================ */
+    .marquee-band {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+      padding: 20px 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 28s linear infinite;
+    }
+
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      white-space: nowrap;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+      color: var(--cream-25);
+      padding-right: 64px;
+      letter-spacing: 0.02em;
+    }
+
+    .marquee-sep {
+      color: var(--cream-10);
+      padding-right: 64px;
+    }
+
+    /* ============================================================
+       WORK — Section 02
+    ============================================================ */
+    .work {
+      padding: var(--section-py) var(--gutter);
+    }
+
+    .work__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: clamp(40px, 6vw, 72px);
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .work__title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+    }
+
+    .work__sub {
+      font-size: 0.875rem;
+      color: var(--cream-25);
+      max-width: 36ch;
+      line-height: 1.65;
+      padding-top: 8px;
+    }
+
+    /* Project list — divider style */
+    .project-list {
+      border-top: 1px solid var(--rule);
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 32px;
+      align-items: start;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: background 0.25s;
+    }
+
+    /* Hover background fill */
+    .project-row::before {
+      content: '';
+      position: absolute;
+      inset: 0 calc(var(--gutter) * -1);
+      background: var(--cream-04);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .project-row:hover::before { opacity: 1; }
+
+    .project-row__num {
+      font-size: 0.6875rem;
+      color: var(--cream-25);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      padding-top: 6px;
+      font-family: var(--sans);
+    }
+
+    .project-row__main {}
+
+    .project-row__title {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 10px;
+      transition: opacity 0.2s;
+    }
+
+    .project-row:hover .project-row__title { opacity: 0.75; }
+
+    .project-row__stake {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--cream-50);
+      max-width: 52ch;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .project-row__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.625rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-25);
+      border: 1px solid var(--rule);
+      padding: 3px 10px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .project-row:hover .tag {
+      border-color: var(--cream-25);
+      color: var(--cream-50);
+    }
+
+    .project-row__cta {
+      font-size: 1.1rem;
+      color: var(--cream-25);
+      transform: rotate(-45deg);
+      transition: transform 0.35s var(--spring), color 0.25s;
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+
+    .project-row:hover .project-row__cta {
+      transform: rotate(-45deg) translate(3px, -3px);
+      color: var(--cream);
+    }
+
+    .work__footer {
+      margin-top: 48px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* ============================================================
+       APPROACH — Section 03
+    ============================================================ */
+    .approach {
+      padding: var(--section-py) var(--gutter);
+      border-top: 1px solid var(--rule);
+    }
+
+    .approach__header {
+      margin-bottom: clamp(56px, 8vw, 96px);
+    }
+
+    .approach__items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .approach-item {
+      display: grid;
+      grid-template-columns: clamp(80px, 12vw, 160px) 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: clamp(36px, 5vw, 60px) 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .approach-item__index {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--cream-25);
+      padding-top: 10px;
+    }
+
+    .approach-item__statement {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+    }
+
+    .approach-item__statement em {
+      font-style: italic;
+      color: var(--cream-50);
+    }
+
+    .approach-item__statement .line-wrap { display: block; }
+
+    /* ============================================================
+       ABOUT STRIP — Section 04
+    ============================================================ */
+    .about-strip {
+      padding: var(--section-py) var(--gutter);
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .about-strip__left {}
+
+    /* Large typographic pull quote */
+    .about-strip__pullquote {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      font-style: italic;
+    }
+
+    .about-strip__right {}
+
+    .about-strip__text {
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      font-weight: 300;
+      color: var(--cream-50);
+      line-height: 1.8;
+    }
+
+    .about-strip__text p + p { margin-top: 1.4em; }
+
+    .about-strip__link-row {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* ============================================================
+       CONTACT — Section 05
+    ============================================================ */
+    .contact {
+      padding: var(--section-py) var(--gutter);
+      border-top: 1px solid var(--rule);
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact__top { }
+
+    .contact__headline {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7.5vw, 8rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      margin-top: clamp(40px, 6vh, 72px);
+      max-width: 18ch;
+    }
+
+    .contact__headline .line-wrap { display: block; }
+
+    .contact__bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: clamp(40px, 6vh, 64px);
+      border-top: 1px solid var(--rule);
+      margin-top: clamp(40px, 6vh, 64px);
+      flex-wrap: wrap;
+    }
+
+    .contact__email {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      border-bottom: 1px solid var(--cream-25);
+      padding-bottom: 6px;
+      transition: border-color 0.25s, opacity 0.25s;
+      display: inline-block;
+    }
+    .contact__email:hover { border-color: var(--cream); opacity: 0.8; }
+
+    .contact__note {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      color: var(--cream-25);
+      max-width: 28ch;
+      line-height: 1.65;
+      text-align: right;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding: 24px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer__name {
+      font-family: var(--serif);
+      font-size: 0.875rem;
+      color: var(--cream-25);
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer__link {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--cream-25);
+      transition: color 0.2s;
+    }
+    .footer__link:hover { color: var(--cream); }
+
+    /* ============================================================
+       RESPONSIVE BREAKPOINTS
+    ============================================================ */
+    @media (max-width: 900px) {
+      .about-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav__links { display: none; }
+      .nav__toggle { display: block; }
+      .nav__drawer { display: flex; }
+
+      .hero__scroll { display: none; }
+
+      .project-row {
+        grid-template-columns: 36px 1fr;
+        gap: 16px;
+      }
+      .project-row__cta { display: none; }
+
+      .approach-item { grid-template-columns: 1fr; gap: 12px; }
+      .approach-item__index { display: none; }
+
+      .contact__note { text-align: left; }
+      .contact__bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__headline { font-size: clamp(2.6rem, 10vw, 3.5rem); }
+      .work__title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       CURSOR
+  ============================================================ -->
+  <div class="cursor" id="js-cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="js-nav">
+    <a href="#" class="nav__logo">Jeet Joshi</a>
+
+    <div class="nav__links" aria-label="Navigation">
+      <a href="work.html"    class="nav__link">Work</a>
+      <a href="writing.html" class="nav__link">Writing</a>
+      <a href="about.html"   class="nav__link">About</a>
+      <a href="contact.html" class="nav__link nav__link--cta">Talk to me</a>
+    </div>
+
+    <button class="nav__toggle" id="js-nav-toggle" aria-label="Open menu" aria-expanded="false">
+      Menu
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="js-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+    <a href="work.html"    class="nav__drawer-link">Work</a>
+    <a href="writing.html" class="nav__drawer-link">Writing</a>
+    <a href="about.html"   class="nav__drawer-link">About</a>
+    <a href="contact.html" class="nav__drawer-link">Talk to me</a>
+  </div>
+
+  <main>
+
+    <!-- ============================================================
+         HERO — 01
+    ============================================================ -->
+    <section class="hero" id="js-hero">
+
+      <div class="hero__watermark" aria-hidden="true">01</div>
+
+      <div class="hero__body">
+
+        <p class="hero__eyebrow reveal is-inview d-1">
+          01 &nbsp;/&nbsp; Vasuman Associates &nbsp;·&nbsp; Ahmedabad
+        </p>
+
+        <h1 class="hero__headline is-inview">
+          <span class="line-wrap d-1"><span class="line-inner">I build systems</span></span>
+          <span class="line-wrap d-2"><span class="line-inner">that think like</span></span>
+          <span class="line-wrap d-3"><span class="line-inner"><em>an economist.</em></span></span>
+        </h1>
+
+        <div class="hero__actions reveal is-inview d-4">
+          <a href="work.html" class="link-underline">
+            See the work &nbsp;↓
+          </a>
+          <a href="contact.html" class="link-ghost">
+            Start a conversation →
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero__footer">
+        <p class="hero__meta">
+          Economist &nbsp;·&nbsp; Builder &nbsp;·&nbsp; India
+        </p>
+        <p class="hero__meta">
+          MSc Financial Economics, University of Sydney
+        </p>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="hero__scroll-label">Scroll</span>
+        <div class="hero__scroll-bar"></div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         MARQUEE
+    ============================================================ -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Diagnosis before demos</span>
+        <span class="marquee-sep">—</span>
+        <span class="marquee-item">Economic intelligence first</span>
+        <span class="marquee-sep">—</span>
+        <span class="marquee-item">Real organizations. Real stakes.</span>
+        <span class="marquee-sep">—</span>
+        <span class="marquee-item">No demos. Deployed. Working.</span>
+        <span class="marquee-sep">—</span>
+        <span class="marquee-item">Chai with an Economist</span>
+        <span class="marquee-sep">—</span>
+        <!-- duplicate for infinite loop -->
+        <span class="marquee-item" aria-hidden="true">Diagnosis before demos</span>
+        <span class="marquee-sep" aria-hidden="true">—</span>
+        <span class="marquee-item" aria-hidden="true">Economic intelligence first</span>
+        <span class="marquee-sep" aria-hidden="true">—</span>
+        <span class="marquee-item" aria-hidden="true">Real organizations. Real stakes.</span>
+        <span class="marquee-sep" aria-hidden="true">—</span>
+        <span class="marquee-item" aria-hidden="true">No demos. Deployed. Working.</span>
+        <span class="marquee-sep" aria-hidden="true">—</span>
+        <span class="marquee-item" aria-hidden="true">Chai with an Economist</span>
+        <span class="marquee-sep" aria-hidden="true">—</span>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         WORK — 02
+    ============================================================ -->
+    <section class="work">
+
+      <div class="work__header">
+        <div>
+          <p class="section-label reveal">
+            <span class="section-label__num">02</span>
+            Selected Work
+          </p>
+          <h2 class="work__title">
+            <span class="line-wrap"><span class="line-inner">What I have</span></span>
+            <span class="line-wrap"><span class="line-inner">built.</span></span>
+          </h2>
+        </div>
+        <p class="work__sub reveal">
+          Each started with an economic question, not a technology one.
+          None of them are demos.
+        </p>
+      </div>
+
+      <div class="project-list" role="list">
+
+        <a href="case-studies/grant-intelligence.html" class="project-row reveal" role="listitem">
+          <span class="project-row__num">01</span>
+          <div class="project-row__main">
+            <h3 class="project-row__title">Grant Intelligence System</h3>
+            <p class="project-row__stake">
+              For a tribal rights CSO — multi-crore grants from major international foundations.
+              Scouts funders, evaluates fit, generates proposals. Runs in production.
+            </p>
+            <div class="project-row__tags">
+              <span class="tag">NGO Finance</span>
+              <span class="tag">AI Systems</span>
+              <span class="tag">Deployed</span>
+            </div>
+          </div>
+          <span class="project-row__cta" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/mnrega-dashboard.html" class="project-row reveal d-1" role="listitem">
+          <span class="project-row__num">02</span>
+          <div class="project-row__main">
+            <h3 class="project-row__title">Rajasthan Employment Dashboard</h3>
+            <p class="project-row__stake">
+              15 years of MNREGA data across 33 districts. Built for a government policy briefing.
+              Answers: did employment improve, or just increase?
+            </p>
+            <div class="project-row__tags">
+              <span class="tag">Public Policy</span>
+              <span class="tag">Data Engineering</span>
+              <span class="tag">Deployed</span>
+            </div>
+          </div>
+          <span class="project-row__cta" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/swaraj-loom.html" class="project-row reveal d-2" role="listitem">
+          <span class="project-row__num">03</span>
+          <div class="project-row__main">
+            <h3 class="project-row__title">Swaraj Loom — Knowledge Platform</h3>
+            <p class="project-row__stake">
+              Indigenous ecological knowledge from 11 organizations, made navigable.
+              Five elements × three time dimensions × six lenses. Four-level learning path.
+            </p>
+            <div class="project-row__tags">
+              <span class="tag">Product Architecture</span>
+              <span class="tag">Knowledge Systems</span>
+              <span class="tag">Deployed</span>
+            </div>
+          </div>
+          <span class="project-row__cta" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/norex-sustainability.html" class="project-row reveal d-3" role="listitem">
+          <span class="project-row__num">04</span>
+          <div class="project-row__main">
+            <h3 class="project-row__title">Sustainability Intelligence — Norex Flavours</h3>
+            <p class="project-row__stake">
+              The only Indian MSME in the fragrance sector with EcoVadis Gold.
+              Carbon calculator, living income methodology, regenerative farm dashboard.
+            </p>
+            <div class="project-row__tags">
+              <span class="tag">Agricultural Economics</span>
+              <span class="tag">EcoVadis</span>
+              <span class="tag">In Discussion</span>
+            </div>
+          </div>
+          <span class="project-row__cta" aria-hidden="true">↗</span>
+        </a>
+
+        <a href="case-studies/the-coach.html" class="project-row reveal d-4" role="listitem">
+          <span class="project-row__num">05</span>
+          <div class="project-row__main">
+            <h3 class="project-row__title">The Coach — AI Executive Coaching</h3>
+            <p class="project-row__stake">
+              Learns who you are in the first eight questions. Builds every subsequent session
+              around your actual goals, relationships, and stressors.
+            </p>
+            <div class="project-row__tags">
+              <span class="tag">Product</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">In Development</span>
+            </div>
+          </div>
+          <span class="project-row__cta" aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+
+      <div class="work__footer">
+        <a href="work.html" class="link-underline reveal">
+          View all 11 projects &nbsp;→
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         APPROACH — 03
+    ============================================================ -->
+    <section class="approach">
+
+      <div class="approach__header">
+        <p class="section-label reveal">
+          <span class="section-label__num">03</span>
+          How I Work
+        </p>
+      </div>
+
+      <div class="approach__items">
+
+        <div class="approach-item">
+          <span class="approach-item__index reveal">— 01 /</span>
+          <p class="approach-item__statement">
+            <span class="line-wrap"><span class="line-inner">Economics first.</span></span>
+            <span class="line-wrap"><span class="line-inner"><em>Every problem has a structure.</em></span></span>
+            <span class="line-wrap"><span class="line-inner"><em>Find it before building anything.</em></span></span>
+          </p>
+        </div>
+
+        <div class="approach-item">
+          <span class="approach-item__index reveal">— 02 /</span>
+          <p class="approach-item__statement">
+            <span class="line-wrap"><span class="line-inner">Build for this</span></span>
+            <span class="line-wrap"><span class="line-inner">organization. This data.</span></span>
+            <span class="line-wrap"><span class="line-inner"><em>This specific problem.</em></span></span>
+          </p>
+        </div>
+
+        <div class="approach-item">
+          <span class="approach-item__index reveal">— 03 /</span>
+          <p class="approach-item__statement">
+            <span class="line-wrap"><span class="line-inner">Deploy. Leave it</span></span>
+            <span class="line-wrap"><span class="line-inner"><em>running. No reports</em></span></span>
+            <span class="line-wrap"><span class="line-inner">that sit on a shelf.</span></span>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT — 04
+    ============================================================ -->
+    <section class="about-strip">
+
+      <div class="about-strip__left">
+        <p class="section-label reveal" style="margin-bottom: 32px;">
+          <span class="section-label__num">04</span>
+          About
+        </p>
+        <p class="about-strip__pullquote">
+          <span class="line-wrap"><span class="line-inner">I grew up in</span></span>
+          <span class="line-wrap"><span class="line-inner">Banswara.</span></span>
+          <span class="line-wrap" style="margin-top: 0.3em;"><span class="line-inner">I started building</span></span>
+          <span class="line-wrap"><span class="line-inner">because I ran out</span></span>
+          <span class="line-wrap"><span class="line-inner">of alternatives.</span></span>
+        </p>
+      </div>
+
+      <div class="about-strip__right">
+        <div class="about-strip__text reveal d-2">
+          <p>
+            I trained at the Gokhale Institute of Politics and Economics, Pune
+            and the University of Sydney. I spent years in policy research —
+            government budgets, rural employment, economic rights — before I started
+            building the systems I kept wishing existed.
+          </p>
+          <p>
+            The gap was always the same. The economic analysis existed.
+            No system carried it forward. The insight would arrive in a report,
+            and then the report would sit.
+          </p>
+          <p>
+            So I started building the systems myself.
+          </p>
+          <p>
+            I also write a newsletter called Chai with an Economist.
+            About 3,000 people read it. I write when something has been
+            sitting with me long enough that not writing it feels wrong.
+          </p>
+        </div>
+        <div class="about-strip__link-row reveal d-3">
+          <a href="about.html" class="link-underline">Full story →</a>
+          <a href="writing.html" class="link-ghost">Read the newsletter →</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         CONTACT — 05
+    ============================================================ -->
+    <section class="contact">
+
+      <div class="contact__top">
+        <p class="section-label reveal">
+          <span class="section-label__num">05</span>
+          Get in Touch
+        </p>
+        <h2 class="contact__headline">
+          <span class="line-wrap"><span class="line-inner">Tell me what</span></span>
+          <span class="line-wrap"><span class="line-inner">you are</span></span>
+          <span class="line-wrap"><span class="line-inner">working on.</span></span>
+        </h2>
+      </div>
+
+      <div class="contact__bottom">
+        <a href="mailto:jeetjoshieconomics@gmail.com" class="contact__email reveal">
+          jeetjoshieconomics@gmail.com
+        </a>
+        <p class="contact__note reveal d-2">
+          No form. No calendar link.<br>
+          A real person reads every email.<br>
+          Usually responds within a day.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <span class="footer__name">Jeet Joshi</span>
+    <nav class="footer__links" aria-label="Footer navigation">
+      <a href="work.html"    class="footer__link">Work</a>
+      <a href="writing.html" class="footer__link">Writing</a>
+      <a href="about.html"   class="footer__link">About</a>
+      <a href="https://linkedin.com/in/joshijeet02"  class="footer__link">LinkedIn</a>
+      <a href="https://substack.com/@jeetjoshi"      class="footer__link">Substack</a>
+    </nav>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    'use strict';
+
+    /* ----------------------------------------------------------
+       CURSOR with smooth lerp
+    ---------------------------------------------------------- */
+    (function () {
+      const wrap = document.getElementById('js-cursor');
+      if (!wrap || !window.matchMedia('(hover: hover)').matches) return;
+
+      let mx = -100, my = -100, cx = -100, cy = -100;
+      let raf;
+
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      (function tick() {
+        cx = lerp(cx, mx, 0.12);
+        cy = lerp(cy, my, 0.12);
+        wrap.style.transform = `translate(${cx}px, ${cy}px)`;
+        raf = requestAnimationFrame(tick);
+      })();
+
+      // Hover state
+      const targets = 'a, button, [role="button"]';
+      document.addEventListener('mouseover', e => {
+        if (e.target.closest(targets)) wrap.classList.add('is-hovering');
+      });
+      document.addEventListener('mouseout', e => {
+        if (e.target.closest(targets)) wrap.classList.remove('is-hovering');
+      });
+    })();
+
+
+    /* ----------------------------------------------------------
+       NAV — scroll state
+    ---------------------------------------------------------- */
+    (function () {
+      const nav = document.getElementById('js-nav');
+      if (!nav) return;
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('is-scrolled', window.scrollY > 50);
+      }, { passive: true });
+    })();
+
+
+    /* ----------------------------------------------------------
+       MOBILE DRAWER
+    ---------------------------------------------------------- */
+    (function () {
+      const btn    = document.getElementById('js-nav-toggle');
+      const drawer = document.getElementById('js-drawer');
+      if (!btn || !drawer) return;
+
+      let isOpen = false;
+
+      function toggle(open) {
+        isOpen = open;
+        drawer.classList.toggle('is-open', open);
+        btn.textContent = open ? 'Close' : 'Menu';
+        btn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      btn.addEventListener('click', () => toggle(!isOpen));
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) toggle(false); });
+    })();
+
+
+    /* ----------------------------------------------------------
+       SCROLL REVEAL — IntersectionObserver
+       Adds .is-inview to elements to trigger CSS transitions
+    ---------------------------------------------------------- */
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        // Instant fallback for old browsers
+        document.querySelectorAll('.line-inner, .reveal').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        return;
+      }
+
+      // Observe containers that have .line-wrap children
+      // When container enters view, add .is-inview to trigger CSS
+      const lineObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-inview');
+          lineObs.unobserve(entry.target);
+        });
+      }, { threshold: 0.15 });
+
+      // Find all elements that contain .line-wrap (approach-item statements, etc.)
+      document.querySelectorAll('.approach-item, .about-strip__left').forEach(el => {
+        lineObs.observe(el);
+      });
+
+      // Work section title
+      const workTitle = document.querySelector('.work__title');
+      if (workTitle) lineObs.observe(workTitle);
+
+      // Contact headline
+      const contactHead = document.querySelector('.contact__headline');
+      if (contactHead) lineObs.observe(contactHead);
+
+      // Self-revealing .reveal elements
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-inview');
+          revealObs.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    })();
+
+
+    /* ----------------------------------------------------------
+       HERO PARALLAX — headline moves up as user scrolls
+    ---------------------------------------------------------- */
+    (function () {
+      const hero     = document.getElementById('js-hero');
+      const headline = hero && hero.querySelector('.hero__headline');
+      if (!headline) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      let tick = false;
+
+      function update() {
+        const y = window.scrollY;
+        const fade = Math.max(0, 1 - y / (window.innerHeight * 0.65));
+        const move = y * 0.22;
+        headline.style.transform = `translateY(${move}px)`;
+        headline.style.opacity = fade;
+        tick = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!tick) { requestAnimationFrame(update); tick = true; }
+      }, { passive: true });
+    })();
+
+  </script>
+
+</body>
+</html>

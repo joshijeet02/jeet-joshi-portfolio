@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grant Intelligence System — Jeet Joshi</title>
+  <meta name="description" content="A production AI system for grant management, built for a tribal rights NGO managing multi-crore grants from major international foundations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper:     #F8F5F0;
+      --paper-2:   #F1EDE6;
+      --ink:       #2C2925;
+      --ink-muted: #6B635B;
+      --ink-faint: #A89F95;
+      --rule:      #DDD7CF;
+      --accent:    #8B4F2E;
+      --accent-bg: #F5EDE7;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'Inter', -apple-system, sans-serif;
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --max-w: 720px;
+      --gutter: clamp(20px, 5vw, 48px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav__inner {
+      max-width: calc(var(--max-w) + var(--gutter) * 2);
+      margin: 0 auto;
+      padding: 16px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav__logo { font-family: var(--serif); font-size: 0.95rem; color: var(--ink); }
+    .nav__logo:hover { opacity: 0.6; }
+    .nav__back {
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav__back:hover { color: var(--ink-muted); }
+
+    /* Page */
+    .page {
+      max-width: calc(var(--max-w) + var(--gutter) * 2);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* Case study hero */
+    .cs-hero {
+      padding-top: 104px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .cs-hero__kicker {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .cs-hero__title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .cs-hero__tagline {
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: 24px;
+      max-width: 52ch;
+      line-height: 1.65;
+    }
+    .cs-hero__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-faint);
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      padding: 2px 9px;
+      border-radius: 2px;
+    }
+    .tag--accent {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-color: rgba(139, 79, 46, 0.2);
+    }
+
+    /* Body */
+    .cs-body {
+      padding-top: 56px;
+      padding-bottom: 80px;
+    }
+
+    .cs-section {
+      margin-bottom: 52px;
+    }
+
+    .cs-section__label {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .cs-section p {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      line-height: 1.78;
+      max-width: 66ch;
+    }
+    .cs-section p + p { margin-top: 1.1em; }
+
+    .cs-section strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* Built components list */
+    .built-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .built-list li {
+      padding-left: 20px;
+      position: relative;
+      font-size: 1rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+    .built-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.875rem;
+    }
+
+    /* Reflection block */
+    .cs-reflection {
+      background: var(--paper-2);
+      border-left: 3px solid var(--accent);
+      padding: 24px 28px;
+      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+    }
+    .cs-reflection p {
+      font-size: 0.9375rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      line-height: 1.72;
+    }
+
+    /* Back / nav */
+    .cs-nav-row {
+      border-top: 1px solid var(--rule);
+      padding-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cs-nav-link {
+      font-size: 0.9rem;
+      color: var(--ink-faint);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .cs-nav-link:hover { color: var(--ink-muted); }
+    .cs-nav-link--primary { color: var(--accent); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+    .cs-nav-link--primary:hover { opacity: 0.75; }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding: 20px var(--gutter);
+      max-width: calc(var(--max-w) + var(--gutter) * 2);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer__name { font-family: var(--serif); font-size: 0.875rem; color: var(--ink-faint); }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link { font-size: 0.8125rem; color: var(--ink-faint); transition: color 0.2s; }
+    .footer__link:hover { color: var(--ink-muted); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Jeet Joshi</a>
+      <a href="../work.html" class="nav__back">← All work</a>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <header class="cs-hero">
+      <p class="cs-hero__kicker">Case Study · Social Sector AI</p>
+      <h1 class="cs-hero__title">Grant Intelligence System</h1>
+      <p class="cs-hero__tagline">
+        A production AI system for a tribal rights NGO managing multi-crore
+        grants from major international foundations
+      </p>
+      <div class="cs-hero__tags">
+        <span class="tag tag--accent">Deployed · In Production</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">RAG Pipeline</span>
+        <span class="tag">GPT-4o</span>
+        <span class="tag">NGO Finance</span>
+        <span class="tag">Grant Compliance</span>
+        <span class="tag">Social Sector</span>
+      </div>
+    </header>
+
+    <div class="cs-body">
+
+      <!-- Context -->
+      <div class="cs-section">
+        <p class="cs-section__label">Context</p>
+        <p>
+          <strong>VAAGDHARA</strong> has worked in tribal communities across Rajasthan, Gujarat,
+          and Madhya Pradesh for decades — on land rights, natural farming, women's empowerment,
+          and tribal governance. Much of that work is funded through grants from international
+          foundations including Ford Foundation, MacArthur Foundation, Rainmatter,
+          MISEREOR Germany, and Bread for the World.
+        </p>
+        <p>
+          The organization had no dedicated grants team. The people who understood the work
+          best — program officers and leadership — were also the ones writing the proposals,
+          on top of their actual field responsibilities.
+        </p>
+      </div>
+
+      <!-- Problem -->
+      <div class="cs-section">
+        <p class="cs-section__label">The Problem</p>
+        <p>
+          Every year, the team spent weeks on tasks that had almost nothing to do with
+          the actual program work: searching for funders across websites, reading lengthy guidelines,
+          checking eligibility, writing the same organizational background in different
+          formats for different foundations.
+        </p>
+        <p>
+          The harder problem was invisible. Because this work was so time-consuming, the team
+          could only pursue a small number of grants at once. Opportunities with good fit
+          but tight timelines were often missed simply because there was not enough capacity to respond.
+        </p>
+        <p>
+          And even when a proposal was submitted, there was no institutional memory.
+          What language had resonated with Ford Foundation. What framing had failed with another funder.
+          Every proposal started from scratch, with no learning carried forward.
+        </p>
+        <p>
+          This was not a writing problem. It was an <strong>information problem with an
+          economic structure</strong>: the cost of searching was too high, the cost of losing
+          institutional memory was invisible, and the cost of missed opportunities
+          was felt but never measured.
+        </p>
+      </div>
+
+      <!-- What was built -->
+      <div class="cs-section">
+        <p class="cs-section__label">What I Built</p>
+        <p>
+          A full-stack AI system with five integrated modules, deployed on Render with
+          Google OAuth, production auth, and a file-based session store.
+          The system is indexed against VAAGDHARA's real grant history.
+        </p>
+        <ul class="built-list">
+          <li>
+            <strong>Grant Scout Agent</strong> — runs 5 parallel live web searches, synthesizes
+            with GPT-4o, returns a ranked list of funding opportunities with urgency ratings
+            (hot/warm/cool) and GO/NO-GO recommendations with specific reasoning for each.
+          </li>
+          <li>
+            <strong>Funder Intelligence Engine</strong> — deep-crawls a funder's website:
+            about pages, grant guidelines, leadership, annual reports. Extracts language patterns,
+            power words, geographies of focus, and grant size ranges. Builds a structured
+            "funder DNA" profile with VAAGDHARA-specific alignment analysis.
+          </li>
+          <li>
+            <strong>Concept Ideation Engine</strong> — multi-stage: Stage A generates 5 candidate
+            proposal concepts using angle triangulation (funder priority × VAAGDHARA program × moment);
+            Stage B refines to 3 with fit + diversity scoring, enriched with live web context
+            on what the funder has recently funded.
+          </li>
+          <li>
+            <strong>Budget Strategist</strong> — GPT-4o powered, returns 3 budget scenarios
+            (conservative/base/stretch) with component breakdowns, compliance flags,
+            and overhead defence arguments tailored to the specific funder's policies.
+          </li>
+          <li>
+            <strong>RAG Service</strong> — custom vector store indexed against VAAGDHARA's
+            real grant documents: MOUs, program reports, audited statements. Cosine similarity
+            search with contextual injection into every proposal generation. The system knows
+            what the organization has actually done, not just what it says it does.
+          </li>
+          <li>
+            <strong>Proposal Writer + DOCX Export</strong> — generates full proposal sections
+            with RAG context injection. Exports formatted Word documents ready for final review.
+            Includes a logic framework builder, CRM for meeting notes, and funder memory
+            across sessions.
+          </li>
+        </ul>
+        <p style="margin-top: 20px;">
+          The system was also built with a real-world constraint baked in: VAAGDHARA
+          will not accept funding from tobacco, mining, or gambling companies.
+          That refusal logic is embedded in every search and evaluation prompt.
+        </p>
+      </div>
+
+      <!-- The detail worth knowing -->
+      <div class="cs-section">
+        <p class="cs-section__label">The Detail Worth Knowing</p>
+        <p>
+          The hardest thing to get right was <strong>fit scoring</strong>. When the system
+          evaluates a funding opportunity, it needs to give a real answer — not a generic
+          "this could be relevant" — about whether this particular organization should apply.
+        </p>
+        <p>
+          Getting that right required encoding actual grant logic. Not just: does the
+          organization's geography match? But: is this organization registered to receive
+          foreign funding under FCRA? Does the funder's typical grant size match the
+          organization's capacity to report and manage? Has the funder supported tribal
+          rights specifically before, or only "rural development" broadly?
+        </p>
+        <p>
+          Some of that logic required understanding the NGO funding landscape in India —
+          the FCRA constraints, how large foundations distinguish between program and
+          operating grants, how EcoVadis-aligned funders think differently from faith-based
+          foundations. The technology did not provide that. Economic knowledge of how
+          the grants market works did.
+        </p>
+      </div>
+
+      <!-- Outcome -->
+      <div class="cs-section">
+        <p class="cs-section__label">Outcome</p>
+        <p>
+          The system is running in production. The grants team can evaluate significantly
+          more opportunities in the same amount of time, with institutional memory from
+          previous applications carried forward automatically.
+          The team can focus on what they know best — the field work — rather than
+          the administrative overhead of identifying and applying for grants.
+        </p>
+        <p>
+          The system was given to the organization at no cost. That was the right decision.
+          It is also meaningful proof of what this kind of system can do — built with
+          40+ API endpoints, five AI agents, real document indexing, and production deployment.
+        </p>
+      </div>
+
+      <!-- Reflection -->
+      <div class="cs-section">
+        <p class="cs-section__label">What I would do differently</p>
+        <div class="cs-reflection">
+          <p>
+            I would have spent more time with the grants team before building anything.
+            I understood the problem correctly, but I built some features that the team
+            found less useful than expected — and missed some small things that would
+            have made a real difference daily. The gap was not in the architecture.
+            It was in not asking simpler questions earlier: "What do you do in the first
+            hour of your morning when you sit down to work on a grant?"
+            That question would have changed three design decisions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <div class="cs-nav-row">
+        <a href="../work.html" class="cs-nav-link">← All work</a>
+        <a href="../index.html#contact" class="cs-nav-link cs-nav-link--primary">
+          Discuss a similar project →
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span class="footer__name">Jeet Joshi</span>
+    <nav class="footer__links">
+      <a href="../work.html"    class="footer__link">Work</a>
+      <a href="../writing.html" class="footer__link">Writing</a>
+      <a href="../about.html"   class="footer__link">About</a>
+      <a href="https://linkedin.com/in/joshijeet02" class="footer__link">LinkedIn</a>
+    </nav>
+  </footer>
+
+</body>
+</html>

@@ -206,9 +206,14 @@
       <p class="sub">A Streamlit-powered intelligence platform for institutional economists and fixed-income traders tracking Indian macro releases.</p>
       <div class="tags">
         <span class="t ta">Deployed</span>
-        <span class="t">Macroeconomics</span><span class="t">Python</span>
-        <span class="t">Claude API</span><span class="t">Streamlit</span>
-        <span class="t">Data Engineering</span>
+        <span class="t">Macroeconomics</span><span class="t">Alternative Data</span>
+        <span class="t">Python</span><span class="t">Claude API</span>
+        <span class="t">Streamlit</span>
+      </div>
+      <div style="margin-top: 32px;">
+        <a href="https://india-macro-pulse.streamlit.app/" target="_blank" rel="noopener noreferrer" class="nl nlp" style="font-size: 1.1rem; font-weight: 500;">
+          Visit Live System — india-macro-pulse.streamlit.app →
+        </a>
       </div>
     </header>
 
@@ -224,9 +229,9 @@
         <p>The system is built as a highly responsive ingestion and analysis pipeline:</p>
         <ul class="bl">
           <li><strong>Automated Ingestion</strong> — Scrapers built with BeautifulSoup4 and pdfplumber monitor MOSPI and RBI index pages. As soon as a release hits, the system fetches the document and normalizes the raw numbers into a queryable SQLite store.</li>
+          <li><strong>Amazon-Based Inflation Index</strong> — Beyond official figures, the engine constructs a proprietary composite inflation index using real-time scraped pricing data from Amazon. This provides a high-frequency "shadow index" that often flags trend shifts before they appear in monthly gov releases.</li>
           <li><strong>Economic Decomposition</strong> — Beyond the headline number, the engine breaks down CPI into its critical components: food, fuel, and core. It also handles the fiscal and calendar adjustments necessary for a clean comparison.</li>
-          <li><strong>Surprise Indexing</strong> — The system automatically benchmarks the release against consensus forecasts, calculating a "Surprise Score" that flags whether the movement is statistically significant for market positioning.</li>
-          <li><strong>AI Synthesis</strong> — Using the Anthropic Claude API, the system generates an expert-level flash brief. It doesn't just say what the number is; it analyzes the drivers and stance, providing a senior-economist-style briefing for rapid assimilation.</li>
+          <li><strong>AI Synthesis for Dual Audiences</strong> — Using the Anthropic Claude API, the system generates targeted briefs. It provides a technical, data-heavy brief for institutional economists and a "Layman's Guide" that explains the implications of each data point for the general audience.</li>
         </ul>
       </div>
 

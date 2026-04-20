@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>India Macro Pulse — Data Release Intelligence — Jeet Joshi</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — warm paper palette
+    ============================================================ */
+    :root {
+      --p:      #F8F5F0;
+      --p2:     #F1EDE6;
+      --ink:    #2C2925;
+      --m:      #6B635B;
+      --f:      #A89F95;
+      --r:      #DDD7CF;
+      --a:      #8B4F2E;
+      --ab:     #F5EDE7;
+      --sf:     "DM Serif Display", Georgia, serif;
+      --ss:     "Inter", -apple-system, sans-serif;
+      --mw:     720px;
+      --g:      clamp(20px, 5vw, 48px);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--p);
+      color: var(--ink);
+      font-family: var(--ss);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; border-radius: 4px; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--p);
+      border-bottom: 1px solid var(--r);
+    }
+    .nav__i {
+      max-width: calc(var(--mw) + var(--g)*2);
+      margin: 0 auto;
+      padding: 16px var(--g);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { font-family: var(--sf); font-size: 0.95rem; }
+    .back { font-size: 0.85rem; color: var(--f); transition: color 0.2s; }
+    .back:hover { color: var(--m); }
+
+    /* ============================================================
+       PAGE LAYOUT
+    ============================================================ */
+    .pg {
+      max-width: calc(var(--mw) + var(--g)*2);
+      margin: 0 auto;
+      padding: 0 var(--g);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      padding-top: 104px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--r);
+    }
+    .kick {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--a);
+      margin-bottom: 16px;
+    }
+    .ht {
+      font-family: var(--sf);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .sub {
+      font-size: 1.125rem;
+      color: var(--m);
+      font-style: italic;
+      margin-bottom: 24px;
+      max-width: 52ch;
+      line-height: 1.65;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .t {
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+      color: var(--f);
+      background: var(--p2);
+      border: 1px solid var(--r);
+      padding: 2px 9px;
+      border-radius: 2px;
+    }
+    .ta { background: var(--ab); color: var(--a); border-color: rgba(139, 79, 46, 0.2); }
+
+    /* ============================================================
+       BODY CONTENT
+    ============================================================ */
+    .body { padding-top: 56px; padding-bottom: 80px; }
+    .sec { margin-bottom: 52px; }
+    .lbl {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--f);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--r);
+    }
+    .sec p { font-size: 1rem; color: var(--m); line-height: 1.78; max-width: 66ch; }
+    .sec p + p { margin-top: 1.1em; }
+    .sec strong { color: var(--ink); font-weight: 500; }
+
+    .bl { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+    .bl li {
+      padding-left: 20px;
+      position: relative;
+      font-size: 1rem;
+      color: var(--m);
+      line-height: 1.7;
+    }
+    .bl li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--a);
+      font-size: 0.875rem;
+    }
+
+    .call {
+      background: var(--ab);
+      border: 1px solid rgba(139, 79, 46, 0.15);
+      padding: 20px 24px;
+      border-radius: 4px;
+      margin-top: 16px;
+    }
+    .call p { font-size: 0.9375rem; color: var(--a); font-weight: 500; line-height: 1.6; }
+
+    /* ============================================================
+       NAV NEXT/PREV
+    ============================================================ */
+    .nr {
+      border-top: 1px solid var(--r);
+      padding-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nl { font-size: 0.9rem; color: var(--f); transition: color 0.2s; }
+    .nl:hover { color: var(--m); }
+    .nlp { color: var(--a); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: 1px solid var(--r);
+      padding: 20px var(--g);
+      max-width: calc(var(--mw) + var(--g)*2);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .fn { font-family: var(--sf); font-size: 0.875rem; color: var(--f); }
+    .fl { display: flex; gap: 20px; }
+    .flink { font-size: 0.8125rem; color: var(--f); transition: color 0.2s; }
+    .flink:hover { color: var(--m); }
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav__i">
+    <a href="../index.html" class="logo">Jeet Joshi</a>
+    <a href="../work.html" class="back">← All work</a>
+  </div></nav>
+
+  <div class="pg">
+    <header class="hero">
+      <p class="kick">Case Study · Economics · Quantitative Systems</p>
+      <h1 class="ht">India Macro Pulse — Data Release Intelligence</h1>
+      <p class="sub">A Streamlit-powered intelligence platform for institutional economists and fixed-income traders tracking Indian macro releases.</p>
+      <div class="tags">
+        <span class="t ta">Deployed</span>
+        <span class="t">Macroeconomics</span><span class="t">Python</span>
+        <span class="t">Claude API</span><span class="t">Streamlit</span>
+        <span class="t">Data Engineering</span>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="sec">
+        <p class="lbl">Context</p>
+        <p>For economists and traders, macro data releases are high-stakes moments. When MOSPI or the RBI releases CPI or IIP numbers, the first 60 seconds of interpretation can determine the day's alpha. However, raw releases often sit in PDFs or unformatted HTML, requiring manual extraction and calculation to understand the "surprise" relative to consensus.</p>
+        <p>The **India Macro Pulse** was built to bridge this gap, transforming a static data release into an interactive, AI-synthesized intelligence brief within seconds of publication.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">System Architecture</p>
+        <p>The system is built as a highly responsive ingestion and analysis pipeline:</p>
+        <ul class="bl">
+          <li><strong>Automated Ingestion</strong> — Scrapers built with BeautifulSoup4 and pdfplumber monitor MOSPI and RBI index pages. As soon as a release hits, the system fetches the document and normalizes the raw numbers into a queryable SQLite store.</li>
+          <li><strong>Economic Decomposition</strong> — Beyond the headline number, the engine breaks down CPI into its critical components: food, fuel, and core. It also handles the fiscal and calendar adjustments necessary for a clean comparison.</li>
+          <li><strong>Surprise Indexing</strong> — The system automatically benchmarks the release against consensus forecasts, calculating a "Surprise Score" that flags whether the movement is statistically significant for market positioning.</li>
+          <li><strong>AI Synthesis</strong> — Using the Anthropic Claude API, the system generates an expert-level flash brief. It doesn't just say what the number is; it analyzes the drivers and stance, providing a senior-economist-style briefing for rapid assimilation.</li>
+        </ul>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">The Tech Stack</p>
+        <div class="call"><p>Built with efficiency in mind: Python for the core logic, Streamlit for the UI, and SQLite for lightweight, reliable persistence.</p></div>
+        <p style="margin-top:16px;">The frontend is designed for split-second readability. Economists can toggle between historical trends, component-level heatmaps, and the AI synthesis window. The entire stack is containerized for deployment, ensuring that the scraping agents run with high uptime and low latency.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Status</p>
+        <p>The first version of the system is fully operational and deployed. It currently tracks CPI and IIP releases, with specialized modules for RBI MPC communications and External Sector data in the pipeline.</p>
+      </div>
+
+      <div class="nr">
+        <a href="../work.html" class="nl">← All work</a>
+        <a href="../index.html#contact" class="nl nlp">Discuss quantitative systems →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="fn">Jeet Joshi</span>
+    <div class="fl">
+      <a href="../work.html" class="flink">Work</a>
+      <a href="../writing.html" class="flink">Writing</a>
+      <a href="../about.html" class="flink">About</a>
+      <a href="https://linkedin.com/in/joshijeet02" class="flink">LinkedIn</a>
+    </div>
+  </footer>
+</body>
+</html>

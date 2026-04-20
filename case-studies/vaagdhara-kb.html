@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>VAAGDHARA Voice Agent & Knowledge Base — Jeet Joshi</title>
+  <title>Voice AI Facilitator &amp; Tribal Sovereignty Dashboard — Jeet Joshi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
@@ -47,61 +47,58 @@
 
   <div class="pg">
     <header class="hero">
-      <p class="kick">Case Study · Community AI · Voice Technology</p>
-      <h1 class="ht">VAAGDHARA Voice Agent &amp; Knowledge Base</h1>
-      <p class="sub">A Hindi-first knowledge system and voice AI for tribal women in Rajasthan, Gujarat, and Madhya Pradesh</p>
+      <p class="kick">Case Study · Community AI · Tribal Empowerment</p>
+      <h1 class="ht">Voice AI Facilitator &amp; Tribal Sovereignty Dashboard</h1>
+      <p class="sub">Moving from a "Chatbot" to a "Trusted Village Sister" (Badi Behen) for the Bhil community in Rajasthan.</p>
       <div class="tags">
         <span class="t ta">Pilot-Ready</span>
-        <span class="t">Hindi NLP</span><span class="t">Voice AI</span><span class="t">RAG</span>
-        <span class="t">Community Development</span><span class="t">Social Sector</span>
+        <span class="t">Hindi NLP</span><span class="t">Swaraj Framework</span>
+        <span class="t">OCR Pipeline</span><span class="t">Community Governance</span>
+        <span class="t">Human-Centered AI</span>
       </div>
     </header>
 
     <div class="body">
       <div class="sec">
         <p class="lbl">Context</p>
-        <p>VAAGDHARA works with Bhil tribal communities across three states — primarily women — on land rights, food security, natural farming, and government welfare entitlements. Their frontline workers (sakhis) have direct conversations with women in villages about what they are entitled to, what schemes exist, and what to do when systems fail them.</p>
-        <p>The sakhis need accurate, culturally grounded information during live conversations. The knowledge existed — in organizational newsletters, program documents, field reports — but it was scattered across PDFs nobody in the field could navigate in the moment.</p>
+        <p>VAAGDHARA works with Bhil tribal communities across Rajasthan, MP, and Gujarat. The challenge wasn't just providing information; it was providing it through a medium that felt safe and culturally congruent. Most AI tools sound like government officials or urban assistants — registers that often trigger hesitation or distance in a tribal context.</p>
+        <p><strong>Mai Hun Saksham</strong> was redesigned to be a "Trusted Village Sister" (Badi Behen). It is built to facilitate KASS (Kissan Adivasi Swavlamban Sangathan) meetings, focusing on decentralized agency rather than top-down instruction.</p>
       </div>
 
       <div class="sec">
-        <p class="lbl">The Problem</p>
-        <p>This was not a technology problem. It was a knowledge access problem with a very specific set of constraints. The system had to work in Hindi. It had to speak the language of tribal communities — the actual names of government schemes as used in Banswara, the specific crops of Bhil agriculture, the cultural register that makes a conversation feel safe.</p>
-        <p>Generic AI tools — even those fine-tuned on Hindi — do not encode this kind of contextual knowledge. They know what MGNREGA is. They do not know how Bhil communities refer to it, what common payment delays look like in Banswara district, or how to discuss menstrual health with a woman who has never spoken about it to any official before.</p>
-        <div class="call"><p>The knowledge had to come from VAAGDHARA itself — from their two decades of field work — not from a generic training corpus. That is what made this fundamentally different from deploying an off-the-shelf chatbot.</p></div>
-      </div>
-
-      <div class="sec">
-        <p class="lbl">What I Built</p>
+        <p class="lbl">The Core Pillars: Swaraj &amp; True Life</p>
+        <p>The system is built on a structured knowledge framework derived from two decades of VAAGDHARA's field expertise:</p>
         <ul class="bl">
-          <li><strong>Structured Hindi knowledge base</strong> — extracted from VAAGDHARA's primary source documents. Organized into four intelligence domains: agricultural knowledge, government scheme entitlements, health and nutrition, and women's rights and legal protections.</li>
-          <li><strong>200-question scored dialogue bank</strong> — questions a frontline worker might ask, or a woman might raise. Each question scored by domain, emotional register (informational, distressed, aspirational), and likely follow-up. Gives a voice agent enough context to respond accurately and with care.</li>
-          <li><strong>OCR pipeline for Hindi newsletters</strong> — VAAGDHARA's most valuable knowledge was in printed newsletters scanned as images. Built a Tesseract-based Hindi OCR pipeline followed by quality review flagging low-confidence extractions for manual correction.</li>
-          <li><strong>Pilot-ready system prompt</strong> — a complete voice agent system prompt for platforms like Bland AI or ElevenLabs Conversational AI. Encodes the agent's persona, knowledge sources, language register, cultural sensitivity guidelines, and escalation paths for when to say "I don't know."</li>
-          <li><strong>Knowledge gap report</strong> — identified 34 terms, local practices, and scheme variations that appeared in field interviews but were absent from existing documentation, flagged for VAAGDHARA's team to fill before launch.</li>
+          <li><strong>The Swaraj Models</strong> — Deep intelligence on 5 forms of sovereignty: Jal (Water), Jameen (Land), Van (Forest), Beej (Seed), and Ann (Food). </li>
+          <li><strong>True Life Frameworks</strong> — Conversational paths focused on True Farming (holistic agriculture), True Childhood (nutritional and community security), and True Governance (participatory decision-making).</li>
+          <li><strong>Cultural Integrity</strong> — Codified definitions for community practices like HALMA (collective labor) and NYOTRA (social-economic co-operation) to ensure the AI understands the village's real social glue.</li>
         </ul>
       </div>
 
       <div class="sec">
-        <p class="lbl">The Detail Worth Knowing</p>
-        <p>The hardest design decision was about what the agent should <em>not</em> do. Generic AI, when uncertain, often gives a vague approximation. In a community development context — where a woman might rely on what she hears to decide whether to report a payment delay or access a health scheme — a confident wrong answer is actively harmful.</p>
-        <p>The system prompt was written with explicit refusal logic: when confidence is below a threshold, the agent says it does not know and refers to a human worker. This is a design choice about what kind of AI is appropriate in this setting. Knowing when not to answer is as important as knowing when to answer. That judgment required understanding the development sector context, not just the NLP task.</p>
+        <p class="lbl">The Innovation: 4-Intelligence Scoring</p>
+        <p>Unlike standard QA systems, the app doesn't just listen; it evaluates community readiness. Every dialogue is mapped and scored (1-10) across four dimensions:</p>
+        <div class="call"><p><strong>Ecological:</strong> Are we managing resources as a collective? <strong>Economic:</strong> Is risk-sharing happening at the village level? <strong>Civic:</strong> Does the agenda reflect female leadership? <strong>Cultural:</strong> Is the knowledge being passed to the next generation?</p></div>
+        <p style="margin-top:16px;">This allows VAAGDHARA to monitor the "pulse" of community agency across hundreds of villages simultaneously, identifying where leadership is thriving and where it needs support.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Technical Implementation</p>
+        <ul class="bl">
+          <li><strong>OCR Pipeline</strong> — 20 years of tribal knowledge were locked in paper newsletters. I built a Tesseract-based Hindi OCR pipeline with automated quality review to digitize and index these primary sources into the KB.</li>
+          <li><strong>Voice Agent Persona</strong> — A pilot-ready prompt for platforms like Bland AI, explicitly instructed to speak in the register of a "Trusted Village Sister." It avoids "Do you know?" questions in favor of experience-based starts: "इस बार बारिश..." (This time the rain...).</li>
+          <li><strong>Scored Dialogue Bank</strong> — A 200-question engine that powers the "Facilitator" mode, guiding women through sessions while calculating their intelligence scores in real-time.</li>
+        </ul>
       </div>
 
       <div class="sec">
         <p class="lbl">Outcome</p>
-        <p>The system is pilot-ready. Knowledge base, dialogue bank, and system prompt have been delivered and are ready for integration with a voice platform. The knowledge gap report identifies what needs to be documented before deployment.</p>
-        <p>The broader significance: this is what AI genuinely built for a community looks like, as opposed to AI built for a general user and then applied to a community. The difference is not in the technology. It is in where the knowledge comes from and whose context the system was designed around.</p>
-      </div>
-
-      <div class="sec">
-        <p class="lbl">What I would do differently</p>
-        <div class="ref"><p>I would have spent time in the field before building anything. I built the knowledge base from documents — the right starting point — but the most important contextual knowledge does not live in documents. It lives in the conversations sakhis have been having for years. One afternoon with two frontline workers would have significantly changed the system prompt's emotional register and added questions to the dialogue bank I could not have known to include.</p></div>
+        <p>The system has moved from a document-retrieval concept to a community facilitation tool. It currently holds 200+ scored questions and 150+ synthesized practice definitions. It is ready for field pilots, designed to empower tribal women to lead their own village assemblies (Gram Sabhas) with the backing of their community's collective wisdom.</p>
       </div>
 
       <div class="nr">
         <a href="../work.html" class="nl">← All work</a>
-        <a href="../index.html#contact" class="nl nlp">Discuss a similar project →</a>
+        <a href="../index.html#contact" class="nl nlp">Discuss community-led tech →</a>
       </div>
     </div>
   </div>

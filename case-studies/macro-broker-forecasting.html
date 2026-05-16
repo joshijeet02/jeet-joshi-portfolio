@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Macro-to-Broker Forecasting Engine — Jeet Joshi</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --p: #F8F5F0; --p2: #F1EDE6; --ink: #2C2925; --m: #6B635B;
+      --f: #A89F95; --r: #DDD7CF; --a: #8B4F2E; --ab: #F5EDE7;
+      --sf: "DM Serif Display", Georgia, serif;
+      --ss: "Inter", -apple-system, sans-serif;
+      --mw: 720px; --g: clamp(20px, 5vw, 48px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { background: var(--p); color: var(--ink); font-family: var(--ss); font-size: 1.0625rem; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; border-radius: 4px; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--p); border-bottom: 1px solid var(--r); }
+    .nav__i { max-width: calc(var(--mw) + var(--g)*2); margin: 0 auto; padding: 16px var(--g); display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: var(--sf); font-size: 0.95rem; }
+    .back { font-size: 0.85rem; color: var(--f); transition: color 0.2s; }
+    .back:hover { color: var(--m); }
+
+    .pg { max-width: calc(var(--mw) + var(--g)*2); margin: 0 auto; padding: 0 var(--g); }
+
+    .hero { padding-top: 104px; padding-bottom: 48px; border-bottom: 1px solid var(--r); }
+    .kick { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--a); margin-bottom: 16px; }
+    .ht { font-family: var(--sf); font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .sub { font-size: 1.125rem; color: var(--m); font-style: italic; margin-bottom: 24px; max-width: 52ch; line-height: 1.65; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .t { font-size: 0.6875rem; letter-spacing: 0.05em; color: var(--f); background: var(--p2); border: 1px solid var(--r); padding: 2px 9px; border-radius: 2px; }
+    .ta { background: var(--ab); color: var(--a); border-color: rgba(139, 79, 46, 0.2); }
+
+    .body { padding-top: 56px; padding-bottom: 80px; }
+    .sec { margin-bottom: 52px; }
+    .lbl { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--f); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--r); }
+    .sec p { font-size: 1rem; color: var(--m); line-height: 1.78; max-width: 66ch; }
+    .sec p + p { margin-top: 1.1em; }
+    .sec strong { color: var(--ink); font-weight: 500; }
+
+    .bl { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+    .bl li { padding-left: 20px; position: relative; font-size: 1rem; color: var(--m); line-height: 1.7; }
+    .bl li::before { content: "→"; position: absolute; left: 0; color: var(--a); font-size: 0.875rem; }
+
+    .call { background: var(--ab); border: 1px solid rgba(139, 79, 46, 0.15); padding: 20px 24px; border-radius: 4px; margin-top: 16px; }
+    .call p { font-size: 0.9375rem; color: var(--a); font-weight: 500; line-height: 1.6; }
+
+    .specs { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px; }
+    @media (min-width: 600px) { .specs { grid-template-columns: 1fr 1fr; } }
+    .spec { border: 1px solid var(--r); padding: 14px 16px; border-radius: 4px; background: var(--p2); }
+    .spec-k { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--f); margin-bottom: 4px; }
+    .spec-v { font-size: 0.95rem; color: var(--ink); line-height: 1.5; font-weight: 500; }
+
+    .nr { border-top: 1px solid var(--r); padding-top: 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .nl { font-size: 0.9rem; color: var(--f); transition: color 0.2s; }
+    .nl:hover { color: var(--m); }
+    .nlp { color: var(--a); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+    footer { border-top: 1px solid var(--r); padding: 20px var(--g); max-width: calc(var(--mw) + var(--g)*2); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .fn { font-family: var(--sf); font-size: 0.875rem; color: var(--f); }
+    .fl { display: flex; gap: 20px; }
+    .flink { font-size: 0.8125rem; color: var(--f); transition: color 0.2s; }
+    .flink:hover { color: var(--m); }
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav__i">
+    <a href="../index.html" class="logo">Jeet Joshi</a>
+    <a href="../work.html" class="back">← All work</a>
+  </div></nav>
+
+  <div class="pg">
+    <header class="hero">
+      <p class="kick">Case Study · Quantitative Finance · Industry Forecasting</p>
+      <h1 class="ht">Macro-to-Broker Forecasting Engine</h1>
+      <p class="sub">A working forecasting product that takes any macro event as input — an RBI repo move, a USD-INR break, an FII outflow week — and returns a calibrated, confidence-banded prediction of how the Indian retail-broker industry will respond across F&amp;O turnover, equity SIP inflows, and Gold ETF rotation over the following two-to-four weeks.</p>
+      <div class="tags">
+        <span class="t ta">Built &amp; Delivered</span>
+        <span class="t">Quant Finance</span>
+        <span class="t">FastAPI</span>
+        <span class="t">Next.js</span>
+        <span class="t">Bayesian Modeling</span>
+        <span class="t">XGBoost</span>
+        <span class="t">PostgreSQL</span>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="sec">
+        <p class="lbl">Context</p>
+        <p>India's retail-broker industry sits downstream of the country's entire macro tape. When the RBI cuts the repo rate, when USD-INR breaks a level, when FII outflows accelerate, the response shows up in F&amp;O turnover, monthly SIP inflows, and gold-ETF rotation — but with lags, cohort-specific elasticities, and a structural break in late 2024 from new SEBI F&amp;O rules that broke every model trained on the prior regime.</p>
+        <p>The brief was sharp: build a system, in roughly sixty working hours, that takes <strong>a macro event in</strong> and produces <strong>a specific broker-industry forecast out</strong> — with magnitude precision, cohort granularity, weekly rotation timing, and calibrated confidence intervals — for an audience of investment-team principals and tech-diligence reviewers who would interrogate the model live during a screen-share.</p>
+        <p>The system was built end-to-end inside that window: data infrastructure, models, API, a natural-language interface, and a backtest-first frontend. It was delivered on schedule and demoed.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">What the system does</p>
+        <p>The product is a forecasting engine, not a dashboard. A user types a sentence — "what happens if RBI cuts 50 bps next week?" — or picks a preset macro scenario, and the system returns, in narrative and structured form together:</p>
+        <ul class="bl">
+          <li><strong>F&amp;O daily notional turnover</strong> — weekly aggregates across the next four weeks, with 80% confidence bands derived from holdout residual variance.</li>
+          <li><strong>AMFI equity SIP monthly inflow</strong> — next-month forecast in absolute crores, with quantile-regression confidence bands.</li>
+          <li><strong>AMFI Gold ETF AUM month-on-month</strong> — built from a two-layer model: macro to INR gold spot, then gold spot plus macro to ETF AUM flow.</li>
+          <li><strong>Cohort breakdown</strong> — separate forecasts for Client (retail), FII, and Pro participant flows, each one trained on real NSE daily participant-wise turnover data from 2018 onward.</li>
+          <li><strong>Backtest panel</strong> — pick any historical date in 2024 or 2025, see what the model would have predicted for that date and the four weeks following, against what actually happened. Composite directional accuracy is shown across seven labelled real-world events (rate decisions, currency breaks, FII waves, SEBI rule change).</li>
+        </ul>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">System Architecture</p>
+        <p>The stack was chosen for two constraints: a sixty-hour build window and a credibility bar that demanded every claim be auditable mid-call.</p>
+        <ul class="bl">
+          <li><strong>Backend</strong> — FastAPI on Python 3.11. Eight endpoints: a natural-language `/ask` (primary user surface), forms-based `/forecast` and `/firm-forecast`, cohort tagging, counterfactuals (margin protection, cross-sell, reactivation), historical backtest, scenario presets, and a `/health` endpoint exposing eight `*_loaded` flags so any reviewer can see at a glance which model artefacts are in memory.</li>
+          <li><strong>Frontend</strong> — Next.js 15 + Tailwind + shadcn/ui. An "AskBox" lifts the natural-language payload up to the page so a 7-metric forecast grid, a cohort table, a revenue-attribution card, and a counterfactual panel all re-render against the same model output that the narrative was generated from. Frozen-by-default snapshot mode, with a Live toggle that hits upstream sources with a five-second timeout and visible fallback.</li>
+          <li><strong>Data layer</strong> — Railway PostgreSQL with a clean separation between `raw.*` ingest tables (F&amp;O turnover, daily NSE participant flows, FII/DII flows, AMFI SIP, AMFI Gold ETF AUM, USD-INR, Brent, Nifty50, VIX, repo rate, 10Y G-sec, INR gold spot) and `model.*` feature tables (joined daily and monthly macro, per-cohort flow features).</li>
+          <li><strong>ML stack</strong> — scikit-learn Ridge for point estimates, XGBoost quantile regressors for 80% CI bands, a Bayesian-prior shrinkage approach for the post-SEBI F&amp;O regime, and empirical-prior Bayesian model averaging for the rate-change scenarios where post-regime data is scarce.</li>
+          <li><strong>NL layer</strong> — Anthropic Claude Haiku 4.5 via the Messages API for intent parsing and email-style response formatting. Both calls run at temperature zero for deterministic, demo-safe output. The intent parser returns a typed JSON scenario; the response formatter narrates the structured model output against a hard guardrail prose template so the natural-language layer can never hallucinate a magnitude the model didn't emit.</li>
+        </ul>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Three Hard Modeling Decisions</p>
+
+        <p><strong>1. Regime-segmented F&amp;O with Bayesian shrinkage.</strong> In late 2024, SEBI's F&amp;O rule changes structurally broke every model trained on the prior period. A monolithic model post-break ran 33% MAPE — indistinguishable from a naive baseline. The fix was a date-routed two-model approach: a pre-SEBI Ridge trained on 2018 to October 2024 weekly aggregates, and a post-SEBI Ridge trained on November 2024 to April 2026 with an informative Bayesian prior derived from pre-SEBI elasticities. The result: holdout MAPE of 12.65% on the post-SEBI window — a clean beat over the naive baseline with a residual log-stdev of 0.139 used directly to construct multiplicative 80% confidence bands (four of five holdout weeks in-band, exact coverage 0.80).</p>
+
+        <p><strong>2. Empirical-prior BMA on rate-change scenarios.</strong> A senior-quant audit surfaced that the cohort model was predicting retail Client de-leveraging on RBI rate cuts — contradicting both economic intuition and the only two post-SEBI rate-cut events on record, both of which showed Client accumulating. Two events is below any data-sufficiency threshold for principled regime-specific learning, so the solution was a two-component Bayesian model average: blend the post-SEBI model prediction with an empirical prior built from the mean of the two real cut events. The blend weight (`w_post = 0.26`) was solved against the user-stated magnitude target band and the direction-label threshold, with the breakeven and rationale documented in a reproducible calibration note alongside the prior artefact.</p>
+
+        <p><strong>3. Honest framing for what the industry-level model can and cannot do.</strong> An ablation in the audit phase showed that ~80% of the cohort model's directional signal is autoregressive (recent flow patterns) and ~20% is macro-driven adjustment — a feature, not a bug, since cohort flows are persistent at short horizons because of loss-aversion psychology. This became the calibration value proposition: at industry level, the flow-lag features are NSE-aggregate flows (one number per session for the whole retail tape); at firm level, the same architecture takes per-user position history as input. The pilot calibration replaces aggregate flow lags with firm-specific user-level cohort lags — which is exactly the operation that sharpens the autoregressive backbone.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Engineering Discipline</p>
+        <p>Two artefacts from the build window are worth surfacing because they show how the system was kept honest under time pressure:</p>
+        <ul class="bl">
+          <li><strong>A senior-quant audit phase.</strong> Once the system was working end-to-end, the next pass was an adversarial audit treating the build as if it were an external quant team's submission. Twenty-two corrections were surfaced — wrong CI methodology disclosure on two of four targets, a Client direction inversion on rate cuts, illustrative-versus-realistic label confusion, a cache-invalidation gap. Each correction was either fixed in code or documented in a memo that ships alongside the system.</li>
+          <li><strong>A failed rebuild, rolled back cleanly.</strong> A planned upgrade — transmission-channel features for mechanism-aware regime modeling — was attempted, broke F&amp;O MAPE by four percentage points and collapsed cohort predictions out of training scale, and was rolled back inside two commits. The lesson (collinearity between the monotonic time-feature and the date index broke the regime-routed Ridge) was captured in the project memo as a Stage 2 architectural item. Rolling back cleanly is the discipline; building forward without that discipline is how forecasting products quietly drift into junk.</li>
+        </ul>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Technical specifications</p>
+        <div class="specs">
+          <div class="spec"><div class="spec-k">Backend</div><div class="spec-v">FastAPI · Python 3.11</div></div>
+          <div class="spec"><div class="spec-k">Frontend</div><div class="spec-v">Next.js 15 · Tailwind · shadcn/ui</div></div>
+          <div class="spec"><div class="spec-k">Database</div><div class="spec-v">PostgreSQL (Railway)</div></div>
+          <div class="spec"><div class="spec-k">Point models</div><div class="spec-v">scikit-learn Ridge · XGBRegressor</div></div>
+          <div class="spec"><div class="spec-k">CI bands</div><div class="spec-v">XGBoost quantile regressors + log-residual</div></div>
+          <div class="spec"><div class="spec-k">NL layer</div><div class="spec-v">Claude Haiku 4.5 (temp = 0)</div></div>
+          <div class="spec"><div class="spec-k">Data window</div><div class="spec-v">2018 → present, daily &amp; monthly</div></div>
+          <div class="spec"><div class="spec-k">Build window</div><div class="spec-v">~60 working hours, audit-tested</div></div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">The framing it makes possible</p>
+        <div class="call"><p>"The model is built and it works on public data. Firm-specific accuracy comes from calibrating on the firm's own user-level data — which is the engagement scope."</p></div>
+        <p style="margin-top:16px;">That single sentence is the commercial frame the architecture was designed to earn. Industry-level forecasts work and are honestly bounded; the calibration path from industry to firm is mechanically clear (replace NSE-aggregate flow lags with firm cohort flow lags). The system makes it possible to walk into a brokerage, treasury desk, or family office with a working product, run a backtest live, and explain — without arm-waving — exactly what changes when their data lands on the model.</p>
+      </div>
+
+      <div class="sec">
+        <p class="lbl">Status</p>
+        <p>The system was built and delivered for a live discovery call in May 2026. It runs locally for demo purposes; cloud hosting is intentionally deferred — the compute footprint is uneconomical pre-pilot and is best commissioned by the calibration client on Day 1 of the engagement. The codebase, models, audit memo, and pre-call checklist all ship together; calibration scope is one-cohort-at-a-time per pilot vertical.</p>
+      </div>
+
+      <div class="nr">
+        <a href="rbi-communications.html" class="nl">← RBI Communications</a>
+        <a href="../index.html#contact" class="nl nlp">Discuss a forecasting build →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="fn">Jeet Joshi</span>
+    <div class="fl">
+      <a href="../work.html" class="flink">Work</a>
+      <a href="../writing.html" class="flink">Writing</a>
+      <a href="../about.html" class="flink">About</a>
+      <a href="https://linkedin.com/in/joshijeet02" class="flink">LinkedIn</a>
+    </div>
+  </footer>
+</body>
+</html>

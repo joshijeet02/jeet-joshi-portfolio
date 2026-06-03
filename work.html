@@ -62,35 +62,92 @@
     <section aria-label="Project list">
       <div class="container">
 
-        <!-- Featured projects — full cards -->
-        <h2 style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: var(--space-6); margin-top: var(--space-12);">
-          Featured
+        <!-- Category: Understand Indian Economy -->
+        <div class="project-category" style="margin-top: var(--space-12);">
+          <div class="project-category__header">
+            <span class="project-category__label">Understand Indian Economy</span>
+            <span class="project-category__count">3 projects</span>
+          </div>
+          <div class="projects">
+
+            <a href="case-studies/rbi-communications.html" class="project-card">
+              <div class="project-card__body">
+                <h3 class="project-card__title">RBI Communication Intelligence</h3>
+                <p class="project-card__stake">
+                  For traders, treasury desks, and policy researchers tracking how India's central bank is shifting its stance
+                </p>
+                <p class="project-card__desc">
+                  A Streamlit-powered NLP system that ingests every Reserve Bank of India communication — MPC statements,
+                  Governor speeches, policy minutes — and surfaces exactly how the central bank's language has shifted from one meeting to the next.
+                  Stance signal engine, meeting-to-meeting comparison, and a dual-mode interface for analysts and laypeople.
+                  <br><br><em>Live: rbicommunication.streamlit.app</em>
+                </p>
+                <div class="project-card__tags">
+                  <span class="tag">Monetary Policy</span>
+                  <span class="tag">NLP</span>
+                  <span class="tag">Claude API</span>
+                  <span class="tag">Streamlit</span>
+                  <span class="tag">Central Banking</span>
+                </div>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a href="case-studies/india-macro-pulse.html" class="project-card">
+              <div class="project-card__body">
+                <h3 class="project-card__title">India Macro Pulse — Data Release Intelligence</h3>
+                <p class="project-card__stake">
+                  For institutional economists and fixed-income traders tracking Indian macro releases
+                </p>
+                <p class="project-card__desc">
+                  A Streamlit-powered intelligence platform for Indian macro releases. Ingests CPI and IIP data,
+                  computes surprise indices, and constructs a proprietary composite inflation index using real-time Amazon pricing data.
+                  Generates AI-authored briefs for both institutional and general audiences.
+                  <br><br><em>Live: india-macro-pulse.streamlit.app</em>
+                </p>
+                <div class="project-card__tags">
+                  <span class="tag">Macroeconomics</span>
+                  <span class="tag">Quantitative AI</span>
+                  <span class="tag">Alternative Data</span>
+                  <span class="tag">NLP</span>
+                  <span class="tag">Streamlit</span>
+                </div>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a href="case-studies/mnrega-dashboard.html" class="project-card">
+              <div class="project-card__body">
+                <h3 class="project-card__title">Rajasthan Employment Dashboard</h3>
+                <p class="project-card__stake">
+                  Built for a government policy briefing — 15 years of MNREGA data across 33 districts
+                </p>
+                <p class="project-card__desc">
+                  MNREGA data sits on government servers, inconsistently formatted, impossible to compare across years.
+                  I built a data pipeline and React TypeScript dashboard that pulls, normalizes, and visualizes the
+                  full employment history of Rajasthan. The dashboard is designed for one question: did employment improve,
+                  or just increase?
+                </p>
+                <div class="project-card__tags">
+                  <span class="tag">Public Policy</span>
+                  <span class="tag">Data Engineering</span>
+                  <span class="tag">Economic Analysis</span>
+                  <span class="tag">React</span>
+                  <span class="tag">TypeScript</span>
+                </div>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">→</span>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Other featured projects -->
+        <h2 style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: var(--space-6);">
+          Other Featured
         </h2>
 
         <div class="projects">
-
-          <a href="case-studies/india-macro-pulse.html" class="project-card">
-            <div class="project-card__body">
-              <h3 class="project-card__title">India Macro Pulse — Data Release Intelligence</h3>
-              <p class="project-card__stake">
-                For institutional economists and fixed-income traders tracking Indian macro releases
-              </p>
-              <p class="project-card__desc">
-                A Streamlit-powered intelligence platform for Indian macro releases. Ingests CPI and IIP data,
-                computes surprise indices, and constructs a proprietary composite inflation index using real-time Amazon pricing data.
-                Generates AI-authored briefs for both institutional and general audiences.
-                <br><br><em>Live: india-macro-pulse.streamlit.app</em>
-              </p>
-              <div class="project-card__tags">
-                <span class="tag">Macroeconomics</span>
-                <span class="tag">Quantitative AI</span>
-                <span class="tag">Alternative Data</span>
-                <span class="tag">NLP</span>
-                <span class="tag">Streamlit</span>
-              </div>
-            </div>
-            <span class="project-card__arrow" aria-hidden="true">→</span>
-          </a>
 
           <a href="case-studies/macro-broker-forecasting.html" class="project-card">
             <div class="project-card__body">
@@ -116,29 +173,6 @@
             <span class="project-card__arrow" aria-hidden="true">→</span>
           </a>
 
-          <a href="case-studies/rbi-communications.html" class="project-card">
-            <div class="project-card__body">
-              <h3 class="project-card__title">RBI Communication Intelligence</h3>
-              <p class="project-card__stake">
-                For traders, treasury desks, and policy researchers tracking how India's central bank is shifting its stance
-              </p>
-              <p class="project-card__desc">
-                A Streamlit-powered NLP system that ingests every Reserve Bank of India communication — MPC statements,
-                Governor speeches, policy minutes — and surfaces exactly how the central bank's language has shifted from one meeting to the next.
-                Stance signal engine, meeting-to-meeting comparison, and a dual-mode interface for analysts and laypeople.
-                <br><br><em>Live: rbicommunication.streamlit.app</em>
-              </p>
-              <div class="project-card__tags">
-                <span class="tag">Monetary Policy</span>
-                <span class="tag">NLP</span>
-                <span class="tag">Claude API</span>
-                <span class="tag">Streamlit</span>
-                <span class="tag">Central Banking</span>
-              </div>
-            </div>
-            <span class="project-card__arrow" aria-hidden="true">→</span>
-          </a>
-
           <a href="case-studies/grant-intelligence.html" class="project-card">
             <div class="project-card__body">
               <h3 class="project-card__title">Grant Intelligence System</h3>
@@ -157,29 +191,6 @@
                 <span class="tag">Data Readiness</span>
                 <span class="tag">Node.js</span>
                 <span class="tag">RAG Pipeline</span>
-              </div>
-            </div>
-            <span class="project-card__arrow" aria-hidden="true">→</span>
-          </a>
-
-          <a href="case-studies/mnrega-dashboard.html" class="project-card">
-            <div class="project-card__body">
-              <h3 class="project-card__title">Rajasthan Employment Dashboard</h3>
-              <p class="project-card__stake">
-                Built for a government policy briefing — 15 years of employment data across 33 districts
-              </p>
-              <p class="project-card__desc">
-                MNREGA data sits on government servers, inconsistently formatted, impossible to compare across years.
-                I built a data pipeline and React TypeScript dashboard that pulls, normalizes, and visualizes the
-                full employment history of Rajasthan. The dashboard is designed for one question: did employment improve,
-                or just increase?
-              </p>
-              <div class="project-card__tags">
-                <span class="tag">Public Policy</span>
-                <span class="tag">Data Engineering</span>
-                <span class="tag">Economic Analysis</span>
-                <span class="tag">React</span>
-                <span class="tag">TypeScript</span>
               </div>
             </div>
             <span class="project-card__arrow" aria-hidden="true">→</span>

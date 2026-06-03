@@ -48,7 +48,7 @@
 
 /* --- Scroll reveal ----------------------------------------- */
 window.revealElements = function() {
-  const elements = document.querySelectorAll('.reveal:not(.visible)');
+  const elements = document.querySelectorAll('.reveal:not(.visible), .fade-in:not(.visible)');
   if (!elements.length) return;
 
   if ('IntersectionObserver' in window) {

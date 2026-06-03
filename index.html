@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jeet Joshi — Economist &amp; Builder</title>
   <meta name="description" content="Jeet Joshi builds AI systems grounded in economic thinking. Economist and builder based in Ahmedabad." />
+  <link rel="canonical" href="https://jeetjoshi.netlify.app/" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B4F2E'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23F8F5F0' text-anchor='middle'%3EJJ%3C/text%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Jeet Joshi" />
+  <meta property="og:url" content="https://jeetjoshi.netlify.app/" />
+  <meta property="og:title" content="Jeet Joshi — Economist &amp; Builder" />
+  <meta property="og:description" content="Jeet Joshi builds AI systems grounded in economic thinking. Economist and builder based in Ahmedabad." />
+  <meta property="og:image" content="https://jeetjoshi.netlify.app/img/hero-portrait.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jeet Joshi — Economist &amp; Builder" />
+  <meta name="twitter:description" content="Jeet Joshi builds AI systems grounded in economic thinking. Economist and builder based in Ahmedabad." />
+  <meta name="twitter:image" content="https://jeetjoshi.netlify.app/img/hero-portrait.jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -566,7 +578,7 @@
   ============================================================ -->
   <nav class="nav" id="js-nav">
     <div class="nav__inner">
-      <a href="#" class="nav__logo">Jeet Joshi</a>
+      <a href="index.html" class="nav__logo">Jeet Joshi</a>
       <div class="nav__links">
         <a href="#work"    class="nav__link">Work</a>
         <a href="writing.html" class="nav__link">Writing</a>
@@ -702,6 +714,27 @@
 
         <!-- 03 -->
         <a href="case-studies/grant-intelligence.html" class="project-item fade-in d2">
+          <div class="project-item__header">
+            <h3 class="project-item__title">Grant Intelligence System</h3>
+            <span class="project-item__status status-deployed">Deployed</span>
+          </div>
+          <p class="project-item__stake">
+            For a tribal rights CSO managing multi-crore grants from major international foundations
+          </p>
+          <p class="project-item__desc">
+            Grant writing was entirely manual — identifying funders, building proposals, and staying
+            aligned with each funder's language and priorities, all done person by person. Built a
+            full-stack system that scouts opportunities, profiles funders, evaluates fit, generates
+            proposal concepts, and exports formatted drafts. Node.js, RAG pipeline, 40+ API endpoints.
+            Runs in production.
+          </p>
+          <div class="project-item__tags">
+            <span class="tag">NGO Finance</span>
+            <span class="tag">Social Impact AI</span>
+            <span class="tag">RAG Pipeline</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </a>
 
         <!-- 04 -->
         <a href="case-studies/mnrega-dashboard.html" class="project-item fade-in d3">
@@ -729,7 +762,7 @@
           </div>
         </a>
 
-        <!-- 04 -->
+        <!-- 05 -->
         <a href="case-studies/swaraj-loom.html" class="project-item fade-in d3">
           <div class="project-item__header">
             <h3 class="project-item__title">Swaraj Loom — Knowledge Platform</h3>
@@ -755,7 +788,7 @@
           </div>
         </a>
 
-        <!-- 05 -->
+        <!-- 06 -->
         <a href="case-studies/norex-sustainability.html" class="project-item fade-in">
           <div class="project-item__header">
             <h3 class="project-item__title">Sustainability Intelligence — Norex Flavours</h3>
@@ -781,7 +814,7 @@
           </div>
         </a>
 
-        <!-- 06 -->
+        <!-- 07 -->
         <a href="case-studies/vlc-spices.html" class="project-item fade-in d1">
           <div class="project-item__header">
             <h3 class="project-item__title">Export Intelligence Dashboards — VLC Spices</h3>
@@ -924,7 +957,7 @@
       </div>
 
       <a href="work.html" class="work__all fade-in">
-        See all 11 projects →
+        See all work →
       </a>
     </section>
 
@@ -977,26 +1010,11 @@
         long enough that not writing it starts to feel wrong.
       </p>
 
-      <div class="writing-items">
-        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in">
-          <span class="writing-item__title">The economics of being born where you were born</span>
-          <span class="writing-item__date">March 2026</span>
-        </a>
-        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in d1">
-          <span class="writing-item__title">When the analysis is right but nothing changes</span>
-          <span class="writing-item__date">February 2026</span>
-        </a>
-        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in d2">
-          <span class="writing-item__title">What MNREGA numbers do not tell you</span>
-          <span class="writing-item__date">January 2026</span>
-        </a>
-        <a href="https://substack.com/@jeetjoshi" class="writing-item fade-in d3">
-          <span class="writing-item__title">Living income, and why the benchmark does not exist yet</span>
-          <span class="writing-item__date">November 2025</span>
-        </a>
+      <div class="writing-items" id="js-writing-feed">
+        <p class="writing-item__title" style="color: var(--ink-faint); padding: 18px 0;">Loading latest essays…</p>
       </div>
 
-      <a href="https://substack.com/@jeetjoshi" class="work__all fade-in" style="margin-top: 20px;">
+      <a href="https://jeetjoshi.substack.com" class="work__all fade-in" style="margin-top: 20px;">
         Read all essays on Substack →
       </a>
     </section>
@@ -1015,8 +1033,8 @@
         </p>
         <p>I respond personally. Usually within a day.</p>
       </div>
-      <a href="mailto:jeetjoshieconomics@gmail.com" class="contact__email fade-in d2">
-        jeetjoshieconomics@gmail.com
+      <a href="mailto:joshijeet02@gmail.com" class="contact__email fade-in d2">
+        joshijeet02@gmail.com
       </a>
       <p class="contact__micro fade-in d3">
         No form. No calendar link. Just email.<br>
@@ -1036,7 +1054,7 @@
       <a href="writing.html" class="footer__link">Writing</a>
       <a href="about.html"   class="footer__link">About</a>
       <a href="https://linkedin.com/in/joshijeet02"  class="footer__link">LinkedIn</a>
-      <a href="https://substack.com/@jeetjoshi"      class="footer__link">Substack</a>
+      <a href="https://jeetjoshi.substack.com"      class="footer__link">Substack</a>
     </nav>
   </footer>
 
@@ -1095,6 +1113,40 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
       document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    })();
+
+    /* Latest Substack essays — live feed */
+    (function () {
+      const feed = document.getElementById('js-writing-feed');
+      if (!feed) return;
+      const RSS = 'https://jeetjoshi.substack.com/feed';
+      const API = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(RSS);
+
+      const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+      ));
+
+      fetch(API)
+        .then(r => r.json())
+        .then(data => {
+          if (data.status !== 'ok' || !Array.isArray(data.items) || !data.items.length) {
+            throw new Error('Empty feed');
+          }
+          feed.innerHTML = data.items.slice(0, 4).map(post => {
+            const d = new Date(post.pubDate);
+            const date = isNaN(d) ? '' : d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            return '<a href="' + encodeURI(post.link) + '" target="_blank" rel="noopener noreferrer" class="writing-item">' +
+                     '<span class="writing-item__title">' + escapeHtml(post.title) + '</span>' +
+                     '<span class="writing-item__date">' + date + '</span>' +
+                   '</a>';
+          }).join('');
+        })
+        .catch(() => {
+          feed.innerHTML = '<a href="https://jeetjoshi.substack.com" target="_blank" rel="noopener noreferrer" class="writing-item">' +
+                             '<span class="writing-item__title">Read the latest essays on Substack</span>' +
+                             '<span class="writing-item__date">→</span>' +
+                           '</a>';
+        });
     })();
   </script>
 

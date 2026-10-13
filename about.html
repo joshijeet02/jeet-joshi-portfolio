@@ -1,159 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About · Jeet Joshi</title>
-  <meta name="description" content="Jeet Joshi is an economist from Banswara, Rajasthan. Trained at GIPE Pune and the University of Sydney. He writes Chai with an Economist and builds decision-intelligence systems." />
-  <link rel="canonical" href="https://jeetjoshi.netlify.app/about.html" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23BE4A24'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23F4F1EA' text-anchor='middle'%3EJJ%3C/text%3E%3C/svg%3E" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:site_name" content="Jeet Joshi" />
-  <meta property="og:url" content="https://jeetjoshi.netlify.app/about.html" />
-  <meta property="og:title" content="About · Jeet Joshi" />
-  <meta property="og:description" content="Economist from Banswara. Trained at GIPE Pune and the University of Sydney. Builds decision-intelligence systems." />
-  <meta property="og:image" content="https://jeetjoshi.netlify.app/img/about-portrait.jpeg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="About · Jeet Joshi" />
-  <meta name="twitter:description" content="Economist from Banswara. Builds decision-intelligence systems." />
-  <meta name="twitter:image" content="https://jeetjoshi.netlify.app/img/about-portrait.jpeg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .about__intro { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: start; margin-bottom: var(--space-16); }
-    .about__intro-photo { position: relative; }
-    .about__intro-photo img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 3px; background: var(--bone-2); }
-    .about__intro-photo .hero__fig { position: absolute; top: -11px; left: -11px; }
-    @media (min-width: 820px) { .about__intro { grid-template-columns: 1fr 360px; gap: var(--space-16); } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Jeet Joshi</title>
+<meta name="description" content="Where I come from: Banswara, Gokhale Institute, Ladakh, Sydney, Alliance for Change, and building AI systems.">
+<link rel="canonical" href="https://jeetjoshi.netlify.app/about.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231D2756'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23E2A42B' text-anchor='middle'%3EJJ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jeet Joshi">
+<meta property="og:title" content="About Jeet Joshi">
+<meta property="og:description" content="Where I come from: Banswara, Gokhale Institute, Ladakh, Sydney, Alliance for Change, and building AI systems.">
+<meta property="og:url" content="https://jeetjoshi.netlify.app/about.html">
+<meta property="og:image" content="https://jeetjoshi.netlify.app/img/hero-portrait.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&amp;family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400&amp;family=Tiro+Devanagari+Hindi&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F2EE}
+a{color:#1A2147}a:hover{color:#2A3670}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px;box-sizing:border-box}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,22rem);gap:72px;align-items:start}
+.nav-links{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.prose p{margin:0 0 1.15em}
+@media (max-width:860px){
+.wrap{padding:0 20px}
+.about-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+.nav-links{gap:16px}
+.ttl{font-size:64px !important}
+}
+.essay{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #D3D6DE;text-decoration:none;color:#1A2147}
+.essay-t{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:18px}.essay-d{font-size:14px;color:#545A70;white-space:nowrap}
+.essay:hover .essay-t{text-decoration:underline;text-decoration-color:#E2A42B;text-decoration-thickness:3px;text-underline-offset:5px}
+a:focus-visible{outline:3px solid #E2A42B;outline-offset:3px;border-radius:2px}
+.row3:hover span:first-child{text-decoration:underline;text-decoration-color:#E2A42B;text-decoration-thickness:3px;text-underline-offset:5px}
+@media (prefers-reduced-motion:no-preference){.name{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}}
+</style>
 </head>
 <body>
+<div style="font-family: 'Literata', Georgia, serif; color: #1A2147; background: #F2F2EE; min-height: 100vh">
 
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo">Jeet Joshi<span class="dot">.</span></a>
-      <ul class="nav__links" role="list">
-        <li><a href="work.html"    class="nav__link">Work</a></li>
-        <li><a href="writing.html" class="nav__link">Writing</a></li>
-        <li><a href="about.html"   class="nav__link" aria-current="page">About</a></li>
-        <li><a href="contact.html" class="nav__link nav__link--cta">Talk &rarr;</a></li>
-      </ul>
-      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
-  <div class="nav__mobile" role="dialog" aria-modal="true">
-    <a href="work.html"    class="nav__mobile-link">Work</a>
-    <a href="writing.html" class="nav__mobile-link">Writing</a>
-    <a href="about.html"   class="nav__mobile-link">About</a>
-    <a href="contact.html" class="nav__mobile-link">Talk</a>
-  </div>
+<header style="background: #1D2756; color: #EEF0F6">
+<div class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 24px; padding-bottom: 24px; flex-wrap: wrap">
+<a href="index.html" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; color: #EEF0F6; text-decoration: none; letter-spacing: -0.01em">Jeet Joshi</a>
+<nav class="nav-links" aria-label="Main" style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px">
+<a href="index.html#work" style="color: #EEF0F6; text-decoration: none">Work</a>
+<a href="about.html" aria-current="page" style="color: #E2A42B; text-decoration: none">About</a>
+<a href="index.html#writing" style="color: #EEF0F6; text-decoration: none">Writing</a>
+<a href="index.html#contact" style="color: #1D2756; background: #E2A42B; text-decoration: none; padding: 10px 18px; border-radius: 999px; font-weight: 600">Email me</a>
+</nav>
+</div>
+<div class="wrap" style="padding-top: 64px; padding-bottom: 72px">
+<h1 class="ttl" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-variation-settings: 'wdth' 78; font-size: 112px; line-height: 0.9; letter-spacing: -0.035em; color: #F6F4EC">Where I come from</h1>
+</div>
+</header>
 
-  <main>
-    <header class="page-header">
-      <div class="container">
-        <p class="page-header__kicker">About</p>
-        <h1 class="page-header__title">Jeet <span class="it">Joshi</span></h1>
-        <p class="page-header__sub">Economist. Builder. Based in Ahmedabad.</p>
-      </div>
-    </header>
+<main class="wrap" style="padding-top: 88px; padding-bottom: 120px">
+<div class="about-grid">
+<div class="prose" style="font-size: 19px; line-height: 1.75; max-width: 36em">
+<p>I grew up in Banswara, a small city in the Wagad belt of southern Rajasthan. Most people there are tribal, and most of them farm. My family does not farm, but I grew up close enough to it to learn early that an economic problem always lands on someone in particular.</p>
+<p>I studied economics at the Gokhale Institute of Politics and Economics in Pune. In 2021 I spent a summer at the Centre for Budget and Governance Accountability in Delhi, mapping how civil society works across six states. The next year I went to Ladakh as a field investigator. I did over a hundred interviews there, and spent twelve days inside an army cantonment so I could reach the border villages.</p>
+<p>Then I went to Sydney for a master's in financial economics. I liked the rigour of it. In my last year there I started building small AI tools, mostly because I kept seeing good analysis go nowhere, and I wanted to know if I could carry it the last mile myself.</p>
+<p>I came back in 2025. Before moving on, I wanted to give something back to the place that raised me. So for the past year I have worked with Gagan Sethi at Alliance for Change in Ahmedabad, training the first cohort of grassroots researchers to study their own communities. That cohort finishes in November 2026.</p>
+<p>The building did not stop. In January 2026 I started Vasuman Associates, my own small practice, and built COMPASS for AARAV Fragrances &amp; Flavors under it. For VAAGDHARA, the organisation my father founded and leads in our region, I built a grant system and, this October, the software for its leadership journey.</p>
+<p>What I want next is to work as an economist inside a company, close to the people who take decisions about markets and money. I would bring the building with me.</p>
 
-    <div class="about__content">
+<h2 style="margin: 56px 0 18px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.015em">On writing</h2>
+<p>I write a newsletter called Chai with an Economist. About 3,000 people read it, and the Takshashila Institution and Puliyabaazi have shared my work. I write in my diary first, with a pen, then type it out a day or two later. I also translated a book by Dr. M. S. Swaminathan into Hindi.</p>
+<p>I speak Hindi, English and Gujarati, and enough French to get by.</p>
+</div>
 
-      <div class="about__intro reveal">
-        <div>
-          <p class="about__lead">I grew up in Banswara, a small city in southern Rajasthan, in the Wagad belt. The region is mostly tribal, mostly agricultural, mostly quiet.</p>
-          <p style="font-family:var(--font-serif);font-size:var(--text-lg);color:var(--ink-2);line-height:1.7;margin-top:var(--space-6);max-width:60ch">
-            I am not from a farming family, but I spent enough time around farming and around poverty to understand that economic problems are not abstract. They are concrete. Someone specific is always paying the cost.
-          </p>
-        </div>
-        <div class="about__intro-photo">
-          <span class="hero__fig">FIG. 02</span>
-          <img src="img/about-portrait.jpeg" alt="Jeet Joshi" />
-        </div>
-      </div>
+<aside>
+<img loading="lazy" decoding="async" src="img/about-portrait.jpeg" alt="Jeet Joshi" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px">
+<dl style="margin: 28px 0 0; font-size: 15px; line-height: 1.5">
+<div style="padding: 12px 0; border-top: 1px solid #D3D6DE"><dt style="color: #545A70">Based in</dt><dd style="margin: 2px 0 0">Ahmedabad, from Banswara</dd></div>
+<div style="padding: 12px 0; border-top: 1px solid #D3D6DE"><dt style="color: #545A70">Education</dt><dd style="margin: 2px 0 0">M.Econ, University of Sydney<br>B.Sc Economics, Gokhale Institute</dd></div>
+<div style="padding: 12px 0; border-top: 1px solid #D3D6DE"><dt style="color: #545A70">Now</dt><dd style="margin: 2px 0 0">Alliance for Change, until November 2026</dd></div>
+<div style="padding: 12px 0; border-top: 1px solid #D3D6DE; border-bottom: 1px solid #D3D6DE"><dt style="color: #545A70">Builds with</dt><dd style="margin: 2px 0 0">Python, R, Stata, TypeScript, Next.js, FastAPI, Postgres, the Claude API</dd></div>
+</dl>
+<p style="margin: 28px 0 0"><a href="mailto:joshijeet02@gmail.com" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 18px; text-decoration-color: #E2A42B; text-decoration-thickness: 3px; text-underline-offset: 6px">joshijeet02@gmail.com</a></p>
+</aside>
+</div>
+</main>
 
-      <div class="about__section reveal">
-        <p class="about__section-title">Where I come from</p>
-        <p>I was trained at the Gokhale Institute of Politics and Economics in Pune, one of the better economics programmes in India, and then took a master's in Financial Economics at the University of Sydney. I liked the rigour. I liked that economics gave me a language for asking why things work the way they do.</p>
-        <p>Before I built anything, I did policy research. I worked with organisations that study government budgets, track rural employment, and advise on economic rights. That work took me to Ladakh, to tribal communities, to state government offices, and eventually to the United Nations ECOSOC programme.</p>
-        <p>What I kept noticing was this. The analysis would be done, the problem would be understood, and then it would sit in a document. Nothing carried it forward. No one had built the system that would put the insight in the hands of the person who needed it.</p>
-      </div>
+<footer style="background: #1D2756; color: #B7BED6">
+<div class="wrap" style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 32px; padding-bottom: 32px; font-size: 15px">
+<span>Jeet Joshi, Ahmedabad</span>
+<span style="display: flex; gap: 24px; flex-wrap: wrap"><a href="https://linkedin.com/in/joshijeet02" style="color: #EEF0F6">LinkedIn</a><a href="https://jeetjoshi.substack.com" style="color: #EEF0F6">Substack</a><a href="index.html" style="color: #EEF0F6">Home</a></span>
+</div>
+</footer>
+</div>
 
-      <div class="about__section reveal">
-        <p class="about__section-title">How I started building things</p>
-        <p>I started because I ran out of alternatives.</p>
-        <p>I was working with organisations trying to solve real problems. In each case the information existed, but no one could reach it in a form that helped them act. So I started building the tools myself. Not because I was a developer, I was not, but because the problems were clear enough that I could describe exactly what a tool needed to do. And once I could describe it precisely, learning to build it became possible.</p>
-        <p>I have been building these systems since early 2025. In that time I have built a grant management system for a tribal rights NGO, a policy dashboard for government employment data, a Hindi voice agent and knowledge base for conversations with tribal women, intelligence systems for India's macro and monetary data, a forecasting engine for the retail-broker industry, and a coaching application backend.</p>
-        <p>None of these are demos. They all run on real data, for real people, in situations with real consequences.</p>
-      </div>
-
-      <div class="about__section reveal">
-        <p class="about__section-title">What economics gives me that engineering alone does not</p>
-        <p>When I build a system, the first question I ask is not what it should do. It is what the actual structure of the problem is.</p>
-        <p>Who bears the cost when it stays unsolved? What information is missing? What does a person in this situation need to know before they can act?</p>
-        <p>Those questions come from economics training, and they change what gets built. A developer who does not ask them will often build the right tool for the wrong problem. I have done that too. I do it less now.</p>
-        <p>The systems I build are not better because they use newer technology. They are better, when they are better, because the diagnosis was done before the code was written.</p>
-      </div>
-
-      <div class="about__section reveal">
-        <p class="about__section-title">On the writing</p>
-        <p>I write a newsletter called Chai with an Economist.</p>
-        <p>About 3,000 people read it. I do not know most of them. But I know the feeling I write toward: sitting with an idea long enough that it surprises you, the moment an economics concept connects to something you have lived.</p>
-        <p>I write in my diary first, with a pen. Then I type it out a day or two later. About 85 to 90 percent of what goes into the diary comes out in the newsletter. The rest was too raw or too specific to share.</p>
-        <p>I do not write to grow an audience. I write because some things ask to be written. The people who find it, find it.</p>
-      </div>
-
-      <div class="about__section reveal">
-        <p class="about__section-title">How I work</p>
-        <p>I give people the exit door explicitly.</p>
-        <p>If you reach out to me about a project, I will tell you honestly whether I think I can help. If I cannot, I will say so, and probably suggest someone who can. I do not have a sales process designed to move you toward yes regardless of fit.</p>
-        <p>This is not a strategy. It is just how I prefer to work. I would rather have the kind of relationship where we are both honest about what makes sense, and then, if it makes sense, do good work together.</p>
-        <p>If it does not make sense right now, that is fine too. People remember how you treated them when you could have just pushed for the sale.</p>
-      </div>
-
-      <div class="about__section reveal">
-        <p class="about__section-title">What I am building now</p>
-        <p>I am building Vasuman Associates, an AI systems practice that works with companies facing complex, economically structured problems. The work is not AI for its own sake. It is systems that solve problems where the cost of not solving them is real.</p>
-        <p>I am also building The Coach, an executive coaching application that I hope will eventually reach people who cannot afford what good coaching costs today.</p>
-        <p>Both are early. I am honest about that.</p>
-      </div>
-
-      <div class="about__section reveal">
-        <p class="about__section-title">Where to find me</p>
-        <p>I write at <a href="https://jeetjoshi.substack.com" target="_blank" rel="noopener noreferrer">Chai with an Economist</a> on Substack. I am on <a href="https://linkedin.com/in/joshijeet02" target="_blank" rel="noopener noreferrer">LinkedIn</a>. The best way to reach me is email. I answer personally, usually within a day.</p>
-      </div>
-
-    </div>
-
-    <section class="contact-cta" aria-label="Get in touch">
-      <div class="contact__wrap">
-        <p class="contact__kicker">Get in touch</p>
-        <h2>Tell me what you are working on.</h2>
-        <div class="contact-cta__body">
-          <p>I will tell you honestly whether I can help. I answer personally, usually within a day.</p>
-        </div>
-        <a href="mailto:joshijeet02@gmail.com" class="contact-cta__email">joshijeet02@gmail.com</a>
-        <p class="contact-cta__micro">No form. No calendar link. Just email.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer" role="contentinfo">
-    <div class="footer__inner-wrap">
-      <div class="footer__inner">
-        <span class="footer__name">Jeet Joshi © 2026</span>
-        <nav class="footer__links">
-          <a href="work.html"    class="footer__link">Work</a>
-          <a href="writing.html" class="footer__link">Writing</a>
-          <a href="about.html"   class="footer__link">About</a>
-          <a href="https://linkedin.com/in/joshijeet02" class="footer__link">LinkedIn</a>
-          <a href="https://jeetjoshi.substack.com"      class="footer__link">Substack</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
 </body>
 </html>

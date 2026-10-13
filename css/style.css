@@ -61,3 +61,6 @@ img{max-width:100%}
   .site-nav{gap:16px}
   .site-foot a{margin-left:16px}
 }
+.cs-shot{margin:0 0 72px}
+.cs-shot img{display:block;width:100%;border:1px solid var(--rule);border-radius:6px;background:#fff}
+.cs-shot figcaption{margin-top:10px;font-size:14px;color:var(--muted)}

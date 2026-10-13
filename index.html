@@ -23,12 +23,13 @@ a{color:#1E2624}a:hover{color:#3B4744}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,0.75fr);gap:64px;align-items:end}
 .feat-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
 .shots{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
 .row3{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) 6rem;gap:24px;align-items:baseline}
 .road{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:24px;align-items:baseline}
 .nav-links{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
 @media (max-width:860px){
 .wrap{padding:0 20px}
-.hero-grid,.feat-grid,.shots{grid-template-columns:minmax(0,1fr);gap:32px}
+.hero-grid,.feat-grid,.shots,.duo{grid-template-columns:minmax(0,1fr);gap:32px}
 .row3{grid-template-columns:minmax(0,1fr);gap:4px}
 .road{grid-template-columns:minmax(0,1fr);gap:2px}
 .nav-links{gap:16px}
@@ -132,12 +133,33 @@ a:focus-visible{outline:3px solid #E2A42B;outline-offset:3px;border-radius:2px}
 </section>
 
 <section class="wrap" style="padding-top: 128px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 40px; letter-spacing: -0.02em">Reading the Indian economy</h2>
+<p style="margin: 14px 0 0; font-size: 18px; line-height: 1.7; max-width: 40em; color: #444C4A">Two tools on India's monetary policy and inflation. Both are public, and anyone can use them.</p>
+<div class="duo" style="margin-top: 40px">
+<article>
+<a href="case-studies/rbi-communications.html" style="display: block; text-decoration: none; color: #1E2624">
+<img loading="lazy" decoding="async" src="img/rbi-communication.jpg" alt="RBI Communication Intelligence, the query screen with suggested questions" style="display: block; width: 100%; aspect-ratio: 1600 / 944; object-fit: cover; object-position: top left; border: 1px solid #D8D6CC; border-radius: 6px; background: #FFFFFF">
+<h3 style="margin: 24px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.015em">RBI Communication Intelligence</h3>
+</a>
+<p style="margin: 10px 0 0; font-size: 17px; line-height: 1.65; color: #444C4A">Reads every RBI policy statement, minute and Governor speech, scores the stance, and shows how the language moved from one meeting to the next. Ask it in plain English or as an analyst. Prof. Jayanth Varma, a former member of the Monetary Policy Committee, tested it and endorsed it.</p>
+<p style="margin: 16px 0 0; display: flex; gap: 24px; flex-wrap: wrap; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 16px"><a href="case-studies/rbi-communications.html" style="text-decoration-color: #E2A42B; text-decoration-thickness: 3px; text-underline-offset: 6px">How it works</a><a href="https://rbicommunication.streamlit.app/" style="text-decoration-color: #E2A42B; text-decoration-thickness: 3px; text-underline-offset: 6px">Open the live tool</a></p>
+</article>
+<article>
+<a href="case-studies/india-macro-pulse.html" style="display: block; text-decoration: none; color: #1E2624">
+<img loading="lazy" decoding="async" src="img/india-macro-pulse.jpg" alt="India Macro Pulse, the nowcast of next month's CPI print" style="display: block; width: 100%; aspect-ratio: 1600 / 944; object-fit: cover; object-position: top left; border: 1px solid #D8D6CC; border-radius: 6px; background: #FFFFFF">
+<h3 style="margin: 24px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.015em">India Macro Pulse</h3>
+</a>
+<p style="margin: 10px 0 0; font-size: 17px; line-height: 1.65; color: #444C4A">Estimates the next CPI print before MOSPI releases it, from prices it measures itself every week. It reads each CPI and IIP release when it comes out, breaks it into food, fuel and core, and checks it against what economists expected.</p>
+<p style="margin: 16px 0 0; display: flex; gap: 24px; flex-wrap: wrap; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 16px"><a href="case-studies/india-macro-pulse.html" style="text-decoration-color: #E2A42B; text-decoration-thickness: 3px; text-underline-offset: 6px">How it works</a><a href="https://india-macro-pulse.streamlit.app/" style="text-decoration-color: #E2A42B; text-decoration-thickness: 3px; text-underline-offset: 6px">Open the live tool</a></p>
+</article>
+</div>
+</section>
+
+<section class="wrap" style="padding-top: 128px">
 <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 40px; letter-spacing: -0.02em">Other things I have built</h2>
 <div style="margin-top: 32px; border-top: 2px solid #1E2624">
-<a href="case-studies/rbi-communications.html" class="row3" style="padding: 22px 0; border-bottom: 1px solid #D8D6CC; text-decoration: none; color: #1E2624"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px">RBI Communication Intelligence</span><span style="font-size: 16px; line-height: 1.55; color: #444C4A">Reads every RBI policy statement, minute and Governor speech, and tracks how the language moves. Tested and endorsed by Prof. Jayanth Varma, former member of the Monetary Policy Committee.</span><span style="font-size: 14px; color: #5A625F; text-align: right">Live</span></a>
 <a href="case-studies/grant-intelligence.html" class="row3" style="padding: 22px 0; border-bottom: 1px solid #D8D6CC; text-decoration: none; color: #1E2624"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px">Grant Intelligence System</span><span style="font-size: 16px; line-height: 1.55; color: #444C4A">For VAAGDHARA. Finds funders, checks FCRA and programme fit, and drafts proposals from the organisation's own grant history.</span><span style="font-size: 14px; color: #5A625F; text-align: right">Live</span></a>
 <a href="case-studies/macro-broker-forecasting.html" class="row3" style="padding: 22px 0; border-bottom: 1px solid #D8D6CC; text-decoration: none; color: #1E2624"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px">Macro-to-Broker Forecasting Engine</span><span style="font-size: 16px; line-height: 1.55; color: #444C4A">Takes a macro event, a repo move or a rupee break, and forecasts how retail F&amp;O turnover, SIP flows and gold ETFs respond over the next few weeks.</span><span style="font-size: 14px; color: #5A625F; text-align: right">Delivered</span></a>
-<a href="case-studies/india-macro-pulse.html" class="row3" style="padding: 22px 0; border-bottom: 1px solid #D8D6CC; text-decoration: none; color: #1E2624"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px">India Macro Pulse</span><span style="font-size: 16px; line-height: 1.55; color: #444C4A">CPI and IIP surprise against consensus, and an inflation index built from live online prices.</span><span style="font-size: 14px; color: #5A625F; text-align: right">Live</span></a>
 <a href="case-studies/vaagdhara-kb.html" class="row3" style="padding: 22px 0; border-bottom: 1px solid #D8D6CC; text-decoration: none; color: #1E2624"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px">Swaraj Empowerment &amp; Leadership Arc</span><span style="font-size: 16px; line-height: 1.55; color: #444C4A">Maps how 2,800 tribal women across 700 villages see their own agency, and how that changes.</span><span style="font-size: 14px; color: #5A625F; text-align: right">Live</span></a>
 <a href="case-studies/mnrega-dashboard.html" class="row3" style="padding: 22px 0; border-bottom: 1px solid #D8D6CC; text-decoration: none; color: #1E2624"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px">Rajasthan Employment Dashboard</span><span style="font-size: 16px; line-height: 1.55; color: #444C4A">Fifteen years of MGNREGA data for 33 districts, cleaned and made comparable.</span><span style="font-size: 14px; color: #5A625F; text-align: right">Live</span></a>
 <a href="case-studies/swaraj-loom.html" class="row3" style="padding: 22px 0; border-bottom: 1px solid #D8D6CC; text-decoration: none; color: #1E2624"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px">Swaraj Loom</span><span style="font-size: 16px; line-height: 1.55; color: #444C4A">A shared library of indigenous ecological knowledge for VAAGDHARA and eleven partner organisations.</span><span style="font-size: 14px; color: #5A625F; text-align: right">Live</span></a>

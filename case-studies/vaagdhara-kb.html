@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swaraj Empowerment & Leadership Arc | Jeet Joshi</title>
-  <meta name="description" content="A real-time agency dashboard mapping the leadership journey of 2,800+ tribal women across 700 villages, built on a hybrid online and offline sync architecture." />
+  <title>Swaraj Empowerment &amp; Leadership Arc, Jeet Joshi</title>
+  <meta name="description" content="For VAAGDHARA. Maps how 2,800 tribal women across 700 villages see their own agency, and how that changes. Works with no network." />
   <link rel="canonical" href="https://jeetjoshi.netlify.app/case-studies/vaagdhara-kb.html" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E2624'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23E2A42B' text-anchor='middle'%3EJJ%3C/text%3E%3C/svg%3E" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Swaraj Empowerment & Leadership Arc | Jeet Joshi" />
-  <meta property="og:description" content="A real-time agency dashboard mapping the leadership journey of 2,800+ tribal women across 700 villages." />
+  <meta property="og:title" content="Swaraj Empowerment &amp; Leadership Arc, Jeet Joshi" />
+  <meta property="og:description" content="For VAAGDHARA. Maps how 2,800 tribal women across 700 villages see their own agency, and how that changes." />
   <meta property="og:image" content="https://jeetjoshi.netlify.app/img/hero-portrait.jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,47 +24,41 @@
 
   <main class="cs">
     <header class="cs-hero"><div class="cs-hero__in">
-      <p class="cs-kicker">Communal Intelligence, Agency Mapping</p>
+      <p class="cs-kicker">For VAAGDHARA</p>
       <h1 class="cs-title">Swaraj Empowerment &amp; Leadership Arc</h1>
-      <p class="cs-tagline">A real-time agency dashboard mapping the leadership journey of 2,800+ tribal women across 700 villages.</p>
+      <p class="cs-tagline">Maps how 2,800 tribal women across 700 villages see their own agency, and how that changes from one visit to the next.</p>
       <div class="cs-tags">
-        <span class="cs-tag cs-tag--status">Deployed</span>
-        <span class="cs-tag">Hybrid-Sync Architecture</span>
+        <span class="cs-tag cs-tag--status">Live</span>
         <span class="cs-tag">React Native</span>
         <span class="cs-tag">FastAPI</span>
-        <span class="cs-tag">Agency Modeling</span>
+        <span class="cs-tag">Postgres</span>
+        <span class="cs-tag">Works without a network</span>
       </div>
-      <a href="https://swaraj-assessment.vercel.app/" target="_blank" rel="noopener noreferrer" class="cs-live">Open the live dashboard at swaraj-assessment.vercel.app</a>
+      <a href="https://swaraj-assessment.vercel.app/" target="_blank" rel="noopener noreferrer" class="cs-live">Open the dashboard at swaraj-assessment.vercel.app</a>
     </div></header>
 
     <div class="cs-body">
       <div class="cs-sec">
-        <p class="cs-label">The Lens: Agency as a Metric</p>
-        <p>The core philosophy of this system is to measure <strong>how empowered women feel they are</strong>. In tribal community development, progress isn't just about resource distribution; it's about the internal shift from being a passive participant to a community leader. This app codifies that shift through a "Leadership Arc" lens.</p>
-        <p>Currently deployed across the Bhil tribal belt in Rajasthan, MP, and Gujarat, the system handles real-time data from 120+ field facilitators covering 2,800+ life stories and leadership assessments.</p>
+        <p class="cs-label">What it asks</p>
+        <p>VAAGDHARA works with women's collectives across the Bhil belt, where Rajasthan, Madhya Pradesh and Gujarat meet. It can count how many women came to a meeting or took a loan. It wanted to know something harder. How far does each woman feel she can act, at home, in her village, in her panchayat? And is that moving?</p>
+        <p>So a facilitator sits with a woman and listens to her life story first. Then they go through a set of questions about her agency: over her land and her money, in the village and how it is governed, in her culture, and in the digital world she now has to deal with for rations, payments and papers.</p>
       </div>
 
       <div class="cs-sec">
-        <p class="cs-label">The Engine: 5 Intelligences &amp; The Ladder</p>
-        <p>The assessment tracks progress across five critical dimensions of agency:</p>
-        <ul class="cs-list">
-          <li><strong>Ecological &amp; Economic.</strong> Resource sovereignty and risk-sharing.</li>
-          <li><strong>Civic &amp; Cultural.</strong> Voice in village governance and preservation of heritage.</li>
-          <li><strong>Digital.</strong> Agency in navigating the digital governance and commerce landscape.</li>
-        </ul>
-        <p style="margin-top:var(--space-5)">Women are mapped onto <strong>The Ladder of Leadership</strong>, moving through four rungs: <strong>Participant (भागीदार)</strong>, <strong>Doer (कर्ता)</strong>, <strong>Motivator (प्रेरक)</strong>, and finally, <strong>Leader (नेता)</strong>. Immediately after an assessment, the system provides "Current 3 Tasks", concrete, AI-driven nudges to help the individual reach the next rung of their arc.</p>
+        <p class="cs-label">The ladder</p>
+        <p>Each woman is placed on a ladder with four rungs. <strong>Participant (भागीदार)</strong>. <strong>Doer (कर्ता)</strong>. <strong>Motivator (प्रेरक)</strong>. <strong>Leader (नेता)</strong>.</p>
+        <p>When the assessment ends, the AI suggests three small tasks that could take her one rung up. The facilitator reads them and decides what to carry back to her. The next visit draws the ladder again, so everyone can see whether she moved.</p>
       </div>
 
       <div class="cs-sec">
-        <p class="cs-label">Technical Excellence: The Hybrid-Sync Architecture</p>
-        <p>Working in remote tribal locations requires extreme resilience. The system features a custom hybrid-sync mobile architecture built with React Native (Expo):</p>
-        <div class="cs-callout"><p><strong>Online/Offline Resilience:</strong> Field workers can conduct extensive interviews in areas with zero connectivity. Data is stored in a structured local DB and automatically synced to the Vercel/FastAPI backend the moment the device reconnects.</p></div>
-        <p style="margin-top:var(--space-5)">The stack involves a FastAPI (Python) backend, a React-based monitoring dashboard, and a PostgreSQL database with 24-hour automated backups, ensuring that no community story is ever lost, regardless of field conditions.</p>
+        <p class="cs-label">Built for places with no signal</p>
+        <p>Most of these conversations happen where there is no network. The app on the facilitator's phone keeps everything on the device and sends it the next time the phone finds a connection. If the phone stays off for a week, nothing is lost.</p>
+        <div class="cs-callout"><p>About 120 facilitators use it. Their work lands on one dashboard, called <strong>मैं हूँ सक्षम</strong>, where VAAGDHARA can see the picture by household, village and panchayat, and where it is changing.</p></div>
       </div>
 
       <div class="cs-sec">
-        <p class="cs-label">Outcome &amp; Scale</p>
-        <p>This is no longer a pilot. It is an operational communal intelligence engine. By mapping leadership at the household, village, and panchayat levels, VAAGDHARA can now visualize "Swaraj Signals", real-time indicators of community agency that inform strategic decision-making across the entire belt.</p>
+        <p class="cs-label">How it was built</p>
+        <p>React Native with Expo for the phone app. FastAPI and Postgres behind it, backed up every night. A React dashboard on top, on Vercel.</p>
       </div>
 
       <div class="cs-nav">
@@ -76,6 +70,5 @@
 
   <footer class="site-foot"><div class="wrap site-foot__bar"><span>Jeet Joshi, Ahmedabad</span><span><a href="mailto:joshijeet02@gmail.com">Email</a><a href="https://linkedin.com/in/joshijeet02">LinkedIn</a><a href="https://jeetjoshi.substack.com">Substack</a></span></div></footer>
 
-  
 </body>
 </html>
